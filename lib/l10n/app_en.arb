@@ -1,0 +1,55 @@
+{
+  "@@locale": "en",
+  "settingsTitle": "Settings",
+  "@settingsTitle": {
+    "description": "Title for the Settings Screen AppBar"
+  },
+  "darkMode": "Dark Mode",
+  "darkModeSubtitle": "Enable or disable dark theme",
+  "appearanceSectionTitle": "Appearance",
+  "languageRegionSectionTitle": "Language & Region",
+  "appLanguageDropdownTitle": "App Language",
+  "homeAppBarTitle": "MedAssist+",
+  "profileTooltip": "Profile",
+  "homeGreeting": "Hi, {userName} 👋",
+  "@homeGreeting": {
+    "description": "Greeting message on the home screen",
+    "placeholders": {
+      "userName": {
+        "type": "String",
+        "example": "Rohit"
+      }
+    }
+  },
+  "homeSectionTitleKeyStats": "Your Key Stats",
+  "statLabelBloodType": "Blood Type",
+  "statLabelAllergies": "Allergies",
+  "statLabelMedication": "Medication",
+  "statLabelConditions": "Conditions",
+  "homeSectionTitleQuickActions": "Quick Actions",
+  "actionLabelMedicalSummary": "Medical Summary",
+  "actionLabelFamilyManagement": "Family Management",
+  "actionLabelEmergencyContacts": "Emergency Contacts",
+  "actionLabelAppSettings": "App Settings",
+  "homeFabLabelEmergencyId": "Emergency ID",
+  "profileUpdated": "Profile Updated!",
+  "@profileUpdated": {
+    "description": "Snackbar message shown after profile is successfully updated"
+  },
+  "notSet": "Not Set",
+  "@notSet": {
+    "description": "Generic placeholder for a value that has not been set by the user"
+  },
+  "featureComingSoon": "Feature Coming Soon!",
+  "@featureComingSoon": {
+    "description": "Snackbar message for features that are not yet implemented"
+  },
+  "statLabelMedicalReports": "Medical Reports",
+  "@statLabelMedicalReports": {
+    "description": "Label for the medical reports statistic on the home dashboard"
+  },
+  "filesSuffix": "files",
+  "@filesSuffix": {
+    "description": "Suffix for the number of files, e.g., '3 files'"
+  }
+}

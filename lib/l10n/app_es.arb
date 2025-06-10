@@ -1,0 +1,43 @@
+{
+  "@@locale": "es",
+  "settingsTitle": "Configuración",
+  "darkMode": "Modo Oscuro",
+  "darkModeSubtitle": "Activar o desactivar el tema oscuro",
+  "appearanceSectionTitle": "Apariencia",
+  "languageRegionSectionTitle": "Idioma y Región",
+  "appLanguageDropdownTitle": "Idioma de la Aplicación",
+  "homeAppBarTitle": "MedAssist+",
+  "profileTooltip": "Perfil",
+  "homeGreeting": "Hola, {userName} 👋",
+  "homeSectionTitleKeyStats": "Tus Estadísticas Clave",
+  "statLabelBloodType": "Tipo de Sangre",
+  "statLabelAllergies": "Alergias",
+  "statLabelMedication": "Medicación",
+  "statLabelConditions": "Condiciones",
+  "homeSectionTitleQuickActions": "Acciones Rápidas",
+  "actionLabelMedicalSummary": "Resumen Médico",
+  "actionLabelFamilyManagement": "Gestión Familiar",
+  "actionLabelEmergencyContacts": "Contactos de Emergencia",
+  "actionLabelAppSettings": "Ajustes de App",
+  "homeFabLabelEmergencyId": "ID de Emergencia",
+  "profileUpdated": "¡Perfil Actualizado!",
+  "@profileUpdated": {
+    "description": "Mensaje de Snackbar que se muestra después de actualizar el perfil correctamente"
+  },
+  "notSet": "No Establecido",
+  "@notSet": {
+    "description": "Marcador de posición genérico para un valor que el usuario no ha establecido"
+  },
+  "featureComingSoon": "¡Característica Próximamente!",
+  "@featureComingSoon": {
+    "description": "Mensaje de Snackbar para funciones que aún no se han implementado"
+  },
+  "statLabelMedicalReports": "Informes Médicos",
+  "@statLabelMedicalReports": {
+    "description": "Etiqueta para la estadística de informes médicos en el panel de inicio"
+  },
+  "filesSuffix": "archivos",
+  "@filesSuffix": {
+    "description": "Sufijo para el número de archivos, ej., '3 archivos'"
+  }
+}
