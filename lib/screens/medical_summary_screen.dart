@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:provider/provider.dart';
+import '../services/summary_service.dart';
+import '../providers/user_profile_provider.dart';
 
 class MedicalSummaryScreen extends StatefulWidget {
-  const MedicalSummaryScreen({super.key});
+  final Map<String, dynamic>? summaryData;
+  const MedicalSummaryScreen({super.key, this.summaryData});
+
+  factory MedicalSummaryScreen.fromMap(Map<String, dynamic> map) {
+    return MedicalSummaryScreen(summaryData: map);
+  }
 
   @override
   State<MedicalSummaryScreen> createState() => _MedicalSummaryScreenState();
@@ -10,7 +18,9 @@ class MedicalSummaryScreen extends StatefulWidget {
 
 class _MedicalSummaryScreenState extends State<MedicalSummaryScreen> {
   // Placeholder data - this would come from a database or state management
-  final String _aiSummary = "Rohit appears to be generally healthy but should monitor blood pressure. Recent reports show slightly elevated cholesterol levels. Key conditions include mild Asthma. Current medications: Albuterol Inhaler (as needed). Allergies: Penicillin.";
+  String _aiSummary = '';
+  bool _loading = false;
+  String? _error;
   final List<Map<String, dynamic>> _conditions = [
     {'name': 'Mild Asthma', 'severity': 'Mild', 'icon': MdiIcons.lungs, 'color': Colors.blue},
     {'name': 'Hypertension (Monitor)', 'severity': 'Pre-Hypertension', 'icon': MdiIcons.heartPulse, 'color': Colors.orange},
@@ -29,6 +39,34 @@ class _MedicalSummaryScreenState extends State<MedicalSummaryScreen> {
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(content: Text('Exporting summary (Simulated)...')),
     );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchSummary();
+  }
+
+  Future<void> _fetchSummary() async {
+    setState(() {
+      _loading = true;
+      _error = null;
+    });
+    try {
+      final profile = Provider.of<UserProfileProvider>(context, listen: false).userProfile;
+      final summary = await SummaryService.instance.generateSummary(profile);
+      setState(() {
+        _aiSummary = summary;
+      });
+    } catch (e) {
+      setState(() {
+        _error = e.toString();
+      });
+    } finally {
+      if (mounted) {
+        setState(() => _loading = false);
+      }
+    }
   }
 
   @override
@@ -59,7 +97,9 @@ class _MedicalSummaryScreenState extends State<MedicalSummaryScreen> {
               icon: MdiIcons.brain,
               iconColor: theme.colorScheme.primary,
               content: Text(
-                _aiSummary,
+                _loading
+                    ? 'Generating summary...'
+                    : (_error ?? (_aiSummary.isNotEmpty ? _aiSummary : 'No summary available.')),
                 style: theme.textTheme.bodyMedium?.copyWith(fontFamily: 'Poppins', height: 1.5),
               ),
             ),
@@ -119,12 +159,7 @@ class _MedicalSummaryScreenState extends State<MedicalSummaryScreen> {
             ElevatedButton.icon(
               icon: Icon(MdiIcons.fileEditOutline),
               label: const Text('Request AI Re-Summary'),
-              onPressed: () {
-                // TODO: Implement AI re-summary logic
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('AI Re-Summary Requested (Simulated)')),
-                );
-              },
+              onPressed: _loading ? null : _fetchSummary,
               style: ElevatedButton.styleFrom(
                 backgroundColor: theme.colorScheme.secondary,
                 foregroundColor: theme.colorScheme.onSecondary,

@@ -1,7 +1,8 @@
+import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'dart:convert';
 import '../models/user_profile.dart';
+import '../services/profile_service.dart';
 
 class UserProfileProvider with ChangeNotifier {
   UserProfile _userProfile = UserProfile();
@@ -12,6 +13,8 @@ class UserProfileProvider with ChangeNotifier {
   UserProfileProvider() {
     _loadProfile();
   }
+
+  final ProfileService _profileService = ProfileService.instance;
 
   Future<void> _loadProfile() async {
     final prefs = await SharedPreferences.getInstance();
@@ -28,6 +31,19 @@ class UserProfileProvider with ChangeNotifier {
     } else {
       _userProfile = UserProfile(); // Initialize with default if no data found
     }
+
+    // Attempt to fetch latest profile from backend (if authenticated)
+    try {
+      final backendProfile = await _profileService.fetchProfile();
+      _userProfile = backendProfile;
+      // save locally for offline use
+      await _saveProfile();
+    } catch (e) {
+      if (kDebugMode) {
+        print('[UserProfileProvider] Unable to fetch profile from backend: $e');
+      }
+      // Ignore error, stay with local profile
+    }
     notifyListeners();
   }
 
@@ -39,6 +55,18 @@ class UserProfileProvider with ChangeNotifier {
 
   Future<void> updateProfile(UserProfile newProfile) async {
     _userProfile = newProfile;
+
+    // Persist to backend first; fall back to local only on failure
+    try {
+      final savedProfile = await _profileService.updateProfile(newProfile);
+      _userProfile = savedProfile;
+    } catch (e) {
+      if (kDebugMode) {
+        print('[UserProfileProvider] Failed to update profile on backend: $e');
+      }
+      // We still proceed to save locally to avoid data loss
+    }
+
     await _saveProfile();
     notifyListeners();
   }
@@ -72,6 +100,14 @@ class UserProfileProvider with ChangeNotifier {
     await _saveProfile();
     notifyListeners();
   }
+
+  // Getters for face recognition and emergency info
+  String get userId => _userProfile.emergencyId;
+  String get name => _userProfile.name;
+  List<Map<String, String>> get emergencyContacts => _userProfile.emergencyContacts;
+  List<String> get medicalConditions => _userProfile.medicalConditions;
+  String get bloodGroup => _userProfile.bloodGroup;
+  List<String> get allergies => _userProfile.allergies;
 
   Future<void> updateCurrentMedications(List<String> medications) async {
     _userProfile = _userProfile.copyWith(currentMedications: medications);

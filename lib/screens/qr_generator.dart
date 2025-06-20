@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:qr_flutter/qr_flutter.dart'; // Placeholder for QR code generation
 import 'package:flutter_animate/flutter_animate.dart'; // For animations
+import 'package:provider/provider.dart';
+import '../providers/user_profile_provider.dart';
 
 class QrGeneratorScreen extends StatefulWidget {
   const QrGeneratorScreen({super.key});
@@ -11,8 +13,6 @@ class QrGeneratorScreen extends StatefulWidget {
 }
 
 class _QrGeneratorScreenState extends State<QrGeneratorScreen> {
-  // Placeholder data for the QR code - in a real app, this would be dynamic user data
-  final String _qrData = "medassistplus://user?id=12345&name=Rohit&emergency_contact=9876543210";
   bool _showNfcOptions = false;
 
   void _writeToNfcTag() {
@@ -49,28 +49,33 @@ class _QrGeneratorScreenState extends State<QrGeneratorScreen> {
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 32),
-            Center(
-              child: QrImageView(
-                data: _qrData,
-                version: QrVersions.auto,
-                size: 250.0,
-                gapless: false,
-                embeddedImage: const AssetImage('assets/images/medassist_logo_small.png'), // Optional: Add your app logo
-                embeddedImageStyle: const QrEmbeddedImageStyle(
-                  size: Size(50, 50),
-                ),
-                errorStateBuilder: (cxt, err) {
-                  return const Center(
-                    child: Text(
-                      'Uh oh! Something went wrong generating the QR code.',
-                      textAlign: TextAlign.center,
-                    ),
-                  );
-                },
-              )
-              .animate()
-              .fadeIn(duration: 600.ms)
-              .shimmer(delay: 400.ms, duration: 1800.ms, color: theme.colorScheme.primary.withOpacity(0.3)), // Shimmer animation
+            Builder(
+              builder: (context) {
+                final emergencyId = context.watch<UserProfileProvider>().userProfile.emergencyId;
+
+                return Center(
+                  child: QrImageView(
+                    data: emergencyId,
+                    version: QrVersions.auto,
+                    size: 280.0,
+                    gapless: false,
+                    errorCorrectionLevel: QrErrorCorrectLevel.M,
+                    embeddedImage: const AssetImage('assets/images/medassist_logo_small.png'),
+                    embeddedImageStyle: const QrEmbeddedImageStyle(size: Size(50, 50)),
+                    errorStateBuilder: (cxt, err) {
+                      return const Center(
+                        child: Text(
+                          'Uh oh! Something went wrong generating the QR code.',
+                          textAlign: TextAlign.center,
+                        ),
+                      );
+                    },
+                  )
+                  .animate()
+                  .fadeIn(duration: 600.ms)
+                  .shimmer(delay: 400.ms, duration: 1800.ms, color: theme.colorScheme.primary.withOpacity(0.3)), // Shimmer animation
+                );
+              },
             ),
             const SizedBox(height: 24),
             Text(

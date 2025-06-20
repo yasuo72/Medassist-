@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'dart:ui';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:lottie/lottie.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:medassist_plus/data/daily_tips.dart';
+import '../widgets/glassy_panel.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
+import 'package:medassist_plus/services/medical_record_service.dart';
 import 'package:medassist_plus/providers/user_profile_provider.dart';
 
 class HomeDashboard extends StatelessWidget {
@@ -18,52 +23,64 @@ class HomeDashboard extends StatelessWidget {
     Color iconColor,
   ) {
     final theme = Theme.of(context);
+
+    // Neon gradient for border
+    final gradientBorder = LinearGradient(
+      colors: [const Color(0xFF00D1FF), const Color(0xFF7C4DFF)],
+    );
+
     return Container(
           decoration: BoxDecoration(
-            color: theme.colorScheme.surfaceVariant.withAlpha(180),
-            borderRadius: BorderRadius.circular(16),
-            boxShadow: [
-              BoxShadow(
-                color: theme.colorScheme.shadow.withOpacity(0.1),
-                blurRadius: 8,
-                offset: const Offset(0, 4),
-              ),
-            ],
-            border: Border.all(
-              color: theme.colorScheme.outline.withOpacity(0.2),
-              width: 1,
-            ),
+            borderRadius: BorderRadius.circular(32),
+            gradient:
+                theme.brightness == Brightness.dark
+                    ? LinearGradient(
+                      colors: [
+                        Colors.white.withOpacity(0.05),
+                        Colors.white.withOpacity(0.02),
+                      ],
+                    )
+                    : LinearGradient(
+                      colors: [
+                        Colors.white.withOpacity(0.25),
+                        Colors.white.withOpacity(0.10),
+                      ],
+                    ),
           ),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 12.0,
-              vertical: 16.0,
+          child: Container(
+            margin: const EdgeInsets.all(2),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(30),
+              gradient: gradientBorder,
             ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Icon(icon, size: 36, color: iconColor),
-                const SizedBox(height: 8),
-                Text(
-                  label,
-                  style: theme.textTheme.bodySmall?.copyWith(
-                    fontFamily: 'Poppins',
-                    color: theme.colorScheme.onSurfaceVariant.withOpacity(0.8),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(icon, color: iconColor, size: 36),
+                  const SizedBox(height: 8),
+                  Text(
+                    label,
+                    style: theme.textTheme.labelMedium?.copyWith(
+                      fontFamily: 'Poppins',
+                      fontWeight: FontWeight.w600,
+                      color: theme.colorScheme.onSurface,
+                    ),
+                    textAlign: TextAlign.center,
                   ),
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  value,
-                  style: theme.textTheme.titleMedium?.copyWith(
-                    fontFamily: 'Poppins',
-                    fontWeight: FontWeight.w600,
-                    color: theme.colorScheme.onSurfaceVariant,
+                  const SizedBox(height: 4),
+                  Text(
+                    value,
+                    style: theme.textTheme.titleMedium?.copyWith(
+                      fontFamily: 'Poppins',
+                      fontWeight: FontWeight.w600,
+                      color: theme.colorScheme.onSurfaceVariant,
+                    ),
+                    textAlign: TextAlign.center,
                   ),
-                  textAlign: TextAlign.center,
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         )
@@ -72,20 +89,58 @@ class HomeDashboard extends StatelessWidget {
         .slideY(begin: 0.3, duration: 400.ms, curve: Curves.easeOutCubic);
   }
 
+  // A small curated list of daily health tips
+  // Cached future to avoid multiple network calls on rebuilds
+  static final Future<int> _reportsCountFuture = MedicalRecordService().fetchReportsCount();
+
+  // Tips list moved to lib/data/daily_tips.dart
+
+  // Deterministically pick a tip from shared data file
+  String _getTodayTip() => getTipForDate(DateTime.now());
+
+  Widget _buildDailyTipCard(BuildContext context) {
+  final theme = Theme.of(context);
+  return GlassyPanel(
+    child: Padding(
+      padding: const EdgeInsets.all(16),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Icon(MdiIcons.lightbulbOnOutline,
+              color: theme.colorScheme.primary, size: 32),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Text(
+              _getTodayTip(),
+              style: theme.textTheme.bodyMedium?.copyWith(
+                fontFamily: 'Poppins',
+                fontWeight: FontWeight.w600,
+                color: theme.colorScheme.onSurface,
+              ),
+            ),
+          ),
+        ],
+      ),
+    ),
+  ).animate().fadeIn(duration: 500.ms).slideY(begin: 0.2);
+}
+
+
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     final ThemeData theme = Theme.of(context);
     final AppLocalizations loc = AppLocalizations.of(context)!;
     final userProfileProvider = Provider.of<UserProfileProvider>(context);
     final userProfile = userProfileProvider.userProfile;
-    final Color onPrimaryColor = theme.colorScheme.onPrimary;
+    final Color headerColor = isDark ? Colors.white : theme.colorScheme.onPrimary;
     final Color onSurfaceColor = theme.colorScheme.onSurface;
 
     final List<Map<String, dynamic>> actionItems = [
       {
         'icon': MdiIcons.fileDocumentOutline,
-        'label': loc.actionLabelMedicalSummary,
-        'route': '/medical',
+        'label': 'Medical Records',
+        'route': '/records',
       },
       {
         'icon': MdiIcons.accountMultiplePlusOutline,
@@ -105,279 +160,382 @@ class HomeDashboard extends StatelessWidget {
     ];
 
     return Scaffold(
-      backgroundColor: theme.colorScheme.background,
-      body: CustomScrollView(
-        slivers: <Widget>[
-          SliverAppBar(
-            pinned: true,
-            expandedHeight: 120.0,
-            backgroundColor: theme.colorScheme.primary,
-            flexibleSpace: FlexibleSpaceBar(
-              title: Text(
-                loc.homeAppBarTitle,
-                style: TextStyle(
-                  fontFamily: 'Poppins',
-                  color: onPrimaryColor,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-              centerTitle: true,
-            ),
-            actions: [
-              IconButton(
-                icon: Icon(
-                  MdiIcons.accountCircleOutline,
-                  color: onPrimaryColor,
-                ),
-                tooltip: loc.profileTooltip,
-                onPressed: () => Navigator.pushNamed(context, '/profile'),
-              ),
-            ],
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        title: Text(
+          loc.homeAppBarTitle,
+          style: TextStyle(
+            fontFamily: 'Poppins',
+            color: headerColor,
+            fontWeight: FontWeight.w600,
           ),
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // Greeting Section
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 16.0),
-                    child: DefaultTextStyle(
-                      style: TextStyle(
-                        fontFamily: 'Poppins',
-                        color: onSurfaceColor,
-                      ),
-                      child: AnimatedTextKit(
-                        animatedTexts: [
-                          TypewriterAnimatedText(
-                            loc.homeGreeting(userProfile.name.isNotEmpty ? userProfile.name : 'User'),
-                            textStyle: TextStyle(
-                              fontSize: 28,
-                              fontFamily: 'Poppins',
-                              fontWeight: FontWeight.bold,
-                              color: onSurfaceColor,
-                            ),
-                            speed: const Duration(milliseconds: 150),
+        ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(
+              right: 8.0,
+            ), // move a bit left from the edge
+            child: IconButton(
+              iconSize: 40,
+              padding: EdgeInsets.zero,
+              icon: Icon(
+                MdiIcons.accountCircleOutline,
+                color: headerColor,
+                size: 40,
+              ),
+              tooltip: loc.profileTooltip,
+              onPressed: () => Navigator.pushNamed(context, '/profile'),
+            ),
+          ),
+        ],
+      ),
+      body: Stack(
+        children: [
+          // Gradient background layer
+          Positioned.fill(
+            child: Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  stops: const [0.0, 0.6, 1.0],
+                  colors:
+                      isDark
+                          ? [
+                            const Color(0xFF041B5F), // deep space blue
+                            const Color(0xFF122E91), // royal indigo
+                            const Color(0xFF4732A0), // cosmic purple
+                          ]
+                          : [
+                            const Color(0xFF006CFF), // electric blue
+                            const Color(0xFF00D1FF), // aqua neon
+                            const Color(0xFF00FFC6), // mint glow
+                          ],
+                ),
+              ),
+            ),
+          ),
+          // Subtle animated Lottie background (medical icons)
+          Positioned.fill(
+            child: IgnorePointer(
+              child: Opacity(
+                opacity: 0.3, // increased visibility
+                child: Align(
+                  alignment: Alignment.topCenter,
+                  child: Transform.scale(
+                    scale: 0.92, // 20% larger than previous 0.6
+                    child: Lottie.asset(
+                      'assets/animations/medical_bg.json',
+                      fit: BoxFit.contain,
+                      repeat: true,
+                      alignment: Alignment.topCenter,
+                      errorBuilder: (context, error, stack) => const SizedBox(),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+          // Decorative circles
+          Positioned(
+            top: -60,
+            left: -40,
+            child: _circle(
+              120,
+              isDark ? Colors.blueAccent : Colors.lightBlueAccent,
+            ),
+          ),
+          Positioned(
+            bottom: -40,
+            right: -50,
+            child: _circle(160, isDark ? Colors.indigo : Colors.blue.shade200),
+          ),
+          // Main grid
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, kToolbarHeight + 32, 16, 16),
+            child: CustomScrollView(
+              slivers: <Widget>[
+                SliverToBoxAdapter(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // Greeting Section (glass card for better placement)
+                      Container(
+                        margin: const EdgeInsets.only(top: 12, bottom: 20),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 20,
+                          vertical: 14,
+                        ),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(28),
+                          gradient: LinearGradient(
+                            colors: [
+                              Colors.white.withOpacity(isDark ? 0.10 : 0.25),
+                              Colors.white.withOpacity(isDark ? 0.04 : 0.12),
+                            ],
                           ),
-                        ],
-                        totalRepeatCount: 1,
-                        displayFullTextOnTap: true,
-                      ),
-                    ),
-                  ),
-
-                  // Lottie Animation
-                  Center(
-                    child: Container(
-                      padding: const EdgeInsets.all(8),
-                      child: Lottie.asset(
-                        'assets/animations/qr_code_animation.json',
-                        height: 110,
-                        repeat: true,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-
-                  // Key Stats
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 16.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          loc.homeSectionTitleKeyStats,
-                          style: theme.textTheme.headlineSmall?.copyWith(
-                            fontFamily: 'Poppins',
-                            fontWeight: FontWeight.bold,
-                            color: onSurfaceColor,
-                            letterSpacing: 0.5,
+                          border: Border.all(
+                            color: Colors.white.withOpacity(0.4),
+                            width: 1.5,
                           ),
                         ),
-                        const SizedBox(height: 12),
-                        Wrap(
-                          spacing: 12.0,
-                          runSpacing: 12.0,
+                        child: Row(
                           children: [
-                            SizedBox(
-                              width:
-                                  (MediaQuery.of(context).size.width / 2) - 22,
-                              child: _buildStatItem(
-                                context,
-                                MdiIcons.waterOutline,
-                                loc.statLabelBloodType,
-                                userProfile.bloodGroup.isNotEmpty ? userProfile.bloodGroup : loc.notSet,
-                                theme.colorScheme.error,
+                            Expanded(
+                              child: DefaultTextStyle(
+                                style: TextStyle(
+                                  fontFamily: 'Poppins',
+                                  color: onSurfaceColor,
+                                ),
+                                child: AnimatedTextKit(
+                                  animatedTexts: [
+                                    TypewriterAnimatedText(
+                                      loc.homeGreeting(
+                                        userProfile.name.isNotEmpty
+                                            ? userProfile.name
+                                            : 'User',
+                                      ),
+                                      textStyle: TextStyle(
+                                        fontSize: 20,
+                                        fontFamily: 'Poppins',
+                                        fontWeight: FontWeight.w600,
+                                        color: onSurfaceColor,
+                                      ),
+                                      speed: const Duration(milliseconds: 120),
+                                    ),
+                                  ],
+                                  totalRepeatCount: 1,
+                                  displayFullTextOnTap: true,
+                                ),
                               ),
                             ),
-                            SizedBox(
-                              width:
-                                  (MediaQuery.of(context).size.width / 2) - 22,
-                              child: _buildStatItem(
-                                context,
-                                MdiIcons.flowerTulipOutline,
-                                loc.statLabelAllergies,
-                                userProfile.allergies.isNotEmpty ? userProfile.allergies.join(', ') : loc.notSet,
-                                theme.colorScheme.tertiary,
-                              ),
-                            ),
-                            SizedBox(
-                              width:
-                                  (MediaQuery.of(context).size.width / 2) - 22,
-                              child: _buildStatItem(
-                                context,
-                                MdiIcons.pill,
-                                loc.statLabelMedication,
-                                userProfile.currentMedications.isNotEmpty ? userProfile.currentMedications.join(', ') : loc.notSet,
-                                theme.colorScheme.primary,
-                              ),
-                            ),
-                            SizedBox(
-                              width:
-                                  (MediaQuery.of(context).size.width / 2) - 22,
-                              child: _buildStatItem(
-                                context,
-                                MdiIcons.heartPulse,
-                                loc.statLabelConditions,
-                                userProfile.medicalConditions.isNotEmpty ? userProfile.medicalConditions.join(', ') : loc.notSet,
-                                theme.colorScheme.secondary, // Purple/Teal for conditions
-                              ),
-                            ),
-                            SizedBox(
-                              width:
-                                  (MediaQuery.of(context).size.width / 2) - 22,
-                              child: _buildStatItem(
-                                context,
-                                MdiIcons.fileDocumentMultipleOutline,
-                                loc.statLabelMedicalReports,
-                                '${userProfile.reportFilePaths.length} ${loc.filesSuffix}',
-                                theme.colorScheme.surfaceVariant, // A neutral color for reports count
+                            const SizedBox(width: 8),
+                            GestureDetector(
+                              onTap: () async {
+                                final uri = Uri.parse('https://sos-view.vercel.app/');
+                                Future<bool> _launch(Uri u, LaunchMode m) async {
+                                  try {
+                                    return await launchUrl(u, mode: m);
+                                  } catch (_) {
+                                    return false;
+                                  }
+                                }
+
+                                bool launched = await _launch(uri, LaunchMode.externalApplication);
+                                if (!launched) {
+                                  // Try with an in-app browser as fallback
+                                  launched = await _launch(uri, LaunchMode.inAppBrowserView);
+                                }
+                                if (!launched && context.mounted) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                      content: Text(
+                                        'Could not open the website',
+                                        style: TextStyle(fontFamily: 'Poppins'),
+                                      ),
+                                    ),
+                                  );
+                                }
+                              },
+                              child: SizedBox(
+                                width: 64,
+                                height: 64,
+                                child: Lottie.asset(
+                                  'assets/animations/qr_code_animation.json',
+                                  repeat: true,
+                                  fit: BoxFit.contain,
+                                ),
                               ),
                             ),
                           ],
                         ),
-                      ],
-                    ),
-                  ),
-
-                  const SizedBox(height: 24),
-
-                  // Quick Actions Header
-                  Text(
-                    loc.homeSectionTitleQuickActions,
-                    style: theme.textTheme.headlineSmall?.copyWith(
-                      fontFamily: 'Poppins',
-                      fontWeight: FontWeight.bold,
-                      color: onSurfaceColor,
-                      letterSpacing: 0.5,
-                    ),
-                  ),
-                  const SizedBox(height: 12),
-                ],
-              ),
-            ),
-          ),
-
-          // Quick Actions Grid
-          SliverPadding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 16.0,
-              vertical: 8.0,
-            ),
-            sliver: SliverGrid(
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                mainAxisSpacing: 12.0,
-                crossAxisSpacing: 12.0,
-                childAspectRatio: 1.1,
-              ),
-              delegate: SliverChildBuilderDelegate((
-                BuildContext context,
-                int index,
-              ) {
-                final item = actionItems[index];
-                final cardColor =
-                    index % 2 == 0
-                        ? theme.colorScheme.secondaryContainer.withOpacity(0.7)
-                        : theme.colorScheme.tertiaryContainer.withOpacity(0.7);
-                final onCardColor =
-                    index % 2 == 0
-                        ? theme.colorScheme.onSecondaryContainer
-                        : theme.colorScheme.onTertiaryContainer;
-
-                return Container(
-                      decoration: BoxDecoration(
-                        color: cardColor,
-                        borderRadius: BorderRadius.circular(20.0),
-                        boxShadow: [
-                          BoxShadow(
-                            color: theme.colorScheme.shadow.withOpacity(0.15),
-                            blurRadius: 10,
-                            offset: const Offset(0, 5),
-                          ),
-                        ],
-                        border: Border.all(
-                          color: onCardColor.withOpacity(0.3),
-                          width: 1.5,
-                        ),
                       ),
-                      child: Material(
-                        color: Colors.transparent,
-                        child: InkWell(
-                          onTap:
-                              () => Navigator.pushNamed(
-                                context,
-                                item['route'] as String,
+                      // spacing
+                      
+                      const SizedBox(height: 20),
+
+                      // Daily Tip
+                      _buildDailyTipCard(context),
+
+                      // Key Stats
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 16.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              loc.homeSectionTitleKeyStats,
+                              style: theme.textTheme.headlineSmall?.copyWith(
+                                fontFamily: 'Poppins',
+                                fontWeight: FontWeight.bold,
+                                color: theme.colorScheme.onSurface,
+                                shadows: [
+                                  Shadow(
+                                    color: theme.colorScheme.shadow.withOpacity(
+                                      0.3,
+                                    ),
+                                    blurRadius: 6,
+                                    offset: const Offset(0, 3),
+                                  ),
+                                ],
                               ),
-                          borderRadius: BorderRadius.circular(20.0),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Container(
-                                padding: const EdgeInsets.all(16.0),
-                                decoration: BoxDecoration(
-                                  color: onCardColor.withOpacity(0.15),
-                                  shape: BoxShape.circle,
-                                  border: Border.all(
-                                    color: onCardColor.withOpacity(0.3),
-                                    width: 1,
+                            ),
+                            const SizedBox(height: 12),
+                            Wrap(
+                              spacing: 12.0,
+                              runSpacing: 12.0,
+                              children: [
+                                SizedBox(
+                                  width:
+                                      (MediaQuery.of(context).size.width / 2) -
+                                      22,
+                                  child: _buildStatItem(
+                                    context,
+                                    MdiIcons.waterOutline,
+                                    loc.statLabelBloodType,
+                                    userProfile.bloodGroup.isNotEmpty
+                                        ? userProfile.bloodGroup
+                                        : loc.notSet,
+                                    theme.colorScheme.error,
                                   ),
                                 ),
-                                child: Icon(
-                                  item['icon'] as IconData,
-                                  size: 40.0,
-                                  color: onCardColor,
-                                ),
-                              ),
-                              const SizedBox(height: 10.0),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 8.0,
-                                ),
-                                child: Text(
-                                  item['label'] as String,
-                                  textAlign: TextAlign.center,
-                                  style: theme.textTheme.titleSmall?.copyWith(
-                                    fontFamily: 'Poppins',
-                                    fontWeight: FontWeight.w600,
-                                    color: onCardColor,
+                                SizedBox(
+                                  width:
+                                      (MediaQuery.of(context).size.width / 2) -
+                                      22,
+                                  child: _buildStatItem(
+                                    context,
+                                    MdiIcons.flowerTulipOutline,
+                                    loc.statLabelAllergies,
+                                    userProfile.allergies.isNotEmpty
+                                        ? userProfile.allergies.join(', ')
+                                        : loc.notSet,
+                                    theme.colorScheme.tertiary,
                                   ),
                                 ),
-                              ),
-                            ],
-                          ),
+                                SizedBox(
+                                  width:
+                                      (MediaQuery.of(context).size.width / 2) -
+                                      22,
+                                  child: _buildStatItem(
+                                    context,
+                                    MdiIcons.pill,
+                                    loc.statLabelMedication,
+                                    userProfile.currentMedications.isNotEmpty
+                                        ? userProfile.currentMedications.join(
+                                          ', ',
+                                        )
+                                        : loc.notSet,
+                                    theme.colorScheme.primary,
+                                  ),
+                                ),
+                                SizedBox(
+                                  width:
+                                      (MediaQuery.of(context).size.width / 2) -
+                                      22,
+                                  child: _buildStatItem(
+                                    context,
+                                    MdiIcons.heartPulse,
+                                    loc.statLabelConditions,
+                                    userProfile.medicalConditions.isNotEmpty
+                                        ? userProfile.medicalConditions.join(
+                                          ', ',
+                                        )
+                                        : loc.notSet,
+                                    theme
+                                        .colorScheme
+                                        .secondary, // Purple/Teal for conditions
+                                  ),
+                                ),
+                                SizedBox(
+                                  width:
+                                      (MediaQuery.of(context).size.width / 2) -
+                                      22,
+                                  child: FutureBuilder<int>(
+                                    future: _reportsCountFuture,
+                                    builder: (context, snapshot) {
+                                      final count = snapshot.hasData ? snapshot.data! : userProfile.reportFilePaths.length;
+                                      return _buildStatItem(
+                                        context,
+                                        MdiIcons.fileDocumentMultipleOutline,
+                                        loc.statLabelMedicalReports,
+                                        '$count ${loc.filesSuffix}',
+                                        theme.colorScheme.surfaceVariant,
+                                      );
+                                    },
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
                         ),
                       ),
-                    )
-                    .animate()
-                    .fadeIn(delay: (200 * (index % 2)).ms, duration: 500.ms)
-                    .slideY(begin: 0.2, duration: 400.ms);
-              }, childCount: actionItems.length),
+
+                      const SizedBox(height: 24),
+
+                      // Quick Actions Header
+                      Text(
+                        loc.homeSectionTitleQuickActions,
+                        style: theme.textTheme.headlineSmall?.copyWith(
+                          fontFamily: 'Poppins',
+                          fontWeight: FontWeight.bold,
+                          color: theme.colorScheme.onSurface,
+                          shadows: [
+                            Shadow(
+                              color: theme.colorScheme.shadow.withOpacity(0.3),
+                              blurRadius: 6,
+                              offset: const Offset(0, 3),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 12),
+                    ],
+                  ),
+                ),
+
+                // Quick Actions Grid
+                SliverPadding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16.0,
+                    vertical: 8.0,
+                  ),
+                  sliver: SliverGrid(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          mainAxisSpacing: 12.0,
+                          crossAxisSpacing: 12.0,
+                          childAspectRatio: 1.1,
+                        ),
+                    delegate: SliverChildBuilderDelegate((
+                      BuildContext context,
+                      int index,
+                    ) {
+                      final item = actionItems[index];
+
+                      return _DashboardTile(
+                            icon: item['icon'] as IconData,
+                            label: item['label'] as String,
+                            onTap:
+                                () => Navigator.pushNamed(
+                                  context,
+                                  item['route'] as String,
+                                ),
+                          )
+                          .animate()
+                          .fadeIn(duration: 400.ms, delay: (index * 120).ms)
+                          .scaleXY(begin: 0.9, duration: 400.ms);
+                    }, childCount: actionItems.length),
+                  ),
+                ),
+
+                const SliverToBoxAdapter(child: SizedBox(height: 80)),
+              ],
             ),
           ),
-
-          const SliverToBoxAdapter(child: SizedBox(height: 80)),
         ],
       ),
       floatingActionButton: FloatingActionButton.extended(
@@ -402,6 +560,99 @@ class HomeDashboard extends StatelessWidget {
           .scale(delay: 800.ms, duration: 500.ms)
           .slideY(begin: 0.5, curve: Curves.easeInOutCubic),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+    );
+  }
+
+  Widget _circle(double size, Color color) {
+    return Container(
+      width: size,
+      height: size,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color: color.withOpacity(0.15),
+      ),
+    );
+  }
+}
+
+class _DashboardTile extends StatelessWidget {
+  const _DashboardTile({
+    required this.icon,
+    required this.label,
+    required this.onTap,
+  });
+
+  final IconData icon;
+  final String label;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final ThemeData theme = Theme.of(context);
+
+    final borderGradient = LinearGradient(
+      colors: const [Color(0xFF00D1FF), Color(0xFF7C4DFF)],
+    );
+
+    return ClipRRect(
+      borderRadius: const BorderRadius.only(
+        topLeft: Radius.circular(32),
+        bottomRight: Radius.circular(32),
+        topRight: Radius.circular(20),
+        bottomLeft: Radius.circular(20),
+      ),
+      child: BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+        child: InkWell(
+          onTap: onTap,
+          splashColor: theme.colorScheme.primary.withOpacity(0.25),
+          borderRadius: BorderRadius.circular(32),
+          child: Container(
+            decoration: BoxDecoration(gradient: borderGradient),
+            child: Container(
+              margin: const EdgeInsets.all(2),
+              decoration: BoxDecoration(
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(30),
+                  bottomRight: Radius.circular(30),
+                  topRight: Radius.circular(18),
+                  bottomLeft: Radius.circular(18),
+                ),
+                gradient: LinearGradient(
+                  colors: [
+                    Colors.white.withOpacity(isDark ? 0.10 : 0.25),
+                    Colors.white.withOpacity(isDark ? 0.04 : 0.12),
+                  ],
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: theme.colorScheme.shadow.withOpacity(0.25),
+                    blurRadius: 14,
+                    offset: const Offset(0, 6),
+                  ),
+                ],
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(icon, size: 38, color: theme.colorScheme.primary),
+                  const SizedBox(height: 12),
+                  Text(
+                    label,
+                    textAlign: TextAlign.center,
+                    style: theme.textTheme.labelLarge?.copyWith(
+                      fontFamily: 'Poppins',
+                      fontWeight: FontWeight.w600,
+                      color: theme.colorScheme.onSurface,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

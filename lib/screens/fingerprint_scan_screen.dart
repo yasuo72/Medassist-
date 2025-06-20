@@ -89,14 +89,20 @@ class _FingerprintScanScreenState extends State<FingerprintScanScreen> {
       _isScanning = false;
       _scanCompleted = true;
       _verified = authenticated;
-      _statusText = authenticated ? "✅ Verified – Medical Profile Unlocked" : "❌ Authentication Failed";
+      _statusText =
+          authenticated
+              ? "✅ Verified – Medical Profile Unlocked"
+              : "❌ Authentication Failed";
     });
 
     if (authenticated) {
       HapticFeedback.lightImpact(); // Success feedback
       // Set enrollment status in provider
       try {
-        await Provider.of<UserProfileProvider>(context, listen: false).setFingerprintEnrolled(true);
+        await Provider.of<UserProfileProvider>(
+          context,
+          listen: false,
+        ).setFingerprintEnrolled(true);
       } catch (e) {
         // Handle potential errors if provider is not found, though unlikely here
         debugPrint('Error updating fingerprint enrollment: $e');
@@ -104,7 +110,6 @@ class _FingerprintScanScreenState extends State<FingerprintScanScreen> {
       }
       // Pop with true to indicate success
       if (Navigator.canPop(context)) Navigator.pop(context, true);
-      
     } else {
       HapticFeedback.heavyImpact(); // Failure feedback
     }
@@ -122,16 +127,19 @@ class _FingerprintScanScreenState extends State<FingerprintScanScreen> {
             onPressed: () {
               showDialog(
                 context: context,
-                builder: (context) => AlertDialog(
-                  title: const Text('Fingerprint Scan Help'),
-                  content: const Text('Use any finger that you have registered with your device\'s biometric security. Your fingerprint data is managed by your device\'s secure enclave and is not directly accessed by this app.'),
-                  actions: [
-                    TextButton(
-                      onPressed: () => Navigator.of(context).pop(),
-                      child: const Text('OK'),
+                builder:
+                    (context) => AlertDialog(
+                      title: const Text('Fingerprint Scan Help'),
+                      content: const Text(
+                        'Use any finger that you have registered with your device\'s biometric security. Your fingerprint data is managed by your device\'s secure enclave and is not directly accessed by this app.',
+                      ),
+                      actions: [
+                        TextButton(
+                          onPressed: () => Navigator.of(context).pop(),
+                          child: const Text('OK'),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
               );
             },
           ),
@@ -147,9 +155,12 @@ class _FingerprintScanScreenState extends State<FingerprintScanScreen> {
             Icon(
               MdiIcons.fingerprint,
               size: 120,
-              color: _scanCompleted 
-                  ? (_verified ? Colors.greenAccent : Colors.redAccent) 
-                  : (_isScanning ? theme.colorScheme.primary : theme.textTheme.bodyLarge?.color),
+              color:
+                  _scanCompleted
+                      ? (_verified ? Colors.greenAccent : Colors.redAccent)
+                      : (_isScanning
+                          ? theme.colorScheme.primary
+                          : theme.textTheme.bodyLarge?.color),
             ),
             const SizedBox(height: 30),
             Text(
@@ -191,7 +202,10 @@ class _FingerprintScanScreenState extends State<FingerprintScanScreen> {
               child: const Text('Switch to QR/NFC Access'),
               onPressed: () {
                 // Navigate to QR/NFC screen
-                Navigator.pushNamed(context, '/qr'); // Assuming '/qr' is your QR/NFC route
+                Navigator.pushNamed(
+                  context,
+                  '/qr',
+                ); // Assuming '/qr' is your QR/NFC route
               },
             ),
             const Spacer(),
@@ -200,7 +214,11 @@ class _FingerprintScanScreenState extends State<FingerprintScanScreen> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(MdiIcons.shieldCheckOutline, size: 16, color: theme.textTheme.bodySmall?.color),
+                  Icon(
+                    MdiIcons.shieldCheckOutline,
+                    size: 16,
+                    color: theme.textTheme.bodySmall?.color,
+                  ),
                   const SizedBox(width: 8),
                   Text(
                     'Biometric data encrypted and device-local only',

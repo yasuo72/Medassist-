@@ -42,19 +42,31 @@ dependencies:
   smooth_page_indicator: ^1.0.0 # Add smooth_page_indicator package
   qr_flutter: ^4.1.0 # For QR code generation
   provider: ^6.0.0 # For state management
+  flutter_secure_storage: ^9.0.0 # Secure key-value storage
+  crypto: ^3.0.3 # For hashing passwords
   shared_preferences: ^2.0.15 # For saving user preferences
   intl: ^0.19.0 # For internationalization
   url_launcher: ^6.0.0 # Already added, ensure it's the latest or compatible version
   image_gallery_saver_plus: ^4.0.1 # For saving images to gallery (updated)
   permission_handler: ^11.0.0 # For requesting permissions
   file_picker: ^10.1.9 # For picking files (Latest stable)
+  camera: ^0.11.1 # For camera functionality
+  google_mlkit_face_detection: ^0.11.1 # For face detection
+  google_mlkit_commons: ^0.8.1 # For ML Kit common utilities
   local_auth: ^2.3.0
-  camera: ^0.11.1
-  google_mlkit_face_detection: ^0.13.1
+  dio: ^5.4.0 # Added dio for API requests
+  nfc_manager: ^3.3.0 # NFC operations
+  http: ^1.2.0
+  wallpaper_manager_flutter: ^1.0.1
+  android_intent_plus: ^5.3.0
+
+  flutter_pdfview: ^1.2.7
+  path_provider: ^2.1.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_launcher_icons: ^0.13.1
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -63,12 +75,18 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^5.0.0
 
+flutter_icons:
+  android: true
+  ios: true
+  image_path: assets/app_icon.png
+  adaptive_icon_background: "#ffffff"
+  min_sdk_android: 21
+
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter packages.
 flutter:
-
   generate: true
 
   # The following line ensures that the Material Icons font is
@@ -78,9 +96,11 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+    - assets/app_icon.png
     - assets/animations/qr_code_animation.json # Specific Lottie animation
     - assets/animations/ # General animations folder
     - assets/images/ # General images folder (if you have other assets here)
+    - assets/wallpapers/ # Lock-screen wallpapers
     # - images/a_dot_burr.jpeg
     # - images/a_dot_ham.jpeg
 

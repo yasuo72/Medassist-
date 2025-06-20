@@ -1,25 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
-
-// Data model for an emergency contact
-class EmergencyContact {
-  final String id;
-  final String name;
-  final String relationship;
-  final String phoneNumber;
-  bool isPriority;
-  bool shareMedicalSummary;
-
-  EmergencyContact({
-    required this.id,
-    required this.name,
-    required this.relationship,
-    required this.phoneNumber,
-    this.isPriority = false,
-    this.shareMedicalSummary = false,
-  });
-}
+import '../services/emergency_contact_service.dart';
+import '../models/emergency_contact.dart';
 
 class EmergencyContactsScreen extends StatefulWidget {
   const EmergencyContactsScreen({super.key});
@@ -30,30 +13,25 @@ class EmergencyContactsScreen extends StatefulWidget {
 }
 
 class _EmergencyContactsScreenState extends State<EmergencyContactsScreen> {
-  final List<EmergencyContact> _emergencyContacts = [
-    EmergencyContact(
-      id: '1',
-      name: 'Jane Doe',
-      relationship: 'Spouse',
-      phoneNumber: '555-1234',
-      isPriority: true,
-      shareMedicalSummary: true,
-    ),
-    EmergencyContact(
-      id: '2',
-      name: 'John Smith',
-      relationship: 'Brother',
-      phoneNumber: '555-5678',
-      shareMedicalSummary: false,
-    ),
-    EmergencyContact(
-      id: '3',
-      name: 'Dr. Emily Carter',
-      relationship: 'Doctor',
-      phoneNumber: '555-8765',
-      isPriority: true,
-    ),
-  ];
+  final _service = EmergencyContactService();
+  List<EmergencyContact> _emergencyContacts = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _loadContacts();
+  }
+
+  Future<void> _loadContacts() async {
+    try {
+      final contacts = await _service.fetchContacts();
+      setState(() => _emergencyContacts = contacts);
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Failed to load contacts: $e')),
+      );
+    }
+  }
 
   Future<void> _showContactFormDialog({EmergencyContact? contact}) async {
     final _formKey = GlobalKey<FormState>();
@@ -171,38 +149,35 @@ class _EmergencyContactsScreenState extends State<EmergencyContactsScreen> {
             ),
             ElevatedButton(
               child: Text(contact == null ? 'Add' : 'Save'),
-              onPressed: () {
+              onPressed: () async {
                 if (_formKey.currentState!.validate()) {
                   _formKey.currentState!.save();
-                  setState(() {
+                  try {
                     if (contact == null) {
-                      _emergencyContacts.add(
-                        EmergencyContact(
-                          id: DateTime.now().millisecondsSinceEpoch.toString(),
-                          name: _name,
-                          relationship: _relationship,
-                          phoneNumber: _phoneNumber,
-                          isPriority: _isPriority,
-                          shareMedicalSummary: _shareMedicalSummary,
-                        ),
+                      await _service.addContact(
+                        name: _name,
+                        relationship: _relationship,
+                        phone: _phoneNumber,
+                        isPriority: _isPriority,
+                        shareMedicalSummary: _shareMedicalSummary,
                       );
                     } else {
-                      final index = _emergencyContacts.indexWhere(
-                        (c) => c.id == contact.id,
+                      final updated = contact.copyWith(
+                        name: _name,
+                        relationship: _relationship,
+                        phoneNumber: _phoneNumber,
+                        isPriority: _isPriority,
+                        shareMedicalSummary: _shareMedicalSummary,
                       );
-                      if (index != -1) {
-                        _emergencyContacts[index] = EmergencyContact(
-                          id: contact.id,
-                          name: _name,
-                          relationship: _relationship,
-                          phoneNumber: _phoneNumber,
-                          isPriority: _isPriority,
-                          shareMedicalSummary: _shareMedicalSummary,
-                        );
-                      }
+                      await _service.updateContact(updated);
                     }
-                  });
-                  Navigator.of(dialogContext).pop();
+                    await _loadContacts();
+                    Navigator.of(dialogContext).pop();
+                  } catch (e) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text('Error: $e')),
+                    );
+                  }
                 }
               },
             ),
@@ -212,12 +187,9 @@ class _EmergencyContactsScreenState extends State<EmergencyContactsScreen> {
     );
   }
 
-  void _deleteContact(EmergencyContact contactToDelete) {
-    setState(() {
-      _emergencyContacts.removeWhere(
-        (contact) => contact.id == contactToDelete.id,
-      );
-    });
+  void _deleteContact(EmergencyContact contactToDelete) async {
+    await _service.deleteContact(contactToDelete.id);
+    await _loadContacts();
     ScaffoldMessenger.of(
       context,
     ).showSnackBar(SnackBar(content: Text('${contactToDelete.name} deleted')));

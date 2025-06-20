@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 // Lottie import removed as it's currently unused
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart'; // For MDI Icons
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -16,12 +17,16 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(seconds: 3), () {
-      // setState(() {}); // No state needs to be changed here before navigation
-      if (mounted) { // Check if the widget is still in the tree
-        Navigator.pushReplacementNamed(context, '/onboarding');
-      }
-    });
+    _determineStartRoute();
+  }
+
+  Future<void> _determineStartRoute() async {
+    // Wait a moment for splash visuals
+    await Future.delayed(const Duration(seconds: 2));
+    final prefs = await SharedPreferences.getInstance();
+    final hasToken = prefs.getString('auth_token')?.isNotEmpty ?? false;
+    if (!mounted) return;
+    Navigator.pushReplacementNamed(context, hasToken ? '/home' : '/onboarding');
   }
 
   @override
@@ -93,4 +98,3 @@ class _SplashScreenState extends State<SplashScreen> {
     );
   }
 }
-

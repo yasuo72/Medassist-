@@ -1,23 +1,22 @@
-import 'package:flutter/material.dart';
-import 'package:qr_flutter/qr_flutter.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:flutter/services.dart'; // For Clipboard
 import 'dart:typed_data';
+import 'package:flutter/rendering.dart'; // For RenderRepaintBoundary
 import 'dart:ui' as ui;
-import 'package:flutter/rendering.dart';
 import 'package:image_gallery_saver_plus/image_gallery_saver_plus.dart';
+
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 
 class EmergencyQrScreen extends StatefulWidget {
-  const EmergencyQrScreen({super.key});
-
   @override
-  State<EmergencyQrScreen> createState() => _EmergencyQrScreenState();
+  _EmergencyQrScreenState createState() => _EmergencyQrScreenState();
 }
 
 class _EmergencyQrScreenState extends State<EmergencyQrScreen> {
   final GlobalKey _qrImageKey = GlobalKey();
-  // TODO: Replace with actual user data
   final String userId = 'user123abc';
   final String bloodGroup = 'O+';
   final List<String> allergies = ['Peanuts', 'Pollen'];
@@ -30,14 +29,22 @@ class _EmergencyQrScreenState extends State<EmergencyQrScreen> {
   bool _showLockScreenPreview = false;
 
   String _getQrData() {
-    // Simple structured data for QR. Can be JSON or any other format.
-    // For actual use, consider a more robust data structure and possibly encryption if sensitive.
-    String contactsString = emergencyContacts.map((c) => '${c['name']}:${c['phone']}').join(';');
-    return 'MEDID:$userId\nBLOOD:$bloodGroup\nALLERGIES:${allergies.join(',')}\nCONTACTS:$contactsString';
+    String qrData = '';
+    qrData += 'V1:ID:$userId,BG:$bloodGroup\n';
+    if (allergies.isNotEmpty) {
+      qrData +=
+          'V2:ALL:${allergies.join(',')}|CNT:${emergencyContacts.length}\n';
+    }
+    if (emergencyContacts.isNotEmpty) {
+      String contactsStr = emergencyContacts
+          .map((c) => '${c['name']}*${c['phone']}')
+          .join(',');
+      qrData += 'V3:CNT:$contactsStr';
+    }
+    return qrData;
   }
 
   Future<void> _saveQrCodeAsImage() async {
-    // Check for storage permission
     var status = await Permission.storage.status;
     if (!status.isGranted) {
       status = await Permission.storage.request();
@@ -45,21 +52,29 @@ class _EmergencyQrScreenState extends State<EmergencyQrScreen> {
 
     if (status.isGranted) {
       try {
-        RenderRepaintBoundary boundary = _qrImageKey.currentContext!.findRenderObject() as RenderRepaintBoundary;
-        ui.Image image = await boundary.toImage(pixelRatio: 3.0); // Higher pixelRatio for better quality
-        ByteData? byteData = await image.toByteData(format: ui.ImageByteFormat.png);
+        RenderRepaintBoundary boundary =
+            _qrImageKey.currentContext!.findRenderObject()
+                as RenderRepaintBoundary;
+        ui.Image image = await boundary.toImage(pixelRatio: 3.0);
+        ByteData? byteData = await image.toByteData(
+          format: ui.ImageByteFormat.png,
+        );
         Uint8List pngBytes = byteData!.buffer.asUint8List();
 
         final result = await ImageGallerySaverPlus.saveImage(
           pngBytes,
           quality: 100,
-          name: 'emergency_qr_code_${DateTime.now().millisecondsSinceEpoch}'
+          name: 'emergency_qr_code_${DateTime.now().millisecondsSinceEpoch}',
         );
 
         if (mounted) {
           if (result['isSuccess']) {
             ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text('QR Code saved to Gallery as ${result['filePath']?.split('/').last ?? 'image'}')),
+              SnackBar(
+                content: Text(
+                  'QR Code saved to Gallery as ${result['filePath']?.split('/').last ?? 'image'}',
+                ),
+              ),
             );
           } else {
             ScaffoldMessenger.of(context).showSnackBar(
@@ -69,15 +84,17 @@ class _EmergencyQrScreenState extends State<EmergencyQrScreen> {
         }
       } catch (e) {
         if (mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('Error saving QR Code: $e')),
-          );
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text('Error saving QR Code: $e')));
         }
       }
     } else {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Storage permission denied. Cannot save image.')),
+          const SnackBar(
+            content: Text('Storage permission denied. Cannot save image.'),
+          ),
         );
       }
     }
@@ -91,7 +108,7 @@ class _EmergencyQrScreenState extends State<EmergencyQrScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Emergency QR Code'),
-        backgroundColor: Colors.blue.shade800, // Hybrid theme
+        backgroundColor: Colors.blue.shade800,
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(24.0),
@@ -100,7 +117,9 @@ class _EmergencyQrScreenState extends State<EmergencyQrScreen> {
           children: <Widget>[
             Text(
               'Scan in Case of Emergency',
-              style: theme.textTheme.headlineSmall?.copyWith(color: Colors.blue.shade900),
+              style: theme.textTheme.headlineSmall?.copyWith(
+                color: Colors.blue.shade900,
+              ),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 20),
@@ -114,84 +133,125 @@ class _EmergencyQrScreenState extends State<EmergencyQrScreen> {
                     color: Colors.grey.withOpacity(0.3),
                     spreadRadius: 2,
                     blurRadius: 8,
-                    offset: const Offset(0, 4), // changes position of shadow
+                    offset: const Offset(0, 4),
                   ),
                 ],
               ),
               child: RepaintBoundary(
                 key: _qrImageKey,
                 child: QrImageView(
-                data: qrData,
-                version: QrVersions.auto,
-                size: 220.0,
-                gapless: false,
-                // embeddedImage: AssetImage('assets/images/app_icon_small.png'), // Optional: if you have a small app icon
-                // embeddedImageStyle: QrEmbeddedImageStyle(
-                //   size: Size(40, 40),
-                // ),
-                eyeStyle: QrEyeStyle(
-                  eyeShape: QrEyeShape.square,
-                  color: Colors.blue.shade900,
-                ),
-                dataModuleStyle: QrDataModuleStyle(
-                  dataModuleShape: QrDataModuleShape.square,
-                  color: Colors.black,
+                  data: qrData,
+                  version: 2,
+                  size: 300.0,
+                  gapless: true,
+                  backgroundColor: Colors.white,
+                  eyeStyle: const QrEyeStyle(
+                    eyeShape: QrEyeShape.square,
+                    color: Colors.black,
+                  ),
+                  dataModuleStyle: const QrDataModuleStyle(
+                    dataModuleShape: QrDataModuleShape.square,
+                    color: Colors.black,
+                  ),
+                  errorCorrectionLevel: QrErrorCorrectLevel.H,
+                  padding: const EdgeInsets.all(20),
                 ),
               ),
-            ), // End of RepaintBoundary
-            ), // End of Container for QrImageView
+            ),
             const SizedBox(height: 24),
-            _buildInfoSection(context, 'Blood Group', bloodGroup, MdiIcons.waterOpacity),
-            _buildInfoSection(context, 'Allergies', allergies.join(', '), MdiIcons.alertCircleOutline),
-            _buildInfoSection(context, 'Emergency Contacts', emergencyContacts.map((c) => '${c['name']} (${c['phone']})').join('\n'), MdiIcons.phoneInTalk),
-            
+            _buildInfoSection(
+              context,
+              'Blood Group',
+              bloodGroup,
+              MdiIcons.waterOpacity,
+            ),
+            _buildInfoSection(
+              context,
+              'Allergies',
+              allergies.join(', '),
+              MdiIcons.alertCircleOutline,
+            ),
+            _buildInfoSection(
+              context,
+              'Emergency Contacts',
+              emergencyContacts
+                  .map((c) => '${c['name']} (${c['phone']})')
+                  .join('\n'),
+              MdiIcons.phoneInTalk,
+            ),
             const SizedBox(height: 30),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 ElevatedButton.icon(
                   icon: Icon(MdiIcons.contentCopy, color: Colors.white),
-                  label: const Text('Copy QR Data', style: TextStyle(color: Colors.white)),
+                  label: const Text(
+                    'Copy QR Data',
+                    style: TextStyle(color: Colors.white),
+                  ),
                   onPressed: () async {
                     await Clipboard.setData(ClipboardData(text: qrData));
                     if (mounted) {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('QR data copied to clipboard!')),
+                        const SnackBar(
+                          content: Text('QR data copied to clipboard!'),
+                        ),
                       );
                     }
                   },
-                  style: ElevatedButton.styleFrom(backgroundColor: Colors.blue.shade700, padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12)),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.blue.shade700,
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 12,
+                    ),
+                  ),
                 ),
                 ElevatedButton.icon(
                   icon: Icon(MdiIcons.contentSave, color: Colors.white),
-                  label: const Text('Save as Image', style: TextStyle(color: Colors.white)),
+                  label: const Text(
+                    'Save as Image',
+                    style: TextStyle(color: Colors.white),
+                  ),
                   onPressed: _saveQrCodeAsImage,
-                  style: ElevatedButton.styleFrom(backgroundColor: Colors.green.shade600, padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12)),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.green.shade600,
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 12,
+                    ),
+                  ),
                 ),
               ],
             ),
             const SizedBox(height: 20),
             SwitchListTile(
-              title: const Text('Set as Lock Screen', style: TextStyle(fontWeight: FontWeight.w500)),
+              title: const Text(
+                'Set as Lock Screen',
+                style: TextStyle(fontWeight: FontWeight.w500),
+              ),
               subtitle: const Text('Allow quick access from lock screen'),
               value: _setAsLockScreen,
               onChanged: (bool value) {
                 setState(() {
                   _setAsLockScreen = value;
+                  _showLockScreenPreview = value;
                   if (value) {
-                    _showLockScreenPreview = true;
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(
-                        content: Text('To set as lock screen: Save the QR image, then set it as your wallpaper via phone settings.'),
+                        content: Text(
+                          'To set as lock screen: Save the QR image, then set it as your wallpaper via phone settings.',
+                        ),
                         duration: Duration(seconds: 5),
                       ),
                     );
-                  } else {
-                    _showLockScreenPreview = false;
                   }
                 });
               },
-              secondary: Icon(MdiIcons.cellphoneLock, color: Colors.blue.shade800),
+              secondary: Icon(
+                MdiIcons.cellphoneLock,
+                color: Colors.blue.shade800,
+              ),
               activeColor: Colors.blue.shade700,
             ),
             const SizedBox(height: 20),
@@ -200,11 +260,15 @@ class _EmergencyQrScreenState extends State<EmergencyQrScreen> {
               decoration: BoxDecoration(
                 color: Colors.blue.shade50,
                 borderRadius: BorderRadius.circular(8.0),
-                border: Border.all(color: Colors.blue.shade200)
+                border: Border.all(color: Colors.blue.shade200),
               ),
               child: Row(
                 children: [
-                  Icon(MdiIcons.informationOutline, color: Colors.blue.shade700, size: 20),
+                  Icon(
+                    MdiIcons.informationOutline,
+                    color: Colors.blue.shade700,
+                    size: 20,
+                  ),
                   const SizedBox(width: 10),
                   const Expanded(
                     child: Text(
@@ -215,21 +279,9 @@ class _EmergencyQrScreenState extends State<EmergencyQrScreen> {
                 ],
               ),
             ),
-            // Optional: Add NFC Write option
-            // const SizedBox(height: 20),
-            // ElevatedButton.icon(
-            //   icon: Icon(MdiIcons.nfcVariant, color: Colors.white),
-            //   label: const Text('Write to NFC Tag', style: TextStyle(color: Colors.white)),
-            //   onPressed: () {
-            //     // TODO: Implement NFC write functionality
-            //      ScaffoldMessenger.of(context).showSnackBar(
-            //       const SnackBar(content: Text('NFC write (to be implemented)')),
-            //     );
-            //   },
-            //   style: ElevatedButton.styleFrom(backgroundColor: Colors.orange.shade700, padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12)),
-            // ),
-            if (_showLockScreenPreview)
-              _buildLockScreenPreview(context, qrData),
+            ..._showLockScreenPreview
+                ? [_buildLockScreenPreview(context, qrData)]
+                : [],
           ],
         ),
       ),
@@ -244,7 +296,7 @@ class _EmergencyQrScreenState extends State<EmergencyQrScreen> {
       decoration: BoxDecoration(
         border: Border.all(color: Colors.blue.shade200, width: 2),
         borderRadius: BorderRadius.circular(12.0),
-        color: Colors.grey.shade800, // Mock lock screen background
+        color: Colors.grey.shade800,
       ),
       child: Column(
         children: [
@@ -253,11 +305,17 @@ class _EmergencyQrScreenState extends State<EmergencyQrScreen> {
             style: theme.textTheme.titleMedium?.copyWith(color: Colors.white70),
           ),
           const SizedBox(height: 10),
-          // Simulate a clock or status bar elements
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('10:30 AM', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
+              Text(
+                '10:30 AM',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
               Icon(MdiIcons.signalCellular3, color: Colors.white70, size: 18),
             ],
           ),
@@ -271,15 +329,24 @@ class _EmergencyQrScreenState extends State<EmergencyQrScreen> {
             child: QrImageView(
               data: qrData,
               version: QrVersions.auto,
-              size: 100.0, // Smaller for preview
-              eyeStyle: QrEyeStyle(eyeShape: QrEyeShape.square, color: Colors.blue.shade900),
-              dataModuleStyle: QrDataModuleStyle(dataModuleShape: QrDataModuleShape.square, color: Colors.black),
+              size: 100.0,
+              eyeStyle: QrEyeStyle(
+                eyeShape: QrEyeShape.square,
+                color: Colors.blue.shade900,
+              ),
+              dataModuleStyle: QrDataModuleStyle(
+                dataModuleShape: QrDataModuleShape.square,
+                color: Colors.black,
+              ),
             ),
           ),
           const SizedBox(height: 10),
           Text(
             '"Doctor can scan this even if screen is locked"',
-            style: theme.textTheme.bodySmall?.copyWith(color: Colors.white70, fontStyle: FontStyle.italic),
+            style: theme.textTheme.bodySmall?.copyWith(
+              color: Colors.white70,
+              fontStyle: FontStyle.italic,
+            ),
             textAlign: TextAlign.center,
           ),
         ],
@@ -287,7 +354,12 @@ class _EmergencyQrScreenState extends State<EmergencyQrScreen> {
     );
   }
 
-  Widget _buildInfoSection(BuildContext context, String title, String value, IconData icon) {
+  Widget _buildInfoSection(
+    BuildContext context,
+    String title,
+    String value,
+    IconData icon,
+  ) {
     final theme = Theme.of(context);
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
@@ -308,12 +380,18 @@ class _EmergencyQrScreenState extends State<EmergencyQrScreen> {
                   children: [
                     Text(
                       title,
-                      style: theme.textTheme.titleSmall?.copyWith(fontWeight: FontWeight.bold, color: Colors.blue.shade900),
+                      style: theme.textTheme.titleSmall?.copyWith(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.blue.shade900,
+                      ),
                     ),
                     const SizedBox(height: 4),
                     Text(
                       value,
-                      style: theme.textTheme.bodyMedium?.copyWith(color: Colors.black87, height: 1.4),
+                      style: theme.textTheme.bodyMedium?.copyWith(
+                        color: Colors.black87,
+                        height: 1.4,
+                      ),
                     ),
                   ],
                 ),

@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import '../services/auth_service.dart'; // Assuming this handles OTP logic
+import 'package:provider/provider.dart';
+import '../providers/auth_provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import '../providers/medical_record_provider.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -11,61 +15,50 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   bool _useEmailLogin = true; // Renamed for clarity
-  bool _otpSent = false;
   bool _isLoading = false;
 
   final _emailController = TextEditingController();
-  final _otpController = TextEditingController();
+  final _passwordController = TextEditingController();
 
   final _auth = AuthService();
 
   @override
   void dispose() {
     _emailController.dispose();
-    _otpController.dispose();
+    _passwordController.dispose();
     super.dispose();
   }
 
   Future<void> _handleEmailFlow() async {
-    if (_emailController.text.isEmpty) {
-      // TODO: Show error to user
+    final email = _emailController.text.trim();
+    final password = _passwordController.text;
+    if (email.isEmpty || password.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Email and password required')),
+      );
       return;
     }
     setState(() => _isLoading = true);
     try {
-      if (!_otpSent) {
-        // Simulate OTP sending
-        // await _auth.sendOtp(_emailController.text);
-        await Future.delayed(const Duration(seconds: 2)); // Simulate network delay
-        if (!mounted) return;
-        setState(() {
-          _otpSent = true;
-        });
-        // TODO: Show success message (OTP Sent)
-      } else {
-        if (_otpController.text.isEmpty) {
-          // TODO: Show error (OTP is required)
-          setState(() => _isLoading = false);
-          return;
-        }
-        // Simulate OTP verification
-        // bool success = await _auth.verifyOtp(_emailController.text, _otpController.text);
-        await Future.delayed(const Duration(seconds: 2)); // Simulate network delay
-        bool success = true; // Simulate success
-        if (!mounted) return;
-        if (success) {
-          Navigator.pushReplacementNamed(context, '/home');
-        } else {
-          // TODO: Show error (Invalid OTP)
-        }
+      await _auth.loginUser(email: email, password: password);
+
+      // Retrieve token saved by ApiService and push to AuthProvider
+      final prefs = await SharedPreferences.getInstance();
+      final token = prefs.getString('auth_token');
+      if (token != null && mounted) {
+        context.read<AuthProvider>().setToken(token);
+        // Also push to MedicalRecordProvider silently
+        context.read<MedicalRecordProvider>().setAuthToken(token, silent: true);
       }
+
+      if (!mounted) return;
+      Navigator.pushReplacementNamed(context, '/home');
     } catch (e) {
-      // TODO: Show generic error message
-      print('Error during email flow: $e');
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text('Login failed: $e')));
     } finally {
-      if (mounted) {
-        setState(() => _isLoading = false);
-      }
+      if (mounted) setState(() => _isLoading = false);
     }
   }
 
@@ -80,7 +73,11 @@ class _LoginScreenState extends State<LoginScreen> {
       } else {
         // TODO: Show biometric authentication failed message
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Biometric authentication failed. Try Email/OTP.')),
+          const SnackBar(
+            content: Text(
+              'Biometric authentication failed. Try Email/Password.',
+            ),
+          ),
         );
       }
       setState(() => _isLoading = false);
@@ -130,13 +127,15 @@ class _LoginScreenState extends State<LoginScreen> {
                 SegmentedButton<bool>(
                   segments: const <ButtonSegment<bool>>[
                     ButtonSegment<bool>(
-                        value: true, 
-                        label: Text('Email & OTP'), 
-                        icon: Icon(MdiIcons.emailOutline)),
+                      value: true,
+                      label: Text('Email & Password'),
+                      icon: Icon(MdiIcons.emailOutline),
+                    ),
                     ButtonSegment<bool>(
-                        value: false, 
-                        label: Text('Biometrics'), 
-                        icon: Icon(MdiIcons.fingerprint)),
+                      value: false,
+                      label: Text('Biometrics'),
+                      icon: Icon(MdiIcons.fingerprint),
+                    ),
                   ],
                   selected: <bool>{_useEmailLogin},
                   onSelectionChanged: (Set<bool> newSelection) {
@@ -145,7 +144,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     });
                   },
                   style: SegmentedButton.styleFrom(
-                    backgroundColor: theme.colorScheme.surfaceVariant.withOpacity(0.3),
+                    backgroundColor: theme.colorScheme.surfaceVariant
+                        .withOpacity(0.3),
                     selectedForegroundColor: theme.colorScheme.onPrimary,
                     selectedBackgroundColor: theme.colorScheme.primary,
                     textStyle: const TextStyle(fontFamily: 'Poppins'),
@@ -162,56 +162,89 @@ class _LoginScreenState extends State<LoginScreen> {
                     decoration: InputDecoration(
                       labelText: 'Email Address',
                       hintText: 'you@example.com',
-                      prefixIcon: Icon(MdiIcons.emailOutline, color: theme.colorScheme.primary),
+                      prefixIcon: Icon(
+                        MdiIcons.emailOutline,
+                        color: theme.colorScheme.primary,
+                      ),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12.0),
                       ),
                       filled: true,
-                      fillColor: theme.colorScheme.surfaceVariant.withOpacity(0.5),
+                      fillColor: theme.colorScheme.surfaceVariant.withOpacity(
+                        0.5,
+                      ),
                     ),
-                    validator: (value) => (value == null || !value.contains('@')) ? 'Enter a valid email' : null,
+                    validator:
+                        (value) =>
+                            (value == null || !value.contains('@'))
+                                ? 'Enter a valid email'
+                                : null,
                   ),
                   const SizedBox(height: 16),
 
-                  // OTP Field (conditionally shown)
-                  if (_otpSent)
-                    TextFormField(
-                      controller: _otpController,
-                      keyboardType: TextInputType.number,
-                      style: const TextStyle(fontFamily: 'Poppins'),
-                      decoration: InputDecoration(
-                        labelText: 'Enter OTP',
-                        hintText: '123456',
-                        prefixIcon: Icon(MdiIcons.keyVariant, color: theme.colorScheme.primary),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12.0),
-                        ),
-                        filled: true,
-                        fillColor: theme.colorScheme.surfaceVariant.withOpacity(0.5),
+                  // Password Field
+                  TextFormField(
+                    controller: _passwordController,
+                    obscureText: true,
+                    style: const TextStyle(fontFamily: 'Poppins'),
+                    decoration: InputDecoration(
+                      labelText: 'Password',
+                      prefixIcon: Icon(
+                        MdiIcons.lockOutline,
+                        color: theme.colorScheme.primary,
                       ),
-                      validator: (value) => (value == null || value.length < 4) ? 'Enter a valid OTP' : null,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12.0),
+                      ),
+                      filled: true,
+                      fillColor: theme.colorScheme.surfaceVariant.withOpacity(
+                        0.5,
+                      ),
                     ),
-                  if (_otpSent) const SizedBox(height: 20),
+                  ),
+                  const SizedBox(height: 20),
 
-                  // Send/Verify OTP Button
+                  // Login Button
                   ElevatedButton.icon(
-                    icon: Icon(_isLoading ? MdiIcons.loading : (_otpSent ? MdiIcons.checkCircleOutline : MdiIcons.sendOutline )),
+                    icon: Icon(
+                      _isLoading ? MdiIcons.loading : MdiIcons.loginVariant,
+                    ),
                     onPressed: _isLoading ? null : _handleEmailFlow,
-                    label: Text(_isLoading ? 'Processing...' : (_otpSent ? 'Verify OTP' : 'Send OTP')),
+                    label: Text(_isLoading ? 'Logging in...' : 'Login'),
                     style: ElevatedButton.styleFrom(
                       padding: const EdgeInsets.symmetric(vertical: 16),
-                      textStyle: const TextStyle(fontSize: 16, fontFamily: 'Poppins', fontWeight: FontWeight.w600),
+                      textStyle: const TextStyle(
+                        fontSize: 16,
+                        fontFamily: 'Poppins',
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
+                  ),
+                  TextButton(
+                    onPressed:
+                        _isLoading
+                            ? null
+                            : () => Navigator.pushNamed(context, '/register'),
+                    child: const Text('Create an account'),
                   ),
                 ] else ...[
                   // Biometric Login Button
                   ElevatedButton.icon(
-                    icon: Icon(_isLoading ? MdiIcons.loading : MdiIcons.fingerprint, size: 28),
-                    onPressed: _isLoading ? null : _handleBiometricFlow, 
-                    label: Text(_isLoading ? 'Checking...' : 'Login with Biometrics'),
+                    icon: Icon(
+                      _isLoading ? MdiIcons.loading : MdiIcons.fingerprint,
+                      size: 28,
+                    ),
+                    onPressed: _isLoading ? null : _handleBiometricFlow,
+                    label: Text(
+                      _isLoading ? 'Checking...' : 'Login with Biometrics',
+                    ),
                     style: ElevatedButton.styleFrom(
                       padding: const EdgeInsets.symmetric(vertical: 16),
-                      textStyle: const TextStyle(fontSize: 16, fontFamily: 'Poppins', fontWeight: FontWeight.w600),
+                      textStyle: const TextStyle(
+                        fontSize: 16,
+                        fontFamily: 'Poppins',
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
                   ),
                 ],
@@ -223,7 +256,10 @@ class _LoginScreenState extends State<LoginScreen> {
                       padding: const EdgeInsets.symmetric(horizontal: 8.0),
                       child: Text(
                         'OR CONTINUE WITH',
-                        style: theme.textTheme.bodySmall?.copyWith(fontFamily: 'Poppins', color: theme.colorScheme.onSurfaceVariant),
+                        style: theme.textTheme.bodySmall?.copyWith(
+                          fontFamily: 'Poppins',
+                          color: theme.colorScheme.onSurfaceVariant,
+                        ),
                       ),
                     ),
                     const Expanded(child: Divider()),
@@ -235,9 +271,30 @@ class _LoginScreenState extends State<LoginScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    _buildSocialLoginButton(theme, MdiIcons.google, Colors.redAccent, () { /* TODO: Google Sign In */ }),
-                    _buildSocialLoginButton(theme, MdiIcons.apple, Colors.black, () { /* TODO: Apple Sign In */ }),
-                    _buildSocialLoginButton(theme, MdiIcons.faceManOutline, theme.colorScheme.secondary, () { /* TODO: Face ID (if separate from general biometric) */ }),
+                    _buildSocialLoginButton(
+                      theme,
+                      MdiIcons.google,
+                      Colors.redAccent,
+                      () {
+                        /* TODO: Google Sign In */
+                      },
+                    ),
+                    _buildSocialLoginButton(
+                      theme,
+                      MdiIcons.apple,
+                      Colors.black,
+                      () {
+                        /* TODO: Apple Sign In */
+                      },
+                    ),
+                    _buildSocialLoginButton(
+                      theme,
+                      MdiIcons.faceManOutline,
+                      theme.colorScheme.secondary,
+                      () {
+                        /* TODO: Face ID (if separate from general biometric) */
+                      },
+                    ),
                   ],
                 ),
                 const SizedBox(height: 24),
@@ -245,14 +302,20 @@ class _LoginScreenState extends State<LoginScreen> {
                   onPressed: () {
                     // TODO: Navigate to registration screen if one exists or handle differently
                     ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Registration flow not implemented yet.')),
+                      const SnackBar(
+                        content: Text('Registration flow not implemented yet.'),
+                      ),
                     );
                   },
                   child: Text(
                     "Don't have an account? Sign Up",
-                    style: TextStyle(fontFamily: 'Poppins', color: theme.colorScheme.primary, fontWeight: FontWeight.w600),
+                    style: TextStyle(
+                      fontFamily: 'Poppins',
+                      color: theme.colorScheme.primary,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
-                )
+                ),
               ],
             ),
             // Extraneous old UI elements removed from here
@@ -263,19 +326,21 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   // Helper method for social login buttons
-  Widget _buildSocialLoginButton(ThemeData theme, IconData icon, Color iconColor, VoidCallback onPressed) {
+  Widget _buildSocialLoginButton(
+    ThemeData theme,
+    IconData icon,
+    Color iconColor,
+    VoidCallback onPressed,
+  ) {
     return IconButton(
       icon: Icon(icon, size: 30, color: iconColor),
       onPressed: onPressed,
       style: IconButton.styleFrom(
         padding: const EdgeInsets.all(16),
         backgroundColor: theme.colorScheme.surfaceVariant.withOpacity(0.7),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         side: BorderSide(color: theme.colorScheme.outline.withOpacity(0.3)),
       ),
     );
   }
 }
-
