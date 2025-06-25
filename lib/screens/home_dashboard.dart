@@ -153,6 +153,11 @@ class HomeDashboard extends StatelessWidget {
         'route': '/emergency',
       },
       {
+        'icon': MdiIcons.carEmergency,
+        'label': 'Crash Detection',
+        'route': '/crash',
+      },
+      {
         'icon': MdiIcons.cogOutline,
         'label': loc.actionLabelAppSettings,
         'route': '/settings',

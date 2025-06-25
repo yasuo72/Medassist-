@@ -62,6 +62,9 @@ dependencies:
 
   flutter_pdfview: ^1.2.7
   path_provider: ^2.1.1
+  sensors_plus: ^4.0.2 # For accelerometer & gyroscope data
+  geolocator: ^10.1.0 # For fetching current GPS location
+  flutter_background_service: ^5.0.4 # Updated for AGP 8 compatibility
 
 dev_dependencies:
   flutter_test:

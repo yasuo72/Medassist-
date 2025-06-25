@@ -19,6 +19,7 @@ import 'screens/home_dashboard.dart'; // Import the actual HomeDashboard screen
 import 'screens/profile_creation_screen.dart'; // Import the new ProfileCreationScreen
 import 'screens/medical_summary_screen.dart'; // Import the new MedicalSummaryScreen
 import 'screens/qr_nfc_screen.dart';
+import 'screens/face_register_success.dart';
 import 'screens/help_support_screen.dart';
 import 'providers/app_lock_provider.dart';
 import 'app_lock_gate.dart';
@@ -34,11 +35,13 @@ import 'screens/face_scan_screen.dart'; // Import FaceScanScreen
 import 'screens/fingerprint_scan_screen.dart'; // Import FingerprintScanScreen
 import 'providers/emergency_access_settings_provider.dart';
 import 'screens/emergency_access_settings_screen.dart';
+// import 'background_service.dart'; // Disabled background service per user request
 import 'screens/register_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart'; // Import SharedPreferences
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  // initializeService() disabled; background service removed per user request
 
   // Load saved auth token (if any)
   final prefs = await SharedPreferences.getInstance();
@@ -153,6 +156,7 @@ class MedAssistPlusApp extends StatelessWidget {
         '/face-scan': (context) => const FaceScanScreen(),
         '/fingerprint-scan': (context) => const FingerprintScanScreen(),
         '/register': (context) => const RegisterScreen(),
+        '/face-success': (context) => const FaceRegisterSuccessScreen(),
         '/success-error':
             (context) =>
                 const SuccessErrorStatesScreen(), // Placeholder, implement as needed
