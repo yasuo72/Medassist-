@@ -19,6 +19,8 @@ import 'screens/home_dashboard.dart'; // Import the actual HomeDashboard screen
 import 'screens/profile_creation_screen.dart'; // Import the new ProfileCreationScreen
 import 'screens/medical_summary_screen.dart'; // Import the new MedicalSummaryScreen
 import 'screens/qr_nfc_screen.dart';
+import 'screens/chatbot_screen.dart';
+import 'screens/online_chatbot_screen.dart';
 import 'screens/face_register_success.dart';
 import 'screens/help_support_screen.dart';
 import 'providers/app_lock_provider.dart';
@@ -162,6 +164,8 @@ class MedAssistPlusApp extends StatelessWidget {
                 const SuccessErrorStatesScreen(), // Placeholder, implement as needed
         '/help-support': (context) => const HelpSupportScreen(),
         '/security-privacy': (context) => const SecurityPrivacyScreen(),
+        ChatbotScreen.routeName: (context) => const ChatbotScreen(),
+        OnlineChatbotScreen.routeName: (context) => const OnlineChatbotScreen(),
       },
     );
   }

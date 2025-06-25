@@ -104,6 +104,9 @@ flutter:
     - assets/animations/ # General animations folder
     - assets/images/ # General images folder (if you have other assets here)
     - assets/wallpapers/ # Lock-screen wallpapers
+    # Offline chatbot knowledge base
+    - assets/chatbot/format_dataset.csv
+    - assets/chatbot/combined_dataset.json
     # - images/a_dot_burr.jpeg
     # - images/a_dot_ham.jpeg
 

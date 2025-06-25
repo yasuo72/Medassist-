@@ -11,6 +11,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:medassist_plus/services/medical_record_service.dart';
 import 'package:medassist_plus/providers/user_profile_provider.dart';
+import 'package:medassist_plus/screens/chatbot_screen.dart';
 
 class HomeDashboard extends StatelessWidget {
   const HomeDashboard({super.key});
@@ -543,27 +544,44 @@ class HomeDashboard extends StatelessWidget {
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButton.extended(
-            onPressed: () => Navigator.pushNamed(context, '/qr'),
-            icon: Icon(
-              MdiIcons.qrcodeScan,
-              color: theme.colorScheme.onErrorContainer,
+      floatingActionButton: SizedBox(
+        width: double.infinity,
+        height: 120,
+        child: Stack(
+          clipBehavior: Clip.none,
+          children: [
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: FloatingActionButton.extended(
+                onPressed: () => Navigator.pushNamed(context, '/qr'),
+                icon: Icon(
+                  MdiIcons.qrcodeScan,
+                  color: theme.colorScheme.onErrorContainer,
+                ),
+                label: Text(
+                  loc.homeFabLabelEmergencyId,
+                  style: TextStyle(
+                    fontFamily: 'Poppins',
+                    color: theme.colorScheme.onErrorContainer,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                backgroundColor: theme.colorScheme.errorContainer,
+                elevation: 4.0,
+                tooltip: 'Emergency QR/NFC ID',
+              )
+                  .animate()
+                  .scale(delay: 800.ms, duration: 500.ms)
+                  .slideY(begin: 0.5, curve: Curves.easeInOutCubic),
             ),
-            label: Text(
-              loc.homeFabLabelEmergencyId,
-              style: TextStyle(
-                fontFamily: 'Poppins',
-                color: theme.colorScheme.onErrorContainer,
-                fontWeight: FontWeight.w600,
-              ),
+            Positioned(
+              bottom: 16,
+              right: 16,
+              child: _AiChatFab(),
             ),
-            backgroundColor: theme.colorScheme.errorContainer,
-            elevation: 4.0,
-            tooltip: 'Emergency QR/NFC ID',
-          )
-          .animate()
-          .scale(delay: 800.ms, duration: 500.ms)
-          .slideY(begin: 0.5, curve: Curves.easeInOutCubic),
+          ],
+        ),
+      ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
@@ -577,6 +595,24 @@ class HomeDashboard extends StatelessWidget {
         color: color.withOpacity(0.15),
       ),
     );
+  }
+}
+
+class _AiChatFab extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return FloatingActionButton(
+      heroTag: 'aiChat',
+      onPressed: () => Navigator.pushNamed(context, ChatbotScreen.routeName),
+      tooltip: 'Ask AI Doctor',
+      backgroundColor: theme.colorScheme.primary,
+      elevation: 6,
+      child: Icon(MdiIcons.robot, color: theme.colorScheme.onPrimary),
+    )
+        .animate()
+        .scale(duration: 600.ms, curve: Curves.easeOutBack)
+        .fadeIn(duration: 500.ms, curve: Curves.easeOut);
   }
 }
 

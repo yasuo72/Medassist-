@@ -10,8 +10,15 @@ import 'package:flutter/rendering.dart';
 import 'package:wallpaper_manager_flutter/wallpaper_manager_flutter.dart';
 import 'dart:ui' as ui;
 import 'dart:typed_data';
+import 'package:file_picker/file_picker.dart';
+
+
 import 'package:path_provider/path_provider.dart';
 import 'dart:io';
+
+/// User-selectable QR positions when composing wallpaper
+enum QrPosition { topLeft, topRight, center, bottomLeft, bottomRight, bottomCenter }
+
 
 class QrGeneratorScreen extends StatefulWidget {
   const QrGeneratorScreen({super.key});
@@ -32,7 +39,15 @@ class _QrGeneratorScreenState extends State<QrGeneratorScreen> {
   String? _emergencyUrl;
   bool _isLoading = true;
   bool _showNfcOptions = false;
+
+  // Custom wallpaper path when user picks from gallery
+  String? _customWallpaperPath;
+
+  // Allow user to choose QR placement
+  QrPosition _qrPosition = QrPosition.bottomCenter;
   final GlobalKey _qrKey = GlobalKey();
+
+  
 
   @override
   void initState() {
@@ -263,43 +278,124 @@ class _QrGeneratorScreenState extends State<QrGeneratorScreen> {
     );
   }
 
-  Future<ui.Image> _loadAssetImage(String assetPath) async {
-    final ByteData data = await rootBundle.load(assetPath);
-    final codec = await ui.instantiateImageCodec(data.buffer.asUint8List());
-    final frameInfo = await codec.getNextFrame();
-    return frameInfo.image;
+  /// Loads an image from assets and optionally downsizes it to avoid exceeding
+/// device wallpaper size limits (large bitmaps may fail silently on some OEMs).
+/// [targetWidth] defaults to 1080px which is safe for most devices.
+Future<ui.Image> _loadAssetImage(
+  String assetPath, {
+  int targetWidth = 1080,
+}) async {
+  final ByteData data = await rootBundle.load(assetPath);
+  // Down-sample large images on decode to save memory / binder size.
+  final codec = await ui.instantiateImageCodec(
+    data.buffer.asUint8List(),
+    targetWidth: targetWidth,
+  );
+  final frameInfo = await codec.getNextFrame();
+  return frameInfo.image;
+}
+
+// Load image from file system
+Future<ui.Image> _loadFileImage(String filePath, {int targetWidth = 1080}) async {
+  final Uint8List bytes = await File(filePath).readAsBytes();
+  final codec = await ui.instantiateImageCodec(bytes, targetWidth: targetWidth);
+  final frameInfo = await codec.getNextFrame();
+  return frameInfo.image;
+}
+
+// Pick an image from gallery to use as wallpaper
+Future<void> _pickCustomWallpaper() async {
+  final result = await FilePicker.platform.pickFiles(type: FileType.image);
+  if (result != null && result.files.single.path != null) {
+    setState(() {
+      _customWallpaperPath = result.files.single.path;
+      _selectedWallpaperIndex = 0; // reset
+    });
   }
+}
 
   Widget _buildWallpaperSelector(ThemeData theme) {
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Row(
-        children: List.generate(_bundledWallpapers.length, (index) {
-          return GestureDetector(
-            onTap: () => setState(() => _selectedWallpaperIndex = index),
-            child: Container(
-              margin: const EdgeInsets.symmetric(horizontal: 4),
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color:
-                      _selectedWallpaperIndex == index
-                          ? theme.colorScheme.primary
+  final borderColor = theme.colorScheme.primary;
+  return Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Row(
+          children: [
+            ...List.generate(_bundledWallpapers.length, (index) {
+              return GestureDetector(
+                onTap: () {
+                  setState(() {
+                    _selectedWallpaperIndex = index;
+                    _customWallpaperPath = null;
+                  });
+                },
+                child: Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 4),
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: _selectedWallpaperIndex == index && _customWallpaperPath == null
+                          ? borderColor
                           : Colors.grey.withOpacity(0.3),
-                  width: _selectedWallpaperIndex == index ? 3 : 1,
+                      width: _selectedWallpaperIndex == index && _customWallpaperPath == null ? 3 : 1,
+                    ),
+                  ),
+                  child: Image.asset(
+                    _bundledWallpapers[index],
+                    width: 60,
+                    height: 60,
+                    fit: BoxFit.cover,
+                  ),
                 ),
-              ),
-              child: Image.asset(
-                _bundledWallpapers[index],
+              );
+            }),
+            // '+' tile for gallery pick
+            GestureDetector(
+              onTap: _pickCustomWallpaper,
+              child: Container(
                 width: 60,
                 height: 60,
-                fit: BoxFit.cover,
+                margin: const EdgeInsets.symmetric(horizontal: 4),
+                decoration: BoxDecoration(
+                  color: theme.colorScheme.surfaceVariant,
+                  border: Border.all(
+                    color: _customWallpaperPath != null ? borderColor : Colors.grey.withOpacity(0.3),
+                    width: _customWallpaperPath != null ? 3 : 1,
+                  ),
+                ),
+                child: _customWallpaperPath == null
+                    ? const Icon(Icons.add_photo_alternate_rounded)
+                    : Image.file(File(_customWallpaperPath!), fit: BoxFit.cover),
               ),
             ),
-          );
-        }),
+          ],
+        ),
       ),
-    );
-  }
+      const SizedBox(height: 12),
+      // QR position dropdown
+      Row(
+        children: [
+          const Text('QR position: '),
+          const SizedBox(width: 8),
+          DropdownButton<QrPosition>(
+            value: _qrPosition,
+            onChanged: (val) => setState(() => _qrPosition = val!),
+            items: QrPosition.values
+                .map(
+                  (pos) => DropdownMenuItem(
+                    value: pos,
+                    child: Text(pos.name.replaceAll(RegExp(r'([A-Z])'), ' \\1').trim()),
+                  ),
+                )
+                .toList(),
+          ),
+        ],
+      ),
+    ],
+  );
+}
+
 
   Future<Uint8List> _composeWallpaperBytes(
     ui.Image wallpaper,
@@ -317,10 +413,38 @@ class _QrGeneratorScreenState extends State<QrGeneratorScreen> {
     final double scale = qrTargetWidth / qrImage.width;
     final double qrTargetHeight = qrImage.height * scale;
 
-    // Bottom-center the QR code with a 5 % bottom margin
-    final double dx = (wallpaper.width - qrTargetWidth) / 2;
-    final double bottomMargin = wallpaper.height * 0.12;
-    final double dy = wallpaper.height - qrTargetHeight - bottomMargin;
+        // Choose placement based on user choice
+    const double marginFactor = 0.08; // 8% padding
+    final double margin = wallpaper.width * marginFactor;
+    double dx;
+    double dy;
+    switch (_qrPosition) {
+      case QrPosition.topLeft:
+        dx = margin;
+        dy = margin;
+        break;
+      case QrPosition.topRight:
+        dx = wallpaper.width - qrTargetWidth - margin;
+        dy = margin;
+        break;
+      case QrPosition.center:
+        dx = (wallpaper.width - qrTargetWidth) / 2;
+        dy = (wallpaper.height - qrTargetHeight) / 2;
+        break;
+      case QrPosition.bottomLeft:
+        dx = margin;
+        dy = wallpaper.height - qrTargetHeight - margin;
+        break;
+      case QrPosition.bottomRight:
+        dx = wallpaper.width - qrTargetWidth - margin;
+        dy = wallpaper.height - qrTargetHeight - margin;
+        break;
+      case QrPosition.bottomCenter:
+      default:
+        dx = (wallpaper.width - qrTargetWidth) / 2;
+        dy = wallpaper.height - qrTargetHeight - margin;
+        break;
+    }
 
     final ui.Rect dstRect = ui.Rect.fromLTWH(
       dx,
@@ -353,9 +477,16 @@ class _QrGeneratorScreenState extends State<QrGeneratorScreen> {
           _qrKey.currentContext!.findRenderObject() as RenderRepaintBoundary;
       ui.Image qrUiImage = await boundary.toImage(pixelRatio: 3.0);
 
-      // 2. Load selected wallpaper asset
-      final wallpaperPath = _bundledWallpapers[_selectedWallpaperIndex];
-      final ui.Image wallpaperImage = await _loadAssetImage(wallpaperPath);
+            // 2. Load selected or custom wallpaper
+      late ui.Image wallpaperImage;
+      String wallpaperPath;
+      if (_customWallpaperPath != null) {
+        wallpaperPath = _customWallpaperPath!;
+        wallpaperImage = await _loadFileImage(wallpaperPath);
+      } else {
+        wallpaperPath = _bundledWallpapers[_selectedWallpaperIndex];
+        wallpaperImage = await _loadAssetImage(wallpaperPath);
+      }
 
       // 3. Compose
       final Uint8List composedBytes = await _composeWallpaperBytes(
