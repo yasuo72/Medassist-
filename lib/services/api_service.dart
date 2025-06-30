@@ -1,4 +1,6 @@
 import 'package:dio/dio.dart';
+import 'dart:io';
+import 'package:dio/io.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// Singleton wrapper around Dio that automatically attaches the stored JWT
@@ -9,6 +11,16 @@ class ApiService {
       ..baseUrl = _baseUrl
       ..connectTimeout = const Duration(seconds: 15)
       ..receiveTimeout = const Duration(seconds: 15);
+
+    // DEV ONLY: allow self-signed TLS certificate from Railway backend.
+    final backendHost = Uri.parse(_baseUrl).host;
+    (dio.httpClientAdapter as IOHttpClientAdapter).createHttpClient = () {
+      final client = HttpClient();
+      client.badCertificateCallback = (cert, host, port) => host == backendHost;
+      return client;
+    };
+
+    dio.interceptors.add(LogInterceptor(requestBody: true, responseBody: true));
 
     dio.interceptors.add(
       InterceptorsWrapper(
@@ -36,7 +48,8 @@ class ApiService {
 
   static const String _tokenKey = 'auth_token';
   // NOTE: change to your actual backend base URL or use dotenv.
-  static const String _baseUrl = 'https://medassistbackend-production.up.railway.app/api';
+  static const String _baseUrl =
+      'https://medassistbackend-production.up.railway.app/api';
 
   Future<void> setAuthToken(String token) async {
     final prefs = await SharedPreferences.getInstance();

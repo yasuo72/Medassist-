@@ -135,6 +135,8 @@ class _FamilyManagementScreenState extends State<FamilyManagementScreen> {
     String? _selectedRelation = isEditing ? member.relationship : null;
     String _medicalTag = isEditing ? member.medicalTag : '';
     String _emergencyId = isEditing ? member.emergencyId : '';
+  String? _summaryUrl = isEditing ? member.summaryUrl : null;
+  
 
     final List<String> _genders = [
       'Male',
@@ -330,8 +332,9 @@ class _FamilyManagementScreenState extends State<FamilyManagementScreen> {
                                   result.files.single.path == null)
                                 return;
                               final file = File(result.files.single.path!);
-                              await FamilyService().uploadSummary(file);
+                              final url = await FamilyService().uploadSummary(file);
                               modalSetState(() {
+                                _summaryUrl = url;
                                 _medicalTag = 'Summary uploaded';
                               }); // Optionally store url somewhere
                               if (context.mounted) {
@@ -399,7 +402,7 @@ class _FamilyManagementScreenState extends State<FamilyManagementScreen> {
                                       gender: _selectedGender,
                                       medicalTag: _medicalTag,
                                        emergencyId: _emergencyId,
-                                       summaryUrl: null,
+                                       summaryUrl: _summaryUrl,
                                       avatarUrl:
                                           member.avatarUrl, // Preserve avatar
                                     );
@@ -424,7 +427,7 @@ class _FamilyManagementScreenState extends State<FamilyManagementScreen> {
                                       gender: _selectedGender,
                                       medicalTag: _medicalTag,
                                        emergencyId: _emergencyId,
-                                       summaryUrl: null,
+                                       summaryUrl: _summaryUrl,
                                     );
                                     await FamilyService().addMember(newMember);
                                     await _loadMembers();

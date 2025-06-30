@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../chatbot/chatbot_engine.dart';
+import '../../chatbot/chatbot_engine.dart';
 import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'dart:math' as math;
@@ -62,7 +62,10 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
               groupValue: 'Offline',
               backgroundColor: Colors.white.withOpacity(0.05),
               children: const {
-                'Offline': Text('Offline', style: TextStyle(color: Colors.white)),
+                'Offline': Text(
+                  'Offline',
+                  style: TextStyle(color: Colors.white),
+                ),
                 'Online': Text('Online', style: TextStyle(color: Colors.white)),
               },
               onValueChanged: (val) {
@@ -81,54 +84,72 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
             child: Column(
               children: [
                 Expanded(
-                  child: _loadingKB
-                      ? const Center(child: CircularProgressIndicator())
-                      : ListView.builder(
-                          padding: const EdgeInsets.all(16),
-                          itemCount: _messages.length,
-                          itemBuilder: (context, i) {
-                            final msg = _messages[i];
-                            final align =
-                                msg.isUser ? Alignment.centerRight : Alignment.centerLeft;
-                            final bubbleColor = msg.isUser
-                                ? theme.colorScheme.primary.withOpacity(0.25)
-                                : Colors.white.withOpacity(0.12);
-                            final borderRadius = BorderRadius.only(
-                              topLeft: const Radius.circular(16),
-                              topRight: const Radius.circular(16),
-                              bottomLeft: msg.isUser
-                                  ? const Radius.circular(16)
-                                  : Radius.zero,
-                              bottomRight: msg.isUser
-                                  ? Radius.zero
-                                  : const Radius.circular(16),
-                            );
-                            return Align(
-                              alignment: align,
-                              child: Container(
-                                margin: const EdgeInsets.symmetric(vertical: 6),
-                                padding: const EdgeInsets.all(12),
-                                constraints: BoxConstraints(
-                                    maxWidth: MediaQuery.of(context).size.width * 0.8),
-                                decoration: BoxDecoration(
-                                  color: bubbleColor,
-                                  borderRadius: borderRadius,
-                                  border: Border.all(color: Colors.white24, width: 0.5),
-                                  boxShadow: [
-                                    BoxShadow(
+                  child:
+                      _loadingKB
+                          ? const Center(child: CircularProgressIndicator())
+                          : ListView.builder(
+                            padding: const EdgeInsets.all(16),
+                            itemCount: _messages.length,
+                            itemBuilder: (context, i) {
+                              final msg = _messages[i];
+                              final align =
+                                  msg.isUser
+                                      ? Alignment.centerRight
+                                      : Alignment.centerLeft;
+                              final bubbleColor = msg.isUser
+                                      ? theme.colorScheme.primary.withOpacity(0.7)
+                                      : (theme.brightness == Brightness.dark
+                                          ? Colors.white.withOpacity(0.12)
+                                          : Colors.black.withOpacity(0.05));
+                              final borderRadius = BorderRadius.only(
+                                topLeft: const Radius.circular(16),
+                                topRight: const Radius.circular(16),
+                                bottomLeft:
+                                    msg.isUser
+                                        ? const Radius.circular(16)
+                                        : Radius.zero,
+                                bottomRight:
+                                    msg.isUser
+                                        ? Radius.zero
+                                        : const Radius.circular(16),
+                              );
+                              return Align(
+                                alignment: align,
+                                child: Container(
+                                  margin: const EdgeInsets.symmetric(
+                                    vertical: 6,
+                                  ),
+                                  padding: const EdgeInsets.all(12),
+                                  constraints: BoxConstraints(
+                                    maxWidth:
+                                        MediaQuery.of(context).size.width * 0.8,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    color: bubbleColor,
+                                    borderRadius: borderRadius,
+                                    border: Border.all(
+                                      color: Colors.white24,
+                                      width: 0.5,
+                                    ),
+                                    boxShadow: [
+                                      BoxShadow(
                                         color: Colors.black.withOpacity(0.2),
                                         blurRadius: 10,
-                                        offset: const Offset(0, 4))
-                                  ],
+                                        offset: const Offset(0, 4),
+                                      ),
+                                    ],
+                                  ),
+                                  child: SelectableText(
+                                    msg.text,
+                                    style: const TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 16,
+                                    ),
+                                  ),
                                 ),
-                                child: SelectableText(
-                                  msg.text,
-                                  style: const TextStyle(color: Colors.white, fontSize: 16),
-                                ),
-                              ),
-                            );
-                          },
-                        ),
+                              );
+                            },
+                          ),
                 ),
                 _buildInputBar(theme),
               ],
@@ -136,7 +157,6 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
           ),
         ],
       ),
-
     );
   }
 
@@ -199,17 +219,19 @@ class _AnimatedBackdropState extends State<_AnimatedBackdrop>
     return AnimatedBuilder(
       animation: _controller,
       builder: (context, child) {
+        final isDark = Theme.of(context).brightness == Brightness.dark;
         return Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
-              colors: const [
-                Color(0xFF0F2027),
-                Color(0xFF203A43),
-                Color(0xFF2C5364),
+              colors: isDark ? [
+                const Color(0xFF4b134f),
+                const Color(0xFF1b2735)
+              ] : [
+                const Color(0xFFFF9A8B),
+                const Color(0xFFFF6A88),
               ],
-              stops: const [0.0, 0.5, 1.0],
               transform: GradientRotation(_controller.value * 2 * math.pi),
             ),
           ),

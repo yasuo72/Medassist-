@@ -1,0 +1,4002 @@
+[
+  {
+    "symptom": "I suddenly got depression",
+    "response": "Try take paracetamol. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "I have swelling",
+    "response": "You should talk to a healthcare provider. In case of severe symptoms, go to the emergency room."
+  },
+  {
+    "symptom": "I am experiencing headache since this morning",
+    "response": "Try rest. If symptoms persist, seek medical attention."
+  },
+  {
+    "symptom": "I have diarrhea",
+    "response": "Try drink warm fluids. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "I'm dealing with joint pain and anxiety",
+    "response": "Try take paracetamol. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "There is bruised on my head",
+    "response": "You should consult a doctor. In case of severe symptoms, not ignore this symptom."
+  },
+  {
+    "symptom": "I have headache",
+    "response": "Please call a doctor immediately. If it continues, visit a physician."
+  },
+  {
+    "symptom": "I suddenly got cold",
+    "response": "You should get a checkup. In case of severe symptoms, go to the emergency room."
+  },
+  {
+    "symptom": "I feel sad",
+    "response": "You should visit a nearby clinic. In case of severe symptoms, not ignore this symptom."
+  },
+  {
+    "symptom": "I am experiencing chest pain since yesterday",
+    "response": "Try avoid spicy food. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "I'm dealing with burning sensation and flu",
+    "response": "You should get a checkup. In case of severe symptoms, not ignore this symptom."
+  },
+  {
+    "symptom": "I noticed numb on my stomach",
+    "response": "Try rest. If symptoms persist, seek medical attention."
+  },
+  {
+    "symptom": "I'm dealing with shortness of breath and back pain",
+    "response": "Please go to the emergency room. If it continues, go for a lab test."
+  },
+  {
+    "symptom": "I can't stop shivering",
+    "response": "Please go to the emergency room. If it continues, go for a lab test."
+  },
+  {
+    "symptom": "I can't stop coughing",
+    "response": "Please not ignore this symptom. If it continues, seek medical attention."
+  },
+  {
+    "symptom": "I can't stop shivering",
+    "response": "You should consult a doctor. In case of severe symptoms, go to the emergency room."
+  },
+  {
+    "symptom": "There is red on my arm",
+    "response": "You should visit a nearby clinic. In case of severe symptoms, go to the emergency room."
+  },
+  {
+    "symptom": "I feel dizzy",
+    "response": "This could be due to viral fever. Try take paracetamol."
+  },
+  {
+    "symptom": "I am experiencing cough since yesterday",
+    "response": "Try take an antacid. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "I am suffering from headache",
+    "response": "Please go to the emergency room. If it continues, visit a physician."
+  },
+  {
+    "symptom": "I am experiencing headache since yesterday",
+    "response": "You should talk to a healthcare provider. In case of severe symptoms, go to the emergency room."
+  },
+  {
+    "symptom": "I can't stop coughing",
+    "response": "It may be a sign of viral fever. It's best to get a checkup."
+  },
+  {
+    "symptom": "I feel nauseous",
+    "response": "You should talk to a healthcare provider. In case of severe symptoms, go to the emergency room."
+  },
+  {
+    "symptom": "I have fever",
+    "response": "Please not ignore this symptom. If it continues, go for a lab test."
+  },
+  {
+    "symptom": "I feel dizzy",
+    "response": "You should talk to a healthcare provider. In case of severe symptoms, not ignore this symptom."
+  },
+  {
+    "symptom": "I have rash",
+    "response": "Please not ignore this symptom. If it continues, go for a lab test."
+  },
+  {
+    "symptom": "My skin is swollen",
+    "response": "Please go to the emergency room. If it continues, go for a lab test."
+  },
+  {
+    "symptom": "I noticed red on my eye",
+    "response": "Please call a doctor immediately. If it continues, go for a lab test."
+  },
+  {
+    "symptom": "I have fatigue",
+    "response": "Please call a doctor immediately. If it continues, visit a physician."
+  },
+  {
+    "symptom": "I can't stop coughing",
+    "response": "This could be due to viral fever. Try use a cold compress."
+  },
+  {
+    "symptom": "I feel anxious",
+    "response": "It may be a sign of food poisoning. It's best to visit a nearby clinic."
+  },
+  {
+    "symptom": "I can't stop coughing",
+    "response": "Please call a doctor immediately. If it continues, go for a lab test."
+  },
+  {
+    "symptom": "I can't stop crying",
+    "response": "It may be a sign of food poisoning. It's best to consult a doctor."
+  },
+  {
+    "symptom": "I'm dealing with itchiness and sore throat",
+    "response": "Try take paracetamol. If symptoms persist, visit a physician."
+  },
+  {
+    "symptom": "I am suffering from cold",
+    "response": "Please go to the emergency room. If it continues, go for a lab test."
+  },
+  {
+    "symptom": "I feel dizzy",
+    "response": "Please not ignore this symptom. If it continues, visit a physician."
+  },
+  {
+    "symptom": "I am experiencing itchiness since last night",
+    "response": "This could be due to food poisoning. Try take paracetamol."
+  },
+  {
+    "symptom": "I noticed numb on my chest",
+    "response": "You should talk to a healthcare provider. In case of severe symptoms, call a doctor immediately."
+  },
+  {
+    "symptom": "My arm is numb",
+    "response": "Please not ignore this symptom. If it continues, seek medical attention."
+  },
+  {
+    "symptom": "I can't stop crying",
+    "response": "It may be a sign of infection. It's best to consult a doctor."
+  },
+  {
+    "symptom": "I am suffering from depression",
+    "response": "This could be due to stress. Try drink warm fluids."
+  },
+  {
+    "symptom": "There is painful on my leg",
+    "response": "It may be a sign of stress. It's best to talk to a healthcare provider."
+  },
+  {
+    "symptom": "I'm dealing with chest pain and cough",
+    "response": "It may be a sign of viral fever. It's best to get a checkup."
+  },
+  {
+    "symptom": "I am suffering from fever",
+    "response": "Try take paracetamol. If symptoms persist, seek medical attention."
+  },
+  {
+    "symptom": "I suddenly got depression",
+    "response": "Please call a doctor immediately. If it continues, go for a lab test."
+  },
+  {
+    "symptom": "I noticed dry on my hand",
+    "response": "It may be a sign of allergy. It's best to visit a nearby clinic."
+  },
+  {
+    "symptom": "I have back pain",
+    "response": "Try take an antacid. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "There is painful on my foot",
+    "response": "This could be due to food poisoning. Try drink warm fluids."
+  },
+  {
+    "symptom": "My hand is itchy",
+    "response": "This could be due to food poisoning. Try take paracetamol."
+  },
+  {
+    "symptom": "I am experiencing sore throat since last night",
+    "response": "Try rest. If symptoms persist, visit a physician."
+  },
+  {
+    "symptom": "I am suffering from itchiness",
+    "response": "Please go to the emergency room. If it continues, go for a lab test."
+  },
+  {
+    "symptom": "I am experiencing sore throat since 2 days",
+    "response": "It may be a sign of dehydration. It's best to visit a nearby clinic."
+  },
+  {
+    "symptom": "I'm dealing with cold and anxiety",
+    "response": "This could be due to viral fever. Try avoid spicy food."
+  },
+  {
+    "symptom": "I can't stop vomiting",
+    "response": "You should talk to a healthcare provider. In case of severe symptoms, go to the emergency room."
+  },
+  {
+    "symptom": "I'm dealing with vomiting and fever",
+    "response": "It may be a sign of stress. It's best to get a checkup."
+  },
+  {
+    "symptom": "I suddenly got joint pain",
+    "response": "Please call a doctor immediately. If it continues, seek medical attention."
+  },
+  {
+    "symptom": "I noticed dry on my arm",
+    "response": "You should consult a doctor. In case of severe symptoms, go to the emergency room."
+  },
+  {
+    "symptom": "I can't stop vomiting",
+    "response": "It may be a sign of infection. It's best to visit a nearby clinic."
+  },
+  {
+    "symptom": "I noticed red on my chest",
+    "response": "Try rest. If symptoms persist, visit a physician."
+  },
+  {
+    "symptom": "There is dry on my head",
+    "response": "Try use a cold compress. If symptoms persist, seek medical attention."
+  },
+  {
+    "symptom": "My head is bruised",
+    "response": "It may be a sign of stress. It's best to visit a nearby clinic."
+  },
+  {
+    "symptom": "I suddenly got swelling",
+    "response": "You should talk to a healthcare provider. In case of severe symptoms, go to the emergency room."
+  },
+  {
+    "symptom": "I can't stop coughing",
+    "response": "It may be a sign of allergy. It's best to talk to a healthcare provider."
+  },
+  {
+    "symptom": "I feel nauseous",
+    "response": "You should talk to a healthcare provider. In case of severe symptoms, not ignore this symptom."
+  },
+  {
+    "symptom": "I suddenly got fever",
+    "response": "You should talk to a healthcare provider. In case of severe symptoms, not ignore this symptom."
+  },
+  {
+    "symptom": "I am experiencing joint pain since this morning",
+    "response": "It may be a sign of allergy. It's best to talk to a healthcare provider."
+  },
+  {
+    "symptom": "I can't stop coughing",
+    "response": "Try rest. If symptoms persist, visit a physician."
+  },
+  {
+    "symptom": "I feel anxious",
+    "response": "You should get a checkup. In case of severe symptoms, not ignore this symptom."
+  },
+  {
+    "symptom": "I feel nauseous",
+    "response": "Try use a cold compress. If symptoms persist, visit a physician."
+  },
+  {
+    "symptom": "I can't stop scratching",
+    "response": "This could be due to stress. Try rest."
+  },
+  {
+    "symptom": "I noticed painful on my head",
+    "response": "Try take an antacid. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "I can't stop vomiting",
+    "response": "It may be a sign of food poisoning. It's best to talk to a healthcare provider."
+  },
+  {
+    "symptom": "I am experiencing rash since 2 days",
+    "response": "This could be due to stress. Try rest."
+  },
+  {
+    "symptom": "There is bruised on my eye",
+    "response": "This could be due to infection. Try avoid spicy food."
+  },
+  {
+    "symptom": "I feel scared",
+    "response": "Try avoid spicy food. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "I suddenly got headache",
+    "response": "You should consult a doctor. In case of severe symptoms, go to the emergency room."
+  },
+  {
+    "symptom": "I suddenly got joint pain",
+    "response": "You should get a checkup. In case of severe symptoms, not ignore this symptom."
+  },
+  {
+    "symptom": "I'm dealing with sore throat and body ache",
+    "response": "You should get a checkup. In case of severe symptoms, call a doctor immediately."
+  },
+  {
+    "symptom": "My foot is painful",
+    "response": "Try use a cold compress. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "I can't stop shivering",
+    "response": "Try take an antacid. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "I'm dealing with headache and flu",
+    "response": "It may be a sign of food poisoning. It's best to consult a doctor."
+  },
+  {
+    "symptom": "I feel nauseous",
+    "response": "You should visit a nearby clinic. In case of severe symptoms, call a doctor immediately."
+  },
+  {
+    "symptom": "I am suffering from swelling",
+    "response": "This could be due to viral fever. Try take paracetamol."
+  },
+  {
+    "symptom": "I suddenly got fever",
+    "response": "Try take an antacid. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "I have itchiness",
+    "response": "This could be due to food poisoning. Try avoid spicy food."
+  },
+  {
+    "symptom": "I feel dizzy",
+    "response": "Please call a doctor immediately. If it continues, go for a lab test."
+  },
+  {
+    "symptom": "I am suffering from diarrhea",
+    "response": "This could be due to infection. Try avoid spicy food."
+  },
+  {
+    "symptom": "I can't stop vomiting",
+    "response": "Please call a doctor immediately. If it continues, seek medical attention."
+  },
+  {
+    "symptom": "I am experiencing headache since a week",
+    "response": "Please go to the emergency room. If it continues, visit a physician."
+  },
+  {
+    "symptom": "My stomach is bruised",
+    "response": "It may be a sign of viral fever. It's best to get a checkup."
+  },
+  {
+    "symptom": "My head is numb",
+    "response": "You should talk to a healthcare provider. In case of severe symptoms, not ignore this symptom."
+  },
+  {
+    "symptom": "I am suffering from joint pain",
+    "response": "Try drink warm fluids. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "There is inflamed on my foot",
+    "response": "It may be a sign of infection. It's best to talk to a healthcare provider."
+  },
+  {
+    "symptom": "I am suffering from sore throat",
+    "response": "Try use a cold compress. If symptoms persist, visit a physician."
+  },
+  {
+    "symptom": "My leg is swollen",
+    "response": "This could be due to infection. Try take paracetamol."
+  },
+  {
+    "symptom": "My chest is numb",
+    "response": "It may be a sign of food poisoning. It's best to visit a nearby clinic."
+  },
+  {
+    "symptom": "I feel nauseous",
+    "response": "It may be a sign of infection. It's best to get a checkup."
+  },
+  {
+    "symptom": "My skin is itchy",
+    "response": "Try take an antacid. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "I have cold",
+    "response": "This could be due to dehydration. Try rest."
+  },
+  {
+    "symptom": "I have anxiety",
+    "response": "Please not ignore this symptom. If it continues, go for a lab test."
+  },
+  {
+    "symptom": "I'm dealing with diarrhea and depression",
+    "response": "This could be due to dehydration. Try take an antacid."
+  },
+  {
+    "symptom": "I suddenly got chest pain",
+    "response": "You should get a checkup. In case of severe symptoms, call a doctor immediately."
+  },
+  {
+    "symptom": "I have swelling",
+    "response": "Try take paracetamol. If symptoms persist, visit a physician."
+  },
+  {
+    "symptom": "I'm dealing with sore throat and flu",
+    "response": "It may be a sign of allergy. It's best to get a checkup."
+  },
+  {
+    "symptom": "I suddenly got burning sensation",
+    "response": "It may be a sign of allergy. It's best to visit a nearby clinic."
+  },
+  {
+    "symptom": "There is painful on my leg",
+    "response": "This could be due to food poisoning. Try rest."
+  },
+  {
+    "symptom": "I can't stop sneezing",
+    "response": "You should talk to a healthcare provider. In case of severe symptoms, not ignore this symptom."
+  },
+  {
+    "symptom": "I feel dizzy",
+    "response": "This could be due to infection. Try avoid spicy food."
+  },
+  {
+    "symptom": "There is red on my skin",
+    "response": "It may be a sign of viral fever. It's best to consult a doctor."
+  },
+  {
+    "symptom": "I am experiencing diarrhea since yesterday",
+    "response": "This could be due to infection. Try avoid spicy food."
+  },
+  {
+    "symptom": "I can't stop coughing",
+    "response": "This could be due to infection. Try rest."
+  },
+  {
+    "symptom": "I feel scared",
+    "response": "Try take paracetamol. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "There is dry on my stomach",
+    "response": "You should visit a nearby clinic. In case of severe symptoms, call a doctor immediately."
+  },
+  {
+    "symptom": "There is inflamed on my skin",
+    "response": "Try take an antacid. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "I am experiencing fever since this morning",
+    "response": "It may be a sign of viral fever. It's best to get a checkup."
+  },
+  {
+    "symptom": "I suddenly got stomach pain",
+    "response": "You should talk to a healthcare provider. In case of severe symptoms, call a doctor immediately."
+  },
+  {
+    "symptom": "I suddenly got diarrhea",
+    "response": "It may be a sign of allergy. It's best to get a checkup."
+  },
+  {
+    "symptom": "I am experiencing dizziness since last night",
+    "response": "Try take an antacid. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "I suddenly got back pain",
+    "response": "Try take paracetamol. If symptoms persist, seek medical attention."
+  },
+  {
+    "symptom": "I am suffering from body ache",
+    "response": "You should talk to a healthcare provider. In case of severe symptoms, not ignore this symptom."
+  },
+  {
+    "symptom": "I suddenly got nausea",
+    "response": "Try use a cold compress. If symptoms persist, visit a physician."
+  },
+  {
+    "symptom": "I am suffering from itchiness",
+    "response": "Try use a cold compress. If symptoms persist, visit a physician."
+  },
+  {
+    "symptom": "I noticed dry on my eye",
+    "response": "This could be due to infection. Try avoid spicy food."
+  },
+  {
+    "symptom": "I'm dealing with shortness of breath and body ache",
+    "response": "You should get a checkup. In case of severe symptoms, go to the emergency room."
+  },
+  {
+    "symptom": "There is itchy on my throat",
+    "response": "It may be a sign of allergy. It's best to consult a doctor."
+  },
+  {
+    "symptom": "There is dry on my throat",
+    "response": "Please call a doctor immediately. If it continues, go for a lab test."
+  },
+  {
+    "symptom": "My eye is swollen",
+    "response": "You should visit a nearby clinic. In case of severe symptoms, not ignore this symptom."
+  },
+  {
+    "symptom": "I am experiencing dizziness since 2 days",
+    "response": "You should visit a nearby clinic. In case of severe symptoms, not ignore this symptom."
+  },
+  {
+    "symptom": "I am suffering from body ache",
+    "response": "Try take an antacid. If symptoms persist, seek medical attention."
+  },
+  {
+    "symptom": "I'm dealing with body ache and swelling",
+    "response": "You should talk to a healthcare provider. In case of severe symptoms, call a doctor immediately."
+  },
+  {
+    "symptom": "I'm dealing with cold and joint pain",
+    "response": "It may be a sign of food poisoning. It's best to get a checkup."
+  },
+  {
+    "symptom": "I'm dealing with dizziness and fatigue",
+    "response": "This could be due to viral fever. Try use a cold compress."
+  },
+  {
+    "symptom": "I am suffering from constipation",
+    "response": "It may be a sign of infection. It's best to talk to a healthcare provider."
+  },
+  {
+    "symptom": "I am experiencing sore throat since last night",
+    "response": "Please not ignore this symptom. If it continues, go for a lab test."
+  },
+  {
+    "symptom": "There is bruised on my skin",
+    "response": "Try drink warm fluids. If symptoms persist, visit a physician."
+  },
+  {
+    "symptom": "I suddenly got back pain",
+    "response": "This could be due to infection. Try rest."
+  },
+  {
+    "symptom": "I suddenly got diarrhea",
+    "response": "Try take an antacid. If symptoms persist, visit a physician."
+  },
+  {
+    "symptom": "I am suffering from nausea",
+    "response": "You should visit a nearby clinic. In case of severe symptoms, not ignore this symptom."
+  },
+  {
+    "symptom": "I'm dealing with body ache and diarrhea",
+    "response": "You should consult a doctor. In case of severe symptoms, go to the emergency room."
+  },
+  {
+    "symptom": "I am experiencing headache since yesterday",
+    "response": "You should visit a nearby clinic. In case of severe symptoms, call a doctor immediately."
+  },
+  {
+    "symptom": "I feel scared",
+    "response": "Try take an antacid. If symptoms persist, seek medical attention."
+  },
+  {
+    "symptom": "I can't stop coughing",
+    "response": "You should talk to a healthcare provider. In case of severe symptoms, go to the emergency room."
+  },
+  {
+    "symptom": "My throat is painful",
+    "response": "Please not ignore this symptom. If it continues, visit a physician."
+  },
+  {
+    "symptom": "I feel dizzy",
+    "response": "Please call a doctor immediately. If it continues, visit a physician."
+  },
+  {
+    "symptom": "I noticed red on my hand",
+    "response": "It may be a sign of allergy. It's best to talk to a healthcare provider."
+  },
+  {
+    "symptom": "My foot is bruised",
+    "response": "Please call a doctor immediately. If it continues, seek medical attention."
+  },
+  {
+    "symptom": "My throat is painful",
+    "response": "Try take paracetamol. If symptoms persist, seek medical attention."
+  },
+  {
+    "symptom": "I have anxiety",
+    "response": "Try drink warm fluids. If symptoms persist, seek medical attention."
+  },
+  {
+    "symptom": "My arm is inflamed",
+    "response": "Please not ignore this symptom. If it continues, seek medical attention."
+  },
+  {
+    "symptom": "I'm dealing with nausea and back pain",
+    "response": "You should visit a nearby clinic. In case of severe symptoms, call a doctor immediately."
+  },
+  {
+    "symptom": "I suddenly got swelling",
+    "response": "Please not ignore this symptom. If it continues, visit a physician."
+  },
+  {
+    "symptom": "I feel weak",
+    "response": "Please call a doctor immediately. If it continues, go for a lab test."
+  },
+  {
+    "symptom": "There is dry on my leg",
+    "response": "Try avoid spicy food. If symptoms persist, seek medical attention."
+  },
+  {
+    "symptom": "I am experiencing itchiness since this morning",
+    "response": "It may be a sign of food poisoning. It's best to get a checkup."
+  },
+  {
+    "symptom": "There is swollen on my arm",
+    "response": "You should talk to a healthcare provider. In case of severe symptoms, call a doctor immediately."
+  },
+  {
+    "symptom": "I'm dealing with headache and body ache",
+    "response": "Try rest. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "I feel scared",
+    "response": "Try take paracetamol. If symptoms persist, seek medical attention."
+  },
+  {
+    "symptom": "I noticed numb on my hand",
+    "response": "You should visit a nearby clinic. In case of severe symptoms, not ignore this symptom."
+  },
+  {
+    "symptom": "I have rash",
+    "response": "You should consult a doctor. In case of severe symptoms, go to the emergency room."
+  },
+  {
+    "symptom": "I can't stop shivering",
+    "response": "This could be due to allergy. Try drink warm fluids."
+  },
+  {
+    "symptom": "There is painful on my chest",
+    "response": "Please go to the emergency room. If it continues, visit a physician."
+  },
+  {
+    "symptom": "There is itchy on my chest",
+    "response": "Please go to the emergency room. If it continues, seek medical attention."
+  },
+  {
+    "symptom": "I noticed painful on my arm",
+    "response": "It may be a sign of dehydration. It's best to consult a doctor."
+  },
+  {
+    "symptom": "There is swollen on my skin",
+    "response": "Try take an antacid. If symptoms persist, seek medical attention."
+  },
+  {
+    "symptom": "I feel dizzy",
+    "response": "Try drink warm fluids. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "There is red on my hand",
+    "response": "It may be a sign of viral fever. It's best to consult a doctor."
+  },
+  {
+    "symptom": "I noticed numb on my arm",
+    "response": "It may be a sign of dehydration. It's best to talk to a healthcare provider."
+  },
+  {
+    "symptom": "I am suffering from vomiting",
+    "response": "You should visit a nearby clinic. In case of severe symptoms, not ignore this symptom."
+  },
+  {
+    "symptom": "I'm dealing with stomach pain and cough",
+    "response": "Try use a cold compress. If symptoms persist, visit a physician."
+  },
+  {
+    "symptom": "I feel weak",
+    "response": "Please call a doctor immediately. If it continues, go for a lab test."
+  },
+  {
+    "symptom": "I noticed inflamed on my skin",
+    "response": "Try use a cold compress. If symptoms persist, visit a physician."
+  },
+  {
+    "symptom": "I have constipation",
+    "response": "It may be a sign of dehydration. It's best to talk to a healthcare provider."
+  },
+  {
+    "symptom": "I am suffering from joint pain",
+    "response": "This could be due to allergy. Try avoid spicy food."
+  },
+  {
+    "symptom": "I am suffering from diarrhea",
+    "response": "Try take paracetamol. If symptoms persist, seek medical attention."
+  },
+  {
+    "symptom": "I am suffering from fever",
+    "response": "It may be a sign of stress. It's best to consult a doctor."
+  },
+  {
+    "symptom": "I am suffering from cold",
+    "response": "It may be a sign of infection. It's best to talk to a healthcare provider."
+  },
+  {
+    "symptom": "I can't stop vomiting",
+    "response": "Please call a doctor immediately. If it continues, go for a lab test."
+  },
+  {
+    "symptom": "I am experiencing body ache since yesterday",
+    "response": "It may be a sign of stress. It's best to talk to a healthcare provider."
+  },
+  {
+    "symptom": "I have diarrhea",
+    "response": "Please go to the emergency room. If it continues, seek medical attention."
+  },
+  {
+    "symptom": "My arm is numb",
+    "response": "It may be a sign of food poisoning. It's best to talk to a healthcare provider."
+  },
+  {
+    "symptom": "I'm dealing with joint pain and body ache",
+    "response": "Try take an antacid. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "I am experiencing swelling since this morning",
+    "response": "You should visit a nearby clinic. In case of severe symptoms, go to the emergency room."
+  },
+  {
+    "symptom": "I noticed red on my hand",
+    "response": "It may be a sign of stress. It's best to visit a nearby clinic."
+  },
+  {
+    "symptom": "I am experiencing headache since a week",
+    "response": "You should talk to a healthcare provider. In case of severe symptoms, go to the emergency room."
+  },
+  {
+    "symptom": "I noticed painful on my leg",
+    "response": "You should talk to a healthcare provider. In case of severe symptoms, call a doctor immediately."
+  },
+  {
+    "symptom": "I am experiencing vomiting since this morning",
+    "response": "This could be due to dehydration. Try take paracetamol."
+  },
+  {
+    "symptom": "I can't stop coughing",
+    "response": "It may be a sign of infection. It's best to consult a doctor."
+  },
+  {
+    "symptom": "There is swollen on my stomach",
+    "response": "Try drink warm fluids. If symptoms persist, visit a physician."
+  },
+  {
+    "symptom": "There is itchy on my arm",
+    "response": "It may be a sign of viral fever. It's best to get a checkup."
+  },
+  {
+    "symptom": "I suddenly got nausea",
+    "response": "It may be a sign of viral fever. It's best to get a checkup."
+  },
+  {
+    "symptom": "I noticed numb on my leg",
+    "response": "You should get a checkup. In case of severe symptoms, call a doctor immediately."
+  },
+  {
+    "symptom": "My leg is swollen",
+    "response": "Please call a doctor immediately. If it continues, visit a physician."
+  },
+  {
+    "symptom": "I am suffering from anxiety",
+    "response": "It may be a sign of dehydration. It's best to talk to a healthcare provider."
+  },
+  {
+    "symptom": "I am experiencing nausea since yesterday",
+    "response": "It may be a sign of infection. It's best to talk to a healthcare provider."
+  },
+  {
+    "symptom": "I have nausea",
+    "response": "Please call a doctor immediately. If it continues, seek medical attention."
+  },
+  {
+    "symptom": "My stomach is inflamed",
+    "response": "You should talk to a healthcare provider. In case of severe symptoms, not ignore this symptom."
+  },
+  {
+    "symptom": "I'm dealing with nausea and stomach pain",
+    "response": "Try drink warm fluids. If symptoms persist, visit a physician."
+  },
+  {
+    "symptom": "I suddenly got anxiety",
+    "response": "It may be a sign of stress. It's best to consult a doctor."
+  },
+  {
+    "symptom": "There is itchy on my leg",
+    "response": "You should get a checkup. In case of severe symptoms, go to the emergency room."
+  },
+  {
+    "symptom": "There is inflamed on my skin",
+    "response": "It may be a sign of allergy. It's best to talk to a healthcare provider."
+  },
+  {
+    "symptom": "I suddenly got chest pain",
+    "response": "This could be due to allergy. Try rest."
+  },
+  {
+    "symptom": "I have itchiness",
+    "response": "It may be a sign of allergy. It's best to visit a nearby clinic."
+  },
+  {
+    "symptom": "I can't stop crying",
+    "response": "You should talk to a healthcare provider. In case of severe symptoms, not ignore this symptom."
+  },
+  {
+    "symptom": "I am experiencing stomach pain since yesterday",
+    "response": "Please go to the emergency room. If it continues, go for a lab test."
+  },
+  {
+    "symptom": "I suddenly got vomiting",
+    "response": "This could be due to stress. Try take paracetamol."
+  },
+  {
+    "symptom": "I am suffering from constipation",
+    "response": "Please not ignore this symptom. If it continues, seek medical attention."
+  },
+  {
+    "symptom": "I'm dealing with stomach pain and cough",
+    "response": "You should talk to a healthcare provider. In case of severe symptoms, go to the emergency room."
+  },
+  {
+    "symptom": "I'm dealing with headache and nausea",
+    "response": "Try drink warm fluids. If symptoms persist, seek medical attention."
+  },
+  {
+    "symptom": "I have fever",
+    "response": "It may be a sign of allergy. It's best to get a checkup."
+  },
+  {
+    "symptom": "I'm dealing with body ache and nausea",
+    "response": "Please not ignore this symptom. If it continues, visit a physician."
+  },
+  {
+    "symptom": "I feel scared",
+    "response": "It may be a sign of dehydration. It's best to visit a nearby clinic."
+  },
+  {
+    "symptom": "My stomach is itchy",
+    "response": "It may be a sign of food poisoning. It's best to talk to a healthcare provider."
+  },
+  {
+    "symptom": "I feel anxious",
+    "response": "This could be due to infection. Try use a cold compress."
+  },
+  {
+    "symptom": "I am experiencing back pain since yesterday",
+    "response": "Please call a doctor immediately. If it continues, go for a lab test."
+  },
+  {
+    "symptom": "I am experiencing fatigue since a week",
+    "response": "Please go to the emergency room. If it continues, seek medical attention."
+  },
+  {
+    "symptom": "My leg is swollen",
+    "response": "It may be a sign of dehydration. It's best to talk to a healthcare provider."
+  },
+  {
+    "symptom": "I noticed dry on my stomach",
+    "response": "It may be a sign of food poisoning. It's best to talk to a healthcare provider."
+  },
+  {
+    "symptom": "I feel weak",
+    "response": "This could be due to allergy. Try drink warm fluids."
+  },
+  {
+    "symptom": "I have cough",
+    "response": "Please call a doctor immediately. If it continues, seek medical attention."
+  },
+  {
+    "symptom": "I suddenly got body ache",
+    "response": "It may be a sign of allergy. It's best to talk to a healthcare provider."
+  },
+  {
+    "symptom": "I'm dealing with depression and sore throat",
+    "response": "Please not ignore this symptom. If it continues, go for a lab test."
+  },
+  {
+    "symptom": "My eye is numb",
+    "response": "This could be due to stress. Try take an antacid."
+  },
+  {
+    "symptom": "I am experiencing flu since 2 days",
+    "response": "Please call a doctor immediately. If it continues, seek medical attention."
+  },
+  {
+    "symptom": "I'm dealing with body ache and burning sensation",
+    "response": "This could be due to viral fever. Try take paracetamol."
+  },
+  {
+    "symptom": "I can't stop shivering",
+    "response": "Please call a doctor immediately. If it continues, seek medical attention."
+  },
+  {
+    "symptom": "I noticed swollen on my skin",
+    "response": "This could be due to dehydration. Try use a cold compress."
+  },
+  {
+    "symptom": "I feel sad",
+    "response": "It may be a sign of allergy. It's best to get a checkup."
+  },
+  {
+    "symptom": "I noticed dry on my chest",
+    "response": "You should talk to a healthcare provider. In case of severe symptoms, not ignore this symptom."
+  },
+  {
+    "symptom": "I suddenly got rash",
+    "response": "Try rest. If symptoms persist, seek medical attention."
+  },
+  {
+    "symptom": "I'm dealing with nausea and joint pain",
+    "response": "It may be a sign of viral fever. It's best to get a checkup."
+  },
+  {
+    "symptom": "I suddenly got itchiness",
+    "response": "Please call a doctor immediately. If it continues, go for a lab test."
+  },
+  {
+    "symptom": "I'm dealing with body ache and dizziness",
+    "response": "Try avoid spicy food. If symptoms persist, visit a physician."
+  },
+  {
+    "symptom": "My foot is red",
+    "response": "Please go to the emergency room. If it continues, go for a lab test."
+  },
+  {
+    "symptom": "I am experiencing fever since this morning",
+    "response": "Try rest. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "There is bruised on my skin",
+    "response": "You should get a checkup. In case of severe symptoms, go to the emergency room."
+  },
+  {
+    "symptom": "There is painful on my chest",
+    "response": "Please go to the emergency room. If it continues, seek medical attention."
+  },
+  {
+    "symptom": "I can't stop scratching",
+    "response": "This could be due to dehydration. Try rest."
+  },
+  {
+    "symptom": "I'm dealing with fatigue and burning sensation",
+    "response": "It may be a sign of allergy. It's best to talk to a healthcare provider."
+  },
+  {
+    "symptom": "I have shortness of breath",
+    "response": "You should get a checkup. In case of severe symptoms, call a doctor immediately."
+  },
+  {
+    "symptom": "I am suffering from diarrhea",
+    "response": "It may be a sign of allergy. It's best to visit a nearby clinic."
+  },
+  {
+    "symptom": "I feel sad",
+    "response": "Please go to the emergency room. If it continues, visit a physician."
+  },
+  {
+    "symptom": "My eye is inflamed",
+    "response": "Try avoid spicy food. If symptoms persist, seek medical attention."
+  },
+  {
+    "symptom": "I feel weak",
+    "response": "Try use a cold compress. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "I am experiencing diarrhea since yesterday",
+    "response": "It may be a sign of dehydration. It's best to consult a doctor."
+  },
+  {
+    "symptom": "There is bruised on my leg",
+    "response": "This could be due to viral fever. Try take paracetamol."
+  },
+  {
+    "symptom": "There is numb on my foot",
+    "response": "This could be due to dehydration. Try use a cold compress."
+  },
+  {
+    "symptom": "I have cough",
+    "response": "This could be due to stress. Try use a cold compress."
+  },
+  {
+    "symptom": "There is bruised on my leg",
+    "response": "It may be a sign of food poisoning. It's best to consult a doctor."
+  },
+  {
+    "symptom": "My leg is bruised",
+    "response": "This could be due to allergy. Try drink warm fluids."
+  },
+  {
+    "symptom": "I have back pain",
+    "response": "You should talk to a healthcare provider. In case of severe symptoms, call a doctor immediately."
+  },
+  {
+    "symptom": "I have stomach pain",
+    "response": "Try take paracetamol. If symptoms persist, seek medical attention."
+  },
+  {
+    "symptom": "There is bruised on my skin",
+    "response": "Please call a doctor immediately. If it continues, go for a lab test."
+  },
+  {
+    "symptom": "I have shortness of breath",
+    "response": "You should visit a nearby clinic. In case of severe symptoms, not ignore this symptom."
+  },
+  {
+    "symptom": "I am suffering from stomach pain",
+    "response": "Please call a doctor immediately. If it continues, seek medical attention."
+  },
+  {
+    "symptom": "My leg is bruised",
+    "response": "Try drink warm fluids. If symptoms persist, seek medical attention."
+  },
+  {
+    "symptom": "I suddenly got rash",
+    "response": "Please not ignore this symptom. If it continues, visit a physician."
+  },
+  {
+    "symptom": "I suddenly got swelling",
+    "response": "You should consult a doctor. In case of severe symptoms, not ignore this symptom."
+  },
+  {
+    "symptom": "I am suffering from back pain",
+    "response": "You should talk to a healthcare provider. In case of severe symptoms, call a doctor immediately."
+  },
+  {
+    "symptom": "There is red on my stomach",
+    "response": "You should talk to a healthcare provider. In case of severe symptoms, call a doctor immediately."
+  },
+  {
+    "symptom": "I am experiencing dizziness since a week",
+    "response": "This could be due to allergy. Try take an antacid."
+  },
+  {
+    "symptom": "I can't stop vomiting",
+    "response": "Please go to the emergency room. If it continues, seek medical attention."
+  },
+  {
+    "symptom": "I feel anxious",
+    "response": "Try take paracetamol. If symptoms persist, seek medical attention."
+  },
+  {
+    "symptom": "I have cough",
+    "response": "Try rest. If symptoms persist, seek medical attention."
+  },
+  {
+    "symptom": "There is painful on my skin",
+    "response": "It may be a sign of dehydration. It's best to get a checkup."
+  },
+  {
+    "symptom": "There is numb on my head",
+    "response": "Please go to the emergency room. If it continues, visit a physician."
+  },
+  {
+    "symptom": "I am suffering from body ache",
+    "response": "Try avoid spicy food. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "My leg is red",
+    "response": "It may be a sign of allergy. It's best to get a checkup."
+  },
+  {
+    "symptom": "I noticed painful on my skin",
+    "response": "This could be due to viral fever. Try take an antacid."
+  },
+  {
+    "symptom": "I noticed inflamed on my arm",
+    "response": "Please not ignore this symptom. If it continues, visit a physician."
+  },
+  {
+    "symptom": "My chest is red",
+    "response": "This could be due to food poisoning. Try take paracetamol."
+  },
+  {
+    "symptom": "I can't stop vomiting",
+    "response": "Please go to the emergency room. If it continues, go for a lab test."
+  },
+  {
+    "symptom": "I'm dealing with rash and back pain",
+    "response": "Try rest. If symptoms persist, seek medical attention."
+  },
+  {
+    "symptom": "I am experiencing body ache since 2 days",
+    "response": "Please go to the emergency room. If it continues, seek medical attention."
+  },
+  {
+    "symptom": "I have nausea",
+    "response": "Please call a doctor immediately. If it continues, visit a physician."
+  },
+  {
+    "symptom": "I noticed dry on my head",
+    "response": "It may be a sign of stress. It's best to visit a nearby clinic."
+  },
+  {
+    "symptom": "My chest is painful",
+    "response": "You should consult a doctor. In case of severe symptoms, call a doctor immediately."
+  },
+  {
+    "symptom": "I have chest pain",
+    "response": "You should visit a nearby clinic. In case of severe symptoms, go to the emergency room."
+  },
+  {
+    "symptom": "I am suffering from itchiness",
+    "response": "You should visit a nearby clinic. In case of severe symptoms, call a doctor immediately."
+  },
+  {
+    "symptom": "There is itchy on my leg",
+    "response": "It may be a sign of food poisoning. It's best to talk to a healthcare provider."
+  },
+  {
+    "symptom": "I suddenly got depression",
+    "response": "Please go to the emergency room. If it continues, go for a lab test."
+  },
+  {
+    "symptom": "I have vomiting",
+    "response": "You should visit a nearby clinic. In case of severe symptoms, go to the emergency room."
+  },
+  {
+    "symptom": "I feel nauseous",
+    "response": "Try take an antacid. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "I feel anxious",
+    "response": "Try avoid spicy food. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "I am suffering from joint pain",
+    "response": "It may be a sign of viral fever. It's best to talk to a healthcare provider."
+  },
+  {
+    "symptom": "I have constipation",
+    "response": "You should get a checkup. In case of severe symptoms, go to the emergency room."
+  },
+  {
+    "symptom": "I feel scared",
+    "response": "Please go to the emergency room. If it continues, go for a lab test."
+  },
+  {
+    "symptom": "I noticed inflamed on my chest",
+    "response": "Try avoid spicy food. If symptoms persist, seek medical attention."
+  },
+  {
+    "symptom": "My head is numb",
+    "response": "You should consult a doctor. In case of severe symptoms, not ignore this symptom."
+  },
+  {
+    "symptom": "I feel tired",
+    "response": "You should talk to a healthcare provider. In case of severe symptoms, go to the emergency room."
+  },
+  {
+    "symptom": "There is red on my foot",
+    "response": "Please call a doctor immediately. If it continues, visit a physician."
+  },
+  {
+    "symptom": "I suddenly got vomiting",
+    "response": "This could be due to allergy. Try avoid spicy food."
+  },
+  {
+    "symptom": "I noticed numb on my eye",
+    "response": "Try drink warm fluids. If symptoms persist, seek medical attention."
+  },
+  {
+    "symptom": "There is red on my foot",
+    "response": "You should visit a nearby clinic. In case of severe symptoms, call a doctor immediately."
+  },
+  {
+    "symptom": "There is dry on my eye",
+    "response": "Please call a doctor immediately. If it continues, visit a physician."
+  },
+  {
+    "symptom": "I can't stop scratching",
+    "response": "Try avoid spicy food. If symptoms persist, visit a physician."
+  },
+  {
+    "symptom": "I noticed numb on my chest",
+    "response": "This could be due to infection. Try take an antacid."
+  },
+  {
+    "symptom": "My throat is numb",
+    "response": "You should consult a doctor. In case of severe symptoms, not ignore this symptom."
+  },
+  {
+    "symptom": "My leg is painful",
+    "response": "You should visit a nearby clinic. In case of severe symptoms, go to the emergency room."
+  },
+  {
+    "symptom": "I feel dizzy",
+    "response": "Please not ignore this symptom. If it continues, visit a physician."
+  },
+  {
+    "symptom": "I can't stop sneezing",
+    "response": "Please call a doctor immediately. If it continues, seek medical attention."
+  },
+  {
+    "symptom": "I feel dizzy",
+    "response": "This could be due to viral fever. Try take paracetamol."
+  },
+  {
+    "symptom": "I noticed swollen on my arm",
+    "response": "This could be due to stress. Try drink warm fluids."
+  },
+  {
+    "symptom": "I noticed itchy on my head",
+    "response": "Try take an antacid. If symptoms persist, seek medical attention."
+  },
+  {
+    "symptom": "I noticed itchy on my chest",
+    "response": "Please call a doctor immediately. If it continues, go for a lab test."
+  },
+  {
+    "symptom": "I can't stop shivering",
+    "response": "You should consult a doctor. In case of severe symptoms, call a doctor immediately."
+  },
+  {
+    "symptom": "I'm dealing with burning sensation and back pain",
+    "response": "Please go to the emergency room. If it continues, seek medical attention."
+  },
+  {
+    "symptom": "My eye is inflamed",
+    "response": "It may be a sign of infection. It's best to visit a nearby clinic."
+  },
+  {
+    "symptom": "I can't stop scratching",
+    "response": "Try take an antacid. If symptoms persist, seek medical attention."
+  },
+  {
+    "symptom": "I can't stop sneezing",
+    "response": "You should consult a doctor. In case of severe symptoms, go to the emergency room."
+  },
+  {
+    "symptom": "I am experiencing diarrhea since a week",
+    "response": "Try take an antacid. If symptoms persist, visit a physician."
+  },
+  {
+    "symptom": "I suddenly got diarrhea",
+    "response": "It may be a sign of dehydration. It's best to visit a nearby clinic."
+  },
+  {
+    "symptom": "I feel tired",
+    "response": "This could be due to food poisoning. Try avoid spicy food."
+  },
+  {
+    "symptom": "I am suffering from body ache",
+    "response": "Please not ignore this symptom. If it continues, go for a lab test."
+  },
+  {
+    "symptom": "I have constipation",
+    "response": "Please call a doctor immediately. If it continues, go for a lab test."
+  },
+  {
+    "symptom": "I feel nauseous",
+    "response": "Please not ignore this symptom. If it continues, seek medical attention."
+  },
+  {
+    "symptom": "I'm dealing with nausea and fever",
+    "response": "You should consult a doctor. In case of severe symptoms, not ignore this symptom."
+  },
+  {
+    "symptom": "There is itchy on my chest",
+    "response": "It may be a sign of food poisoning. It's best to consult a doctor."
+  },
+  {
+    "symptom": "I am suffering from depression",
+    "response": "It may be a sign of infection. It's best to visit a nearby clinic."
+  },
+  {
+    "symptom": "There is painful on my eye",
+    "response": "Try take paracetamol. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "I am suffering from anxiety",
+    "response": "You should visit a nearby clinic. In case of severe symptoms, call a doctor immediately."
+  },
+  {
+    "symptom": "I am suffering from stomach pain",
+    "response": "Please go to the emergency room. If it continues, go for a lab test."
+  },
+  {
+    "symptom": "I suddenly got back pain",
+    "response": "It may be a sign of dehydration. It's best to talk to a healthcare provider."
+  },
+  {
+    "symptom": "My chest is numb",
+    "response": "This could be due to dehydration. Try use a cold compress."
+  },
+  {
+    "symptom": "I feel nauseous",
+    "response": "This could be due to infection. Try rest."
+  },
+  {
+    "symptom": "I am experiencing nausea since last night",
+    "response": "It may be a sign of allergy. It's best to visit a nearby clinic."
+  },
+  {
+    "symptom": "I am suffering from constipation",
+    "response": "You should consult a doctor. In case of severe symptoms, call a doctor immediately."
+  },
+  {
+    "symptom": "I suddenly got nausea",
+    "response": "Please call a doctor immediately. If it continues, seek medical attention."
+  },
+  {
+    "symptom": "My leg is red",
+    "response": "You should talk to a healthcare provider. In case of severe symptoms, call a doctor immediately."
+  },
+  {
+    "symptom": "There is inflamed on my stomach",
+    "response": "It may be a sign of stress. It's best to talk to a healthcare provider."
+  },
+  {
+    "symptom": "I have vomiting",
+    "response": "It may be a sign of stress. It's best to consult a doctor."
+  },
+  {
+    "symptom": "I'm dealing with nausea and cold",
+    "response": "It may be a sign of stress. It's best to get a checkup."
+  },
+  {
+    "symptom": "I am suffering from joint pain",
+    "response": "Try avoid spicy food. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "I am experiencing chest pain since 2 days",
+    "response": "This could be due to infection. Try rest."
+  },
+  {
+    "symptom": "I am suffering from body ache",
+    "response": "You should visit a nearby clinic. In case of severe symptoms, call a doctor immediately."
+  },
+  {
+    "symptom": "I can't stop vomiting",
+    "response": "It may be a sign of allergy. It's best to visit a nearby clinic."
+  },
+  {
+    "symptom": "I have itchiness",
+    "response": "This could be due to viral fever. Try drink warm fluids."
+  },
+  {
+    "symptom": "I suddenly got stomach pain",
+    "response": "Try take an antacid. If symptoms persist, visit a physician."
+  },
+  {
+    "symptom": "I can't stop coughing",
+    "response": "It may be a sign of stress. It's best to get a checkup."
+  },
+  {
+    "symptom": "My arm is swollen",
+    "response": "Try avoid spicy food. If symptoms persist, visit a physician."
+  },
+  {
+    "symptom": "I am suffering from chest pain",
+    "response": "Try rest. If symptoms persist, visit a physician."
+  },
+  {
+    "symptom": "I am suffering from back pain",
+    "response": "Please call a doctor immediately. If it continues, visit a physician."
+  },
+  {
+    "symptom": "I noticed red on my leg",
+    "response": "This could be due to infection. Try take paracetamol."
+  },
+  {
+    "symptom": "I'm dealing with shortness of breath and burning sensation",
+    "response": "It may be a sign of food poisoning. It's best to talk to a healthcare provider."
+  },
+  {
+    "symptom": "I'm dealing with depression and diarrhea",
+    "response": "Please call a doctor immediately. If it continues, go for a lab test."
+  },
+  {
+    "symptom": "I am experiencing joint pain since 2 days",
+    "response": "Please call a doctor immediately. If it continues, go for a lab test."
+  },
+  {
+    "symptom": "I can't stop shivering",
+    "response": "You should consult a doctor. In case of severe symptoms, call a doctor immediately."
+  },
+  {
+    "symptom": "I'm dealing with fatigue and vomiting",
+    "response": "It may be a sign of allergy. It's best to consult a doctor."
+  },
+  {
+    "symptom": "There is dry on my skin",
+    "response": "You should get a checkup. In case of severe symptoms, call a doctor immediately."
+  },
+  {
+    "symptom": "I am experiencing sore throat since 2 days",
+    "response": "Try use a cold compress. If symptoms persist, visit a physician."
+  },
+  {
+    "symptom": "I noticed dry on my skin",
+    "response": "It may be a sign of stress. It's best to visit a nearby clinic."
+  },
+  {
+    "symptom": "There is dry on my stomach",
+    "response": "This could be due to infection. Try rest."
+  },
+  {
+    "symptom": "I am suffering from dizziness",
+    "response": "Please go to the emergency room. If it continues, seek medical attention."
+  },
+  {
+    "symptom": "I can't stop sneezing",
+    "response": "Please not ignore this symptom. If it continues, seek medical attention."
+  },
+  {
+    "symptom": "I have shortness of breath",
+    "response": "Try use a cold compress. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "I am experiencing shortness of breath since a week",
+    "response": "You should visit a nearby clinic. In case of severe symptoms, not ignore this symptom."
+  },
+  {
+    "symptom": "I am suffering from chest pain",
+    "response": "Try drink warm fluids. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "There is itchy on my leg",
+    "response": "Please go to the emergency room. If it continues, go for a lab test."
+  },
+  {
+    "symptom": "My arm is bruised",
+    "response": "You should get a checkup. In case of severe symptoms, go to the emergency room."
+  },
+  {
+    "symptom": "My foot is bruised",
+    "response": "Please call a doctor immediately. If it continues, seek medical attention."
+  },
+  {
+    "symptom": "I am experiencing diarrhea since 2 days",
+    "response": "It may be a sign of food poisoning. It's best to consult a doctor."
+  },
+  {
+    "symptom": "I am suffering from stomach pain",
+    "response": "Try avoid spicy food. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "I am suffering from back pain",
+    "response": "Try take paracetamol. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "I'm dealing with cold and dizziness",
+    "response": "This could be due to allergy. Try use a cold compress."
+  },
+  {
+    "symptom": "I can't stop coughing",
+    "response": "Try take paracetamol. If symptoms persist, seek medical attention."
+  },
+  {
+    "symptom": "I am experiencing rash since this morning",
+    "response": "Try drink warm fluids. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "My foot is inflamed",
+    "response": "It may be a sign of allergy. It's best to talk to a healthcare provider."
+  },
+  {
+    "symptom": "I have headache",
+    "response": "This could be due to viral fever. Try drink warm fluids."
+  },
+  {
+    "symptom": "My throat is itchy",
+    "response": "Try avoid spicy food. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "I noticed bruised on my throat",
+    "response": "This could be due to dehydration. Try drink warm fluids."
+  },
+  {
+    "symptom": "I suddenly got cold",
+    "response": "Try rest. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "I am experiencing fever since 2 days",
+    "response": "It may be a sign of infection. It's best to talk to a healthcare provider."
+  },
+  {
+    "symptom": "I'm dealing with cold and body ache",
+    "response": "Try avoid spicy food. If symptoms persist, seek medical attention."
+  },
+  {
+    "symptom": "I have vomiting",
+    "response": "Please not ignore this symptom. If it continues, seek medical attention."
+  },
+  {
+    "symptom": "I am experiencing swelling since yesterday",
+    "response": "You should talk to a healthcare provider. In case of severe symptoms, not ignore this symptom."
+  },
+  {
+    "symptom": "I suddenly got nausea",
+    "response": "This could be due to stress. Try use a cold compress."
+  },
+  {
+    "symptom": "I can't stop sneezing",
+    "response": "Try drink warm fluids. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "I am suffering from rash",
+    "response": "Try use a cold compress. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "I am suffering from vomiting",
+    "response": "It may be a sign of stress. It's best to visit a nearby clinic."
+  },
+  {
+    "symptom": "I suddenly got body ache",
+    "response": "You should talk to a healthcare provider. In case of severe symptoms, not ignore this symptom."
+  },
+  {
+    "symptom": "I suddenly got diarrhea",
+    "response": "This could be due to allergy. Try drink warm fluids."
+  },
+  {
+    "symptom": "I'm dealing with headache and dizziness",
+    "response": "You should visit a nearby clinic. In case of severe symptoms, not ignore this symptom."
+  },
+  {
+    "symptom": "I am suffering from fatigue",
+    "response": "This could be due to stress. Try avoid spicy food."
+  },
+  {
+    "symptom": "I'm dealing with fatigue and cold",
+    "response": "Please go to the emergency room. If it continues, go for a lab test."
+  },
+  {
+    "symptom": "I can't stop crying",
+    "response": "Please call a doctor immediately. If it continues, seek medical attention."
+  },
+  {
+    "symptom": "I'm dealing with stomach pain and nausea",
+    "response": "Please go to the emergency room. If it continues, visit a physician."
+  },
+  {
+    "symptom": "I am experiencing fatigue since 2 days",
+    "response": "This could be due to dehydration. Try avoid spicy food."
+  },
+  {
+    "symptom": "I suddenly got anxiety",
+    "response": "This could be due to allergy. Try use a cold compress."
+  },
+  {
+    "symptom": "I can't stop scratching",
+    "response": "This could be due to dehydration. Try take paracetamol."
+  },
+  {
+    "symptom": "I'm dealing with swelling and cold",
+    "response": "This could be due to allergy. Try take paracetamol."
+  },
+  {
+    "symptom": "I am experiencing dizziness since 2 days",
+    "response": "Try rest. If symptoms persist, visit a physician."
+  },
+  {
+    "symptom": "I feel anxious",
+    "response": "It may be a sign of food poisoning. It's best to talk to a healthcare provider."
+  },
+  {
+    "symptom": "There is itchy on my eye",
+    "response": "Try drink warm fluids. If symptoms persist, visit a physician."
+  },
+  {
+    "symptom": "There is dry on my eye",
+    "response": "You should get a checkup. In case of severe symptoms, call a doctor immediately."
+  },
+  {
+    "symptom": "I can't stop crying",
+    "response": "Try rest. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "I noticed bruised on my leg",
+    "response": "Try take an antacid. If symptoms persist, seek medical attention."
+  },
+  {
+    "symptom": "I suddenly got sore throat",
+    "response": "Please call a doctor immediately. If it continues, visit a physician."
+  },
+  {
+    "symptom": "I suddenly got fever",
+    "response": "You should visit a nearby clinic. In case of severe symptoms, go to the emergency room."
+  },
+  {
+    "symptom": "I'm dealing with back pain and swelling",
+    "response": "This could be due to dehydration. Try rest."
+  },
+  {
+    "symptom": "There is swollen on my head",
+    "response": "Try take paracetamol. If symptoms persist, visit a physician."
+  },
+  {
+    "symptom": "My hand is numb",
+    "response": "Please not ignore this symptom. If it continues, seek medical attention."
+  },
+  {
+    "symptom": "I have cough",
+    "response": "Try take paracetamol. If symptoms persist, seek medical attention."
+  },
+  {
+    "symptom": "I noticed itchy on my eye",
+    "response": "You should consult a doctor. In case of severe symptoms, call a doctor immediately."
+  },
+  {
+    "symptom": "I feel tired",
+    "response": "It may be a sign of stress. It's best to get a checkup."
+  },
+  {
+    "symptom": "I noticed painful on my head",
+    "response": "It may be a sign of stress. It's best to consult a doctor."
+  },
+  {
+    "symptom": "I noticed dry on my hand",
+    "response": "You should get a checkup. In case of severe symptoms, go to the emergency room."
+  },
+  {
+    "symptom": "I feel weak",
+    "response": "Please not ignore this symptom. If it continues, seek medical attention."
+  },
+  {
+    "symptom": "I noticed itchy on my eye",
+    "response": "It may be a sign of infection. It's best to visit a nearby clinic."
+  },
+  {
+    "symptom": "I noticed inflamed on my throat",
+    "response": "Try avoid spicy food. If symptoms persist, seek medical attention."
+  },
+  {
+    "symptom": "There is itchy on my skin",
+    "response": "This could be due to stress. Try take an antacid."
+  },
+  {
+    "symptom": "I'm dealing with sore throat and dizziness",
+    "response": "You should get a checkup. In case of severe symptoms, call a doctor immediately."
+  },
+  {
+    "symptom": "I'm dealing with constipation and diarrhea",
+    "response": "This could be due to food poisoning. Try take an antacid."
+  },
+  {
+    "symptom": "I'm dealing with sore throat and anxiety",
+    "response": "Please call a doctor immediately. If it continues, seek medical attention."
+  },
+  {
+    "symptom": "There is swollen on my stomach",
+    "response": "Try use a cold compress. If symptoms persist, visit a physician."
+  },
+  {
+    "symptom": "I suddenly got headache",
+    "response": "Try take an antacid. If symptoms persist, visit a physician."
+  },
+  {
+    "symptom": "I have joint pain",
+    "response": "Please call a doctor immediately. If it continues, go for a lab test."
+  },
+  {
+    "symptom": "I am experiencing cough since this morning",
+    "response": "Try avoid spicy food. If symptoms persist, visit a physician."
+  },
+  {
+    "symptom": "I am experiencing fever since a week",
+    "response": "Try rest. If symptoms persist, visit a physician."
+  },
+  {
+    "symptom": "I suddenly got diarrhea",
+    "response": "Please call a doctor immediately. If it continues, visit a physician."
+  },
+  {
+    "symptom": "My eye is numb",
+    "response": "Please call a doctor immediately. If it continues, go for a lab test."
+  },
+  {
+    "symptom": "There is bruised on my stomach",
+    "response": "It may be a sign of viral fever. It's best to visit a nearby clinic."
+  },
+  {
+    "symptom": "I feel sad",
+    "response": "You should talk to a healthcare provider. In case of severe symptoms, go to the emergency room."
+  },
+  {
+    "symptom": "I'm dealing with body ache and headache",
+    "response": "Please call a doctor immediately. If it continues, visit a physician."
+  },
+  {
+    "symptom": "I am experiencing back pain since last night",
+    "response": "Try rest. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "I noticed inflamed on my throat",
+    "response": "Try take an antacid. If symptoms persist, seek medical attention."
+  },
+  {
+    "symptom": "I am suffering from chest pain",
+    "response": "You should talk to a healthcare provider. In case of severe symptoms, call a doctor immediately."
+  },
+  {
+    "symptom": "My arm is bruised",
+    "response": "You should visit a nearby clinic. In case of severe symptoms, call a doctor immediately."
+  },
+  {
+    "symptom": "I am experiencing cold since this morning",
+    "response": "It may be a sign of viral fever. It's best to get a checkup."
+  },
+  {
+    "symptom": "I'm dealing with cough and fever",
+    "response": "This could be due to dehydration. Try rest."
+  },
+  {
+    "symptom": "I have flu",
+    "response": "Try rest. If symptoms persist, visit a physician."
+  },
+  {
+    "symptom": "I am experiencing fatigue since last night",
+    "response": "This could be due to viral fever. Try avoid spicy food."
+  },
+  {
+    "symptom": "I'm dealing with cough and body ache",
+    "response": "It may be a sign of stress. It's best to visit a nearby clinic."
+  },
+  {
+    "symptom": "I am experiencing anxiety since last night",
+    "response": "This could be due to viral fever. Try drink warm fluids."
+  },
+  {
+    "symptom": "I noticed itchy on my stomach",
+    "response": "Try take an antacid. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "I am suffering from anxiety",
+    "response": "This could be due to stress. Try take an antacid."
+  },
+  {
+    "symptom": "I can't stop scratching",
+    "response": "Please go to the emergency room. If it continues, go for a lab test."
+  },
+  {
+    "symptom": "I am suffering from stomach pain",
+    "response": "Try avoid spicy food. If symptoms persist, visit a physician."
+  },
+  {
+    "symptom": "I suddenly got depression",
+    "response": "Try take an antacid. If symptoms persist, seek medical attention."
+  },
+  {
+    "symptom": "I am experiencing fatigue since last night",
+    "response": "Try take paracetamol. If symptoms persist, visit a physician."
+  },
+  {
+    "symptom": "I noticed bruised on my eye",
+    "response": "It may be a sign of stress. It's best to visit a nearby clinic."
+  },
+  {
+    "symptom": "I suddenly got nausea",
+    "response": "It may be a sign of dehydration. It's best to talk to a healthcare provider."
+  },
+  {
+    "symptom": "I am experiencing fatigue since this morning",
+    "response": "It may be a sign of food poisoning. It's best to get a checkup."
+  },
+  {
+    "symptom": "I am suffering from shortness of breath",
+    "response": "It may be a sign of allergy. It's best to visit a nearby clinic."
+  },
+  {
+    "symptom": "I'm dealing with rash and shortness of breath",
+    "response": "Try rest. If symptoms persist, visit a physician."
+  },
+  {
+    "symptom": "I'm dealing with fever and shortness of breath",
+    "response": "You should visit a nearby clinic. In case of severe symptoms, call a doctor immediately."
+  },
+  {
+    "symptom": "I suddenly got back pain",
+    "response": "This could be due to food poisoning. Try avoid spicy food."
+  },
+  {
+    "symptom": "My eye is dry",
+    "response": "It may be a sign of dehydration. It's best to visit a nearby clinic."
+  },
+  {
+    "symptom": "I am experiencing dizziness since 2 days",
+    "response": "This could be due to allergy. Try rest."
+  },
+  {
+    "symptom": "I am experiencing cough since a week",
+    "response": "It may be a sign of allergy. It's best to get a checkup."
+  },
+  {
+    "symptom": "There is swollen on my leg",
+    "response": "This could be due to food poisoning. Try use a cold compress."
+  },
+  {
+    "symptom": "There is dry on my throat",
+    "response": "This could be due to food poisoning. Try avoid spicy food."
+  },
+  {
+    "symptom": "I noticed inflamed on my leg",
+    "response": "This could be due to viral fever. Try drink warm fluids."
+  },
+  {
+    "symptom": "I feel anxious",
+    "response": "Try use a cold compress. If symptoms persist, seek medical attention."
+  },
+  {
+    "symptom": "I have vomiting",
+    "response": "You should talk to a healthcare provider. In case of severe symptoms, call a doctor immediately."
+  },
+  {
+    "symptom": "I feel dizzy",
+    "response": "It may be a sign of stress. It's best to talk to a healthcare provider."
+  },
+  {
+    "symptom": "I am experiencing shortness of breath since 2 days",
+    "response": "This could be due to allergy. Try drink warm fluids."
+  },
+  {
+    "symptom": "I am experiencing stomach pain since yesterday",
+    "response": "Please call a doctor immediately. If it continues, visit a physician."
+  },
+  {
+    "symptom": "I suddenly got diarrhea",
+    "response": "You should talk to a healthcare provider. In case of severe symptoms, call a doctor immediately."
+  },
+  {
+    "symptom": "There is bruised on my head",
+    "response": "You should consult a doctor. In case of severe symptoms, not ignore this symptom."
+  },
+  {
+    "symptom": "I can't stop crying",
+    "response": "You should consult a doctor. In case of severe symptoms, go to the emergency room."
+  },
+  {
+    "symptom": "I am experiencing back pain since yesterday",
+    "response": "It may be a sign of viral fever. It's best to visit a nearby clinic."
+  },
+  {
+    "symptom": "I'm dealing with cold and depression",
+    "response": "Please not ignore this symptom. If it continues, visit a physician."
+  },
+  {
+    "symptom": "There is swollen on my throat",
+    "response": "This could be due to stress. Try use a cold compress."
+  },
+  {
+    "symptom": "I am experiencing fatigue since last night",
+    "response": "This could be due to allergy. Try avoid spicy food."
+  },
+  {
+    "symptom": "I am experiencing cough since 2 days",
+    "response": "Try drink warm fluids. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "I'm dealing with itchiness and rash",
+    "response": "This could be due to infection. Try take an antacid."
+  },
+  {
+    "symptom": "I have vomiting",
+    "response": "It may be a sign of infection. It's best to talk to a healthcare provider."
+  },
+  {
+    "symptom": "My skin is swollen",
+    "response": "Try avoid spicy food. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "I am suffering from depression",
+    "response": "Please call a doctor immediately. If it continues, seek medical attention."
+  },
+  {
+    "symptom": "I can't stop shivering",
+    "response": "This could be due to infection. Try take paracetamol."
+  },
+  {
+    "symptom": "I can't stop crying",
+    "response": "This could be due to infection. Try avoid spicy food."
+  },
+  {
+    "symptom": "I'm dealing with flu and burning sensation",
+    "response": "It may be a sign of food poisoning. It's best to get a checkup."
+  },
+  {
+    "symptom": "I suddenly got body ache",
+    "response": "You should consult a doctor. In case of severe symptoms, call a doctor immediately."
+  },
+  {
+    "symptom": "There is dry on my leg",
+    "response": "Try rest. If symptoms persist, visit a physician."
+  },
+  {
+    "symptom": "I suddenly got fever",
+    "response": "It may be a sign of dehydration. It's best to get a checkup."
+  },
+  {
+    "symptom": "My chest is inflamed",
+    "response": "It may be a sign of dehydration. It's best to get a checkup."
+  },
+  {
+    "symptom": "I have chest pain",
+    "response": "Try take paracetamol. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "I am experiencing dizziness since last night",
+    "response": "Try rest. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "I can't stop sneezing",
+    "response": "Please call a doctor immediately. If it continues, visit a physician."
+  },
+  {
+    "symptom": "I am experiencing dizziness since yesterday",
+    "response": "You should talk to a healthcare provider. In case of severe symptoms, go to the emergency room."
+  },
+  {
+    "symptom": "I'm dealing with chest pain and anxiety",
+    "response": "Try take an antacid. If symptoms persist, seek medical attention."
+  },
+  {
+    "symptom": "I am suffering from fatigue",
+    "response": "Try drink warm fluids. If symptoms persist, visit a physician."
+  },
+  {
+    "symptom": "I have flu",
+    "response": "This could be due to stress. Try drink warm fluids."
+  },
+  {
+    "symptom": "I am suffering from depression",
+    "response": "This could be due to food poisoning. Try drink warm fluids."
+  },
+  {
+    "symptom": "There is inflamed on my skin",
+    "response": "Try take an antacid. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "I have vomiting",
+    "response": "It may be a sign of food poisoning. It's best to consult a doctor."
+  },
+  {
+    "symptom": "I am experiencing stomach pain since a week",
+    "response": "It may be a sign of stress. It's best to talk to a healthcare provider."
+  },
+  {
+    "symptom": "I am experiencing cough since this morning",
+    "response": "It may be a sign of allergy. It's best to consult a doctor."
+  },
+  {
+    "symptom": "I have headache",
+    "response": "Please not ignore this symptom. If it continues, go for a lab test."
+  },
+  {
+    "symptom": "I noticed dry on my stomach",
+    "response": "You should get a checkup. In case of severe symptoms, call a doctor immediately."
+  },
+  {
+    "symptom": "I have joint pain",
+    "response": "This could be due to stress. Try drink warm fluids."
+  },
+  {
+    "symptom": "My leg is dry",
+    "response": "This could be due to infection. Try rest."
+  },
+  {
+    "symptom": "I suddenly got stomach pain",
+    "response": "Please go to the emergency room. If it continues, seek medical attention."
+  },
+  {
+    "symptom": "I noticed itchy on my leg",
+    "response": "Try drink warm fluids. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "I feel nauseous",
+    "response": "This could be due to food poisoning. Try drink warm fluids."
+  },
+  {
+    "symptom": "I have dizziness",
+    "response": "Try take an antacid. If symptoms persist, visit a physician."
+  },
+  {
+    "symptom": "I can't stop crying",
+    "response": "Try take an antacid. If symptoms persist, seek medical attention."
+  },
+  {
+    "symptom": "I am experiencing body ache since this morning",
+    "response": "Try use a cold compress. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "I am suffering from depression",
+    "response": "Try drink warm fluids. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "I am suffering from depression",
+    "response": "You should get a checkup. In case of severe symptoms, not ignore this symptom."
+  },
+  {
+    "symptom": "I suddenly got sore throat",
+    "response": "You should talk to a healthcare provider. In case of severe symptoms, not ignore this symptom."
+  },
+  {
+    "symptom": "I suddenly got body ache",
+    "response": "This could be due to dehydration. Try take paracetamol."
+  },
+  {
+    "symptom": "I feel scared",
+    "response": "You should talk to a healthcare provider. In case of severe symptoms, go to the emergency room."
+  },
+  {
+    "symptom": "I feel nauseous",
+    "response": "This could be due to allergy. Try take paracetamol."
+  },
+  {
+    "symptom": "I'm dealing with joint pain and cough",
+    "response": "It may be a sign of stress. It's best to talk to a healthcare provider."
+  },
+  {
+    "symptom": "There is painful on my skin",
+    "response": "Try use a cold compress. If symptoms persist, seek medical attention."
+  },
+  {
+    "symptom": "There is bruised on my eye",
+    "response": "Try use a cold compress. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "There is inflamed on my eye",
+    "response": "Please go to the emergency room. If it continues, seek medical attention."
+  },
+  {
+    "symptom": "I suddenly got body ache",
+    "response": "This could be due to food poisoning. Try take an antacid."
+  },
+  {
+    "symptom": "My hand is dry",
+    "response": "Try take paracetamol. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "I noticed inflamed on my hand",
+    "response": "Please call a doctor immediately. If it continues, visit a physician."
+  },
+  {
+    "symptom": "I noticed red on my stomach",
+    "response": "You should visit a nearby clinic. In case of severe symptoms, not ignore this symptom."
+  },
+  {
+    "symptom": "My throat is painful",
+    "response": "This could be due to stress. Try use a cold compress."
+  },
+  {
+    "symptom": "I am experiencing fatigue since last night",
+    "response": "This could be due to dehydration. Try rest."
+  },
+  {
+    "symptom": "I have joint pain",
+    "response": "Please not ignore this symptom. If it continues, go for a lab test."
+  },
+  {
+    "symptom": "I can't stop vomiting",
+    "response": "Please go to the emergency room. If it continues, visit a physician."
+  },
+  {
+    "symptom": "I suddenly got fatigue",
+    "response": "You should talk to a healthcare provider. In case of severe symptoms, call a doctor immediately."
+  },
+  {
+    "symptom": "I'm dealing with constipation and cough",
+    "response": "It may be a sign of allergy. It's best to talk to a healthcare provider."
+  },
+  {
+    "symptom": "I have sore throat",
+    "response": "Try use a cold compress. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "I feel tired",
+    "response": "This could be due to viral fever. Try rest."
+  },
+  {
+    "symptom": "I noticed swollen on my leg",
+    "response": "This could be due to viral fever. Try rest."
+  },
+  {
+    "symptom": "I am experiencing anxiety since last night",
+    "response": "Please call a doctor immediately. If it continues, visit a physician."
+  },
+  {
+    "symptom": "I'm dealing with depression and shortness of breath",
+    "response": "You should talk to a healthcare provider. In case of severe symptoms, go to the emergency room."
+  },
+  {
+    "symptom": "I have flu",
+    "response": "It may be a sign of allergy. It's best to talk to a healthcare provider."
+  },
+  {
+    "symptom": "I noticed inflamed on my skin",
+    "response": "You should get a checkup. In case of severe symptoms, not ignore this symptom."
+  },
+  {
+    "symptom": "I am experiencing shortness of breath since last night",
+    "response": "Try drink warm fluids. If symptoms persist, seek medical attention."
+  },
+  {
+    "symptom": "I am experiencing headache since last night",
+    "response": "It may be a sign of dehydration. It's best to consult a doctor."
+  },
+  {
+    "symptom": "I suddenly got joint pain",
+    "response": "Please go to the emergency room. If it continues, seek medical attention."
+  },
+  {
+    "symptom": "I noticed swollen on my hand",
+    "response": "It may be a sign of dehydration. It's best to get a checkup."
+  },
+  {
+    "symptom": "My hand is numb",
+    "response": "Please go to the emergency room. If it continues, visit a physician."
+  },
+  {
+    "symptom": "My skin is numb",
+    "response": "You should talk to a healthcare provider. In case of severe symptoms, call a doctor immediately."
+  },
+  {
+    "symptom": "I have shortness of breath",
+    "response": "Please go to the emergency room. If it continues, visit a physician."
+  },
+  {
+    "symptom": "I suddenly got flu",
+    "response": "You should get a checkup. In case of severe symptoms, go to the emergency room."
+  },
+  {
+    "symptom": "I'm dealing with flu and chest pain",
+    "response": "Try drink warm fluids. If symptoms persist, seek medical attention."
+  },
+  {
+    "symptom": "I suddenly got cough",
+    "response": "Try avoid spicy food. If symptoms persist, visit a physician."
+  },
+  {
+    "symptom": "I noticed red on my head",
+    "response": "Try avoid spicy food. If symptoms persist, visit a physician."
+  },
+  {
+    "symptom": "I'm dealing with dizziness and fatigue",
+    "response": "Please not ignore this symptom. If it continues, visit a physician."
+  },
+  {
+    "symptom": "I'm dealing with sore throat and depression",
+    "response": "This could be due to food poisoning. Try use a cold compress."
+  },
+  {
+    "symptom": "I'm dealing with joint pain and cough",
+    "response": "Try use a cold compress. If symptoms persist, visit a physician."
+  },
+  {
+    "symptom": "My arm is red",
+    "response": "It may be a sign of dehydration. It's best to get a checkup."
+  },
+  {
+    "symptom": "I have chest pain",
+    "response": "Please call a doctor immediately. If it continues, seek medical attention."
+  },
+  {
+    "symptom": "I am suffering from sore throat",
+    "response": "This could be due to dehydration. Try take paracetamol."
+  },
+  {
+    "symptom": "I noticed itchy on my eye",
+    "response": "Try drink warm fluids. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "I have vomiting",
+    "response": "Please not ignore this symptom. If it continues, seek medical attention."
+  },
+  {
+    "symptom": "I noticed painful on my chest",
+    "response": "This could be due to infection. Try take paracetamol."
+  },
+  {
+    "symptom": "I suddenly got headache",
+    "response": "You should consult a doctor. In case of severe symptoms, not ignore this symptom."
+  },
+  {
+    "symptom": "I'm dealing with diarrhea and flu",
+    "response": "Please go to the emergency room. If it continues, seek medical attention."
+  },
+  {
+    "symptom": "I am suffering from fatigue",
+    "response": "This could be due to dehydration. Try rest."
+  },
+  {
+    "symptom": "I noticed inflamed on my leg",
+    "response": "You should visit a nearby clinic. In case of severe symptoms, not ignore this symptom."
+  },
+  {
+    "symptom": "I suddenly got joint pain",
+    "response": "It may be a sign of infection. It's best to consult a doctor."
+  },
+  {
+    "symptom": "I suddenly got vomiting",
+    "response": "You should talk to a healthcare provider. In case of severe symptoms, go to the emergency room."
+  },
+  {
+    "symptom": "My foot is dry",
+    "response": "It may be a sign of viral fever. It's best to talk to a healthcare provider."
+  },
+  {
+    "symptom": "I am suffering from cough",
+    "response": "It may be a sign of infection. It's best to get a checkup."
+  },
+  {
+    "symptom": "I am suffering from nausea",
+    "response": "You should consult a doctor. In case of severe symptoms, not ignore this symptom."
+  },
+  {
+    "symptom": "I suddenly got diarrhea",
+    "response": "Please not ignore this symptom. If it continues, seek medical attention."
+  },
+  {
+    "symptom": "I am experiencing headache since last night",
+    "response": "You should talk to a healthcare provider. In case of severe symptoms, not ignore this symptom."
+  },
+  {
+    "symptom": "I am suffering from itchiness",
+    "response": "Try take paracetamol. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "My hand is inflamed",
+    "response": "Try take paracetamol. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "I suddenly got nausea",
+    "response": "Please go to the emergency room. If it continues, visit a physician."
+  },
+  {
+    "symptom": "I am suffering from shortness of breath",
+    "response": "This could be due to stress. Try avoid spicy food."
+  },
+  {
+    "symptom": "There is numb on my stomach",
+    "response": "You should talk to a healthcare provider. In case of severe symptoms, call a doctor immediately."
+  },
+  {
+    "symptom": "My skin is bruised",
+    "response": "It may be a sign of food poisoning. It's best to get a checkup."
+  },
+  {
+    "symptom": "I suddenly got sore throat",
+    "response": "You should talk to a healthcare provider. In case of severe symptoms, go to the emergency room."
+  },
+  {
+    "symptom": "I'm dealing with shortness of breath and fever",
+    "response": "Please not ignore this symptom. If it continues, seek medical attention."
+  },
+  {
+    "symptom": "I am experiencing body ache since yesterday",
+    "response": "This could be due to infection. Try drink warm fluids."
+  },
+  {
+    "symptom": "I'm dealing with shortness of breath and dizziness",
+    "response": "You should visit a nearby clinic. In case of severe symptoms, call a doctor immediately."
+  },
+  {
+    "symptom": "I suddenly got diarrhea",
+    "response": "Please call a doctor immediately. If it continues, go for a lab test."
+  },
+  {
+    "symptom": "I am experiencing cough since yesterday",
+    "response": "This could be due to stress. Try avoid spicy food."
+  },
+  {
+    "symptom": "I feel weak",
+    "response": "It may be a sign of infection. It's best to visit a nearby clinic."
+  },
+  {
+    "symptom": "I noticed red on my hand",
+    "response": "Try use a cold compress. If symptoms persist, seek medical attention."
+  },
+  {
+    "symptom": "I am experiencing back pain since 2 days",
+    "response": "Please call a doctor immediately. If it continues, go for a lab test."
+  },
+  {
+    "symptom": "I have nausea",
+    "response": "This could be due to dehydration. Try use a cold compress."
+  },
+  {
+    "symptom": "I feel dizzy",
+    "response": "It may be a sign of dehydration. It's best to consult a doctor."
+  },
+  {
+    "symptom": "I am suffering from sore throat",
+    "response": "This could be due to infection. Try use a cold compress."
+  },
+  {
+    "symptom": "There is red on my leg",
+    "response": "Try avoid spicy food. If symptoms persist, visit a physician."
+  },
+  {
+    "symptom": "There is itchy on my chest",
+    "response": "It may be a sign of allergy. It's best to consult a doctor."
+  },
+  {
+    "symptom": "I am suffering from flu",
+    "response": "This could be due to stress. Try rest."
+  },
+  {
+    "symptom": "I have cold",
+    "response": "This could be due to dehydration. Try take an antacid."
+  },
+  {
+    "symptom": "I can't stop shivering",
+    "response": "This could be due to viral fever. Try take an antacid."
+  },
+  {
+    "symptom": "I am experiencing flu since this morning",
+    "response": "This could be due to allergy. Try drink warm fluids."
+  },
+  {
+    "symptom": "I suddenly got rash",
+    "response": "You should consult a doctor. In case of severe symptoms, not ignore this symptom."
+  },
+  {
+    "symptom": "There is dry on my leg",
+    "response": "It may be a sign of allergy. It's best to get a checkup."
+  },
+  {
+    "symptom": "I have cold",
+    "response": "Please not ignore this symptom. If it continues, go for a lab test."
+  },
+  {
+    "symptom": "I feel sad",
+    "response": "It may be a sign of viral fever. It's best to get a checkup."
+  },
+  {
+    "symptom": "I'm dealing with fever and headache",
+    "response": "Please call a doctor immediately. If it continues, go for a lab test."
+  },
+  {
+    "symptom": "I am experiencing anxiety since yesterday",
+    "response": "Please go to the emergency room. If it continues, seek medical attention."
+  },
+  {
+    "symptom": "I am experiencing headache since 2 days",
+    "response": "This could be due to food poisoning. Try rest."
+  },
+  {
+    "symptom": "I suddenly got body ache",
+    "response": "Please call a doctor immediately. If it continues, go for a lab test."
+  },
+  {
+    "symptom": "My arm is inflamed",
+    "response": "Please not ignore this symptom. If it continues, seek medical attention."
+  },
+  {
+    "symptom": "I suddenly got burning sensation",
+    "response": "You should visit a nearby clinic. In case of severe symptoms, call a doctor immediately."
+  },
+  {
+    "symptom": "I'm dealing with headache and sore throat",
+    "response": "Please not ignore this symptom. If it continues, seek medical attention."
+  },
+  {
+    "symptom": "I suddenly got diarrhea",
+    "response": "It may be a sign of food poisoning. It's best to visit a nearby clinic."
+  },
+  {
+    "symptom": "I'm dealing with dizziness and burning sensation",
+    "response": "It may be a sign of dehydration. It's best to get a checkup."
+  },
+  {
+    "symptom": "My chest is red",
+    "response": "This could be due to allergy. Try take an antacid."
+  },
+  {
+    "symptom": "I'm dealing with rash and fever",
+    "response": "You should talk to a healthcare provider. In case of severe symptoms, call a doctor immediately."
+  },
+  {
+    "symptom": "I noticed swollen on my throat",
+    "response": "This could be due to dehydration. Try avoid spicy food."
+  },
+  {
+    "symptom": "I have fatigue",
+    "response": "You should get a checkup. In case of severe symptoms, go to the emergency room."
+  },
+  {
+    "symptom": "I am suffering from headache",
+    "response": "Try use a cold compress. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "I am experiencing constipation since 2 days",
+    "response": "It may be a sign of dehydration. It's best to get a checkup."
+  },
+  {
+    "symptom": "There is inflamed on my throat",
+    "response": "Try rest. If symptoms persist, visit a physician."
+  },
+  {
+    "symptom": "I am suffering from vomiting",
+    "response": "This could be due to infection. Try take paracetamol."
+  },
+  {
+    "symptom": "I'm dealing with constipation and cough",
+    "response": "Try rest. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "I have chest pain",
+    "response": "This could be due to infection. Try rest."
+  },
+  {
+    "symptom": "I suddenly got sore throat",
+    "response": "This could be due to infection. Try take paracetamol."
+  },
+  {
+    "symptom": "I noticed bruised on my eye",
+    "response": "Please call a doctor immediately. If it continues, visit a physician."
+  },
+  {
+    "symptom": "I'm dealing with stomach pain and joint pain",
+    "response": "You should consult a doctor. In case of severe symptoms, go to the emergency room."
+  },
+  {
+    "symptom": "My arm is itchy",
+    "response": "Please go to the emergency room. If it continues, seek medical attention."
+  },
+  {
+    "symptom": "I can't stop vomiting",
+    "response": "Try take an antacid. If symptoms persist, seek medical attention."
+  },
+  {
+    "symptom": "I'm dealing with fatigue and chest pain",
+    "response": "Try rest. If symptoms persist, visit a physician."
+  },
+  {
+    "symptom": "I'm dealing with fatigue and nausea",
+    "response": "Please call a doctor immediately. If it continues, seek medical attention."
+  },
+  {
+    "symptom": "I'm dealing with flu and cough",
+    "response": "This could be due to allergy. Try avoid spicy food."
+  },
+  {
+    "symptom": "There is bruised on my chest",
+    "response": "Please not ignore this symptom. If it continues, visit a physician."
+  },
+  {
+    "symptom": "There is bruised on my leg",
+    "response": "Try use a cold compress. If symptoms persist, seek medical attention."
+  },
+  {
+    "symptom": "I suddenly got shortness of breath",
+    "response": "This could be due to viral fever. Try take paracetamol."
+  },
+  {
+    "symptom": "I am experiencing itchiness since yesterday",
+    "response": "It may be a sign of viral fever. It's best to consult a doctor."
+  },
+  {
+    "symptom": "There is dry on my hand",
+    "response": "It may be a sign of dehydration. It's best to consult a doctor."
+  },
+  {
+    "symptom": "I am experiencing swelling since a week",
+    "response": "Try drink warm fluids. If symptoms persist, seek medical attention."
+  },
+  {
+    "symptom": "I can't stop crying",
+    "response": "Try rest. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "I feel scared",
+    "response": "Please call a doctor immediately. If it continues, seek medical attention."
+  },
+  {
+    "symptom": "I am suffering from itchiness",
+    "response": "It may be a sign of viral fever. It's best to consult a doctor."
+  },
+  {
+    "symptom": "I noticed numb on my skin",
+    "response": "Please go to the emergency room. If it continues, go for a lab test."
+  },
+  {
+    "symptom": "I feel anxious",
+    "response": "You should consult a doctor. In case of severe symptoms, go to the emergency room."
+  },
+  {
+    "symptom": "I'm dealing with vomiting and body ache",
+    "response": "Please go to the emergency room. If it continues, go for a lab test."
+  },
+  {
+    "symptom": "I noticed painful on my arm",
+    "response": "This could be due to stress. Try take an antacid."
+  },
+  {
+    "symptom": "I can't stop shivering",
+    "response": "This could be due to infection. Try drink warm fluids."
+  },
+  {
+    "symptom": "I feel anxious",
+    "response": "Try take an antacid. If symptoms persist, seek medical attention."
+  },
+  {
+    "symptom": "I am experiencing itchiness since last night",
+    "response": "You should consult a doctor. In case of severe symptoms, call a doctor immediately."
+  },
+  {
+    "symptom": "I noticed painful on my foot",
+    "response": "You should visit a nearby clinic. In case of severe symptoms, call a doctor immediately."
+  },
+  {
+    "symptom": "I am suffering from rash",
+    "response": "Try avoid spicy food. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "I noticed numb on my hand",
+    "response": "You should talk to a healthcare provider. In case of severe symptoms, go to the emergency room."
+  },
+  {
+    "symptom": "I noticed swollen on my eye",
+    "response": "Try take an antacid. If symptoms persist, visit a physician."
+  },
+  {
+    "symptom": "My chest is numb",
+    "response": "Try use a cold compress. If symptoms persist, visit a physician."
+  },
+  {
+    "symptom": "I suddenly got vomiting",
+    "response": "Try use a cold compress. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "I am experiencing fever since this morning",
+    "response": "Please not ignore this symptom. If it continues, seek medical attention."
+  },
+  {
+    "symptom": "I suddenly got fever",
+    "response": "Try drink warm fluids. If symptoms persist, visit a physician."
+  },
+  {
+    "symptom": "I feel dizzy",
+    "response": "It may be a sign of viral fever. It's best to consult a doctor."
+  },
+  {
+    "symptom": "I'm dealing with fatigue and headache",
+    "response": "You should get a checkup. In case of severe symptoms, call a doctor immediately."
+  },
+  {
+    "symptom": "I feel sad",
+    "response": "Try drink warm fluids. If symptoms persist, seek medical attention."
+  },
+  {
+    "symptom": "My throat is inflamed",
+    "response": "You should get a checkup. In case of severe symptoms, not ignore this symptom."
+  },
+  {
+    "symptom": "I noticed swollen on my skin",
+    "response": "This could be due to stress. Try avoid spicy food."
+  },
+  {
+    "symptom": "I feel anxious",
+    "response": "It may be a sign of stress. It's best to visit a nearby clinic."
+  },
+  {
+    "symptom": "I have fatigue",
+    "response": "Please not ignore this symptom. If it continues, seek medical attention."
+  },
+  {
+    "symptom": "I'm dealing with stomach pain and rash",
+    "response": "This could be due to viral fever. Try take an antacid."
+  },
+  {
+    "symptom": "My head is painful",
+    "response": "It may be a sign of food poisoning. It's best to visit a nearby clinic."
+  },
+  {
+    "symptom": "I'm dealing with cough and depression",
+    "response": "Please go to the emergency room. If it continues, go for a lab test."
+  },
+  {
+    "symptom": "I can't stop coughing",
+    "response": "You should visit a nearby clinic. In case of severe symptoms, not ignore this symptom."
+  },
+  {
+    "symptom": "I can't stop coughing",
+    "response": "Try use a cold compress. If symptoms persist, visit a physician."
+  },
+  {
+    "symptom": "I noticed inflamed on my throat",
+    "response": "Try drink warm fluids. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "My stomach is bruised",
+    "response": "It may be a sign of dehydration. It's best to consult a doctor."
+  },
+  {
+    "symptom": "I can't stop scratching",
+    "response": "This could be due to viral fever. Try avoid spicy food."
+  },
+  {
+    "symptom": "I can't stop sneezing",
+    "response": "Try take paracetamol. If symptoms persist, seek medical attention."
+  },
+  {
+    "symptom": "I have anxiety",
+    "response": "This could be due to infection. Try drink warm fluids."
+  },
+  {
+    "symptom": "I am suffering from burning sensation",
+    "response": "It may be a sign of stress. It's best to consult a doctor."
+  },
+  {
+    "symptom": "My head is itchy",
+    "response": "You should consult a doctor. In case of severe symptoms, go to the emergency room."
+  },
+  {
+    "symptom": "I am suffering from burning sensation",
+    "response": "Try avoid spicy food. If symptoms persist, seek medical attention."
+  },
+  {
+    "symptom": "I have constipation",
+    "response": "Try rest. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "I suddenly got cold",
+    "response": "Please not ignore this symptom. If it continues, go for a lab test."
+  },
+  {
+    "symptom": "There is itchy on my hand",
+    "response": "This could be due to stress. Try use a cold compress."
+  },
+  {
+    "symptom": "My arm is itchy",
+    "response": "You should talk to a healthcare provider. In case of severe symptoms, call a doctor immediately."
+  },
+  {
+    "symptom": "I can't stop shivering",
+    "response": "You should visit a nearby clinic. In case of severe symptoms, go to the emergency room."
+  },
+  {
+    "symptom": "My leg is inflamed",
+    "response": "Please not ignore this symptom. If it continues, seek medical attention."
+  },
+  {
+    "symptom": "I feel weak",
+    "response": "It may be a sign of dehydration. It's best to get a checkup."
+  },
+  {
+    "symptom": "I feel sad",
+    "response": "Please call a doctor immediately. If it continues, seek medical attention."
+  },
+  {
+    "symptom": "My skin is bruised",
+    "response": "You should talk to a healthcare provider. In case of severe symptoms, call a doctor immediately."
+  },
+  {
+    "symptom": "I am experiencing chest pain since 2 days",
+    "response": "It may be a sign of viral fever. It's best to visit a nearby clinic."
+  },
+  {
+    "symptom": "I suddenly got stomach pain",
+    "response": "Please call a doctor immediately. If it continues, seek medical attention."
+  },
+  {
+    "symptom": "There is swollen on my stomach",
+    "response": "This could be due to allergy. Try drink warm fluids."
+  },
+  {
+    "symptom": "I noticed numb on my head",
+    "response": "This could be due to allergy. Try rest."
+  },
+  {
+    "symptom": "I am experiencing depression since this morning",
+    "response": "Try drink warm fluids. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "I am suffering from shortness of breath",
+    "response": "Try take paracetamol. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "I am suffering from body ache",
+    "response": "Try use a cold compress. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "I feel dizzy",
+    "response": "You should visit a nearby clinic. In case of severe symptoms, call a doctor immediately."
+  },
+  {
+    "symptom": "I noticed bruised on my throat",
+    "response": "This could be due to viral fever. Try rest."
+  },
+  {
+    "symptom": "I am experiencing itchiness since last night",
+    "response": "It may be a sign of viral fever. It's best to visit a nearby clinic."
+  },
+  {
+    "symptom": "There is painful on my head",
+    "response": "Please call a doctor immediately. If it continues, go for a lab test."
+  },
+  {
+    "symptom": "I feel scared",
+    "response": "Please not ignore this symptom. If it continues, go for a lab test."
+  },
+  {
+    "symptom": "I noticed dry on my hand",
+    "response": "This could be due to stress. Try take an antacid."
+  },
+  {
+    "symptom": "I can't stop crying",
+    "response": "This could be due to allergy. Try take paracetamol."
+  },
+  {
+    "symptom": "I have flu",
+    "response": "This could be due to viral fever. Try drink warm fluids."
+  },
+  {
+    "symptom": "I noticed swollen on my head",
+    "response": "Try rest. If symptoms persist, visit a physician."
+  },
+  {
+    "symptom": "I am suffering from joint pain",
+    "response": "This could be due to infection. Try use a cold compress."
+  },
+  {
+    "symptom": "I am experiencing dizziness since a week",
+    "response": "Please call a doctor immediately. If it continues, seek medical attention."
+  },
+  {
+    "symptom": "There is red on my stomach",
+    "response": "Try use a cold compress. If symptoms persist, visit a physician."
+  },
+  {
+    "symptom": "I suddenly got itchiness",
+    "response": "Please not ignore this symptom. If it continues, seek medical attention."
+  },
+  {
+    "symptom": "I noticed red on my head",
+    "response": "This could be due to food poisoning. Try rest."
+  },
+  {
+    "symptom": "I can't stop coughing",
+    "response": "This could be due to viral fever. Try take an antacid."
+  },
+  {
+    "symptom": "I have anxiety",
+    "response": "You should visit a nearby clinic. In case of severe symptoms, call a doctor immediately."
+  },
+  {
+    "symptom": "I am suffering from fever",
+    "response": "It may be a sign of food poisoning. It's best to get a checkup."
+  },
+  {
+    "symptom": "I noticed bruised on my hand",
+    "response": "This could be due to food poisoning. Try avoid spicy food."
+  },
+  {
+    "symptom": "I feel dizzy",
+    "response": "You should talk to a healthcare provider. In case of severe symptoms, go to the emergency room."
+  },
+  {
+    "symptom": "I have sore throat",
+    "response": "Try use a cold compress. If symptoms persist, visit a physician."
+  },
+  {
+    "symptom": "My eye is painful",
+    "response": "You should visit a nearby clinic. In case of severe symptoms, go to the emergency room."
+  },
+  {
+    "symptom": "I have cold",
+    "response": "Try use a cold compress. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "I suddenly got fatigue",
+    "response": "You should get a checkup. In case of severe symptoms, not ignore this symptom."
+  },
+  {
+    "symptom": "I am experiencing diarrhea since last night",
+    "response": "Try take an antacid. If symptoms persist, seek medical attention."
+  },
+  {
+    "symptom": "I am suffering from vomiting",
+    "response": "It may be a sign of dehydration. It's best to consult a doctor."
+  },
+  {
+    "symptom": "I have rash",
+    "response": "Try take an antacid. If symptoms persist, seek medical attention."
+  },
+  {
+    "symptom": "My eye is numb",
+    "response": "Please go to the emergency room. If it continues, visit a physician."
+  },
+  {
+    "symptom": "I feel tired",
+    "response": "This could be due to viral fever. Try take paracetamol."
+  },
+  {
+    "symptom": "I have constipation",
+    "response": "This could be due to viral fever. Try take an antacid."
+  },
+  {
+    "symptom": "I noticed painful on my head",
+    "response": "Try take paracetamol. If symptoms persist, visit a physician."
+  },
+  {
+    "symptom": "I suddenly got sore throat",
+    "response": "This could be due to dehydration. Try avoid spicy food."
+  },
+  {
+    "symptom": "I am experiencing fatigue since last night",
+    "response": "You should get a checkup. In case of severe symptoms, call a doctor immediately."
+  },
+  {
+    "symptom": "I am suffering from itchiness",
+    "response": "It may be a sign of infection. It's best to talk to a healthcare provider."
+  },
+  {
+    "symptom": "I suddenly got anxiety",
+    "response": "Try rest. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "I noticed itchy on my leg",
+    "response": "You should visit a nearby clinic. In case of severe symptoms, not ignore this symptom."
+  },
+  {
+    "symptom": "I suddenly got sore throat",
+    "response": "It may be a sign of food poisoning. It's best to get a checkup."
+  },
+  {
+    "symptom": "I feel sad",
+    "response": "This could be due to viral fever. Try take paracetamol."
+  },
+  {
+    "symptom": "I'm dealing with vomiting and itchiness",
+    "response": "This could be due to dehydration. Try rest."
+  },
+  {
+    "symptom": "My leg is inflamed",
+    "response": "It may be a sign of infection. It's best to consult a doctor."
+  },
+  {
+    "symptom": "I can't stop coughing",
+    "response": "It may be a sign of stress. It's best to talk to a healthcare provider."
+  },
+  {
+    "symptom": "There is red on my arm",
+    "response": "Please go to the emergency room. If it continues, go for a lab test."
+  },
+  {
+    "symptom": "I suddenly got sore throat",
+    "response": "It may be a sign of allergy. It's best to visit a nearby clinic."
+  },
+  {
+    "symptom": "There is painful on my chest",
+    "response": "You should get a checkup. In case of severe symptoms, call a doctor immediately."
+  },
+  {
+    "symptom": "I'm dealing with shortness of breath and swelling",
+    "response": "You should get a checkup. In case of severe symptoms, not ignore this symptom."
+  },
+  {
+    "symptom": "I'm dealing with cough and depression",
+    "response": "Please call a doctor immediately. If it continues, go for a lab test."
+  },
+  {
+    "symptom": "I am suffering from vomiting",
+    "response": "It may be a sign of viral fever. It's best to visit a nearby clinic."
+  },
+  {
+    "symptom": "I'm dealing with cold and chest pain",
+    "response": "You should consult a doctor. In case of severe symptoms, go to the emergency room."
+  },
+  {
+    "symptom": "I can't stop vomiting",
+    "response": "You should get a checkup. In case of severe symptoms, call a doctor immediately."
+  },
+  {
+    "symptom": "I can't stop vomiting",
+    "response": "Try rest. If symptoms persist, visit a physician."
+  },
+  {
+    "symptom": "I am experiencing burning sensation since a week",
+    "response": "Try take paracetamol. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "I can't stop coughing",
+    "response": "You should consult a doctor. In case of severe symptoms, call a doctor immediately."
+  },
+  {
+    "symptom": "My hand is red",
+    "response": "This could be due to allergy. Try drink warm fluids."
+  },
+  {
+    "symptom": "I am experiencing shortness of breath since last night",
+    "response": "Try rest. If symptoms persist, visit a physician."
+  },
+  {
+    "symptom": "I noticed numb on my eye",
+    "response": "Try rest. If symptoms persist, seek medical attention."
+  },
+  {
+    "symptom": "I feel anxious",
+    "response": "Please not ignore this symptom. If it continues, visit a physician."
+  },
+  {
+    "symptom": "My skin is numb",
+    "response": "Try take paracetamol. If symptoms persist, seek medical attention."
+  },
+  {
+    "symptom": "My foot is red",
+    "response": "Try take paracetamol. If symptoms persist, visit a physician."
+  },
+  {
+    "symptom": "I feel nauseous",
+    "response": "It may be a sign of dehydration. It's best to talk to a healthcare provider."
+  },
+  {
+    "symptom": "I have nausea",
+    "response": "Try rest. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "My chest is swollen",
+    "response": "This could be due to dehydration. Try take an antacid."
+  },
+  {
+    "symptom": "I am suffering from rash",
+    "response": "Please call a doctor immediately. If it continues, seek medical attention."
+  },
+  {
+    "symptom": "I suddenly got swelling",
+    "response": "This could be due to stress. Try use a cold compress."
+  },
+  {
+    "symptom": "My throat is painful",
+    "response": "You should consult a doctor. In case of severe symptoms, call a doctor immediately."
+  },
+  {
+    "symptom": "I am suffering from joint pain",
+    "response": "Try use a cold compress. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "My eye is painful",
+    "response": "Please go to the emergency room. If it continues, visit a physician."
+  },
+  {
+    "symptom": "I suddenly got nausea",
+    "response": "You should get a checkup. In case of severe symptoms, go to the emergency room."
+  },
+  {
+    "symptom": "I am suffering from anxiety",
+    "response": "It may be a sign of food poisoning. It's best to get a checkup."
+  },
+  {
+    "symptom": "I have depression",
+    "response": "Try rest. If symptoms persist, seek medical attention."
+  },
+  {
+    "symptom": "I'm dealing with swelling and joint pain",
+    "response": "Try drink warm fluids. If symptoms persist, visit a physician."
+  },
+  {
+    "symptom": "I'm dealing with cough and joint pain",
+    "response": "This could be due to allergy. Try rest."
+  },
+  {
+    "symptom": "I am suffering from headache",
+    "response": "Try use a cold compress. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "There is numb on my skin",
+    "response": "It may be a sign of infection. It's best to talk to a healthcare provider."
+  },
+  {
+    "symptom": "My stomach is dry",
+    "response": "Please not ignore this symptom. If it continues, seek medical attention."
+  },
+  {
+    "symptom": "I am suffering from shortness of breath",
+    "response": "Please call a doctor immediately. If it continues, visit a physician."
+  },
+  {
+    "symptom": "My leg is itchy",
+    "response": "It may be a sign of infection. It's best to consult a doctor."
+  },
+  {
+    "symptom": "I noticed swollen on my chest",
+    "response": "This could be due to allergy. Try avoid spicy food."
+  },
+  {
+    "symptom": "I am suffering from stomach pain",
+    "response": "This could be due to viral fever. Try avoid spicy food."
+  },
+  {
+    "symptom": "I can't stop scratching",
+    "response": "Try take paracetamol. If symptoms persist, visit a physician."
+  },
+  {
+    "symptom": "I feel anxious",
+    "response": "It may be a sign of dehydration. It's best to talk to a healthcare provider."
+  },
+  {
+    "symptom": "I noticed bruised on my arm",
+    "response": "Please go to the emergency room. If it continues, visit a physician."
+  },
+  {
+    "symptom": "My head is swollen",
+    "response": "This could be due to allergy. Try take paracetamol."
+  },
+  {
+    "symptom": "I can't stop crying",
+    "response": "Try take an antacid. If symptoms persist, seek medical attention."
+  },
+  {
+    "symptom": "I am suffering from body ache",
+    "response": "You should consult a doctor. In case of severe symptoms, call a doctor immediately."
+  },
+  {
+    "symptom": "I feel tired",
+    "response": "Please not ignore this symptom. If it continues, seek medical attention."
+  },
+  {
+    "symptom": "I feel sad",
+    "response": "It may be a sign of dehydration. It's best to get a checkup."
+  },
+  {
+    "symptom": "I feel weak",
+    "response": "Try avoid spicy food. If symptoms persist, visit a physician."
+  },
+  {
+    "symptom": "I can't stop scratching",
+    "response": "You should consult a doctor. In case of severe symptoms, not ignore this symptom."
+  },
+  {
+    "symptom": "I'm dealing with cold and rash",
+    "response": "Please call a doctor immediately. If it continues, visit a physician."
+  },
+  {
+    "symptom": "I am experiencing flu since this morning",
+    "response": "Please not ignore this symptom. If it continues, visit a physician."
+  },
+  {
+    "symptom": "I suddenly got fatigue",
+    "response": "Try take an antacid. If symptoms persist, seek medical attention."
+  },
+  {
+    "symptom": "My hand is dry",
+    "response": "Try rest. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "There is numb on my throat",
+    "response": "Please not ignore this symptom. If it continues, seek medical attention."
+  },
+  {
+    "symptom": "I have vomiting",
+    "response": "This could be due to food poisoning. Try use a cold compress."
+  },
+  {
+    "symptom": "I noticed inflamed on my leg",
+    "response": "Try drink warm fluids. If symptoms persist, seek medical attention."
+  },
+  {
+    "symptom": "I noticed inflamed on my arm",
+    "response": "Please call a doctor immediately. If it continues, visit a physician."
+  },
+  {
+    "symptom": "I'm dealing with stomach pain and cough",
+    "response": "This could be due to food poisoning. Try avoid spicy food."
+  },
+  {
+    "symptom": "I suddenly got itchiness",
+    "response": "Please go to the emergency room. If it continues, visit a physician."
+  },
+  {
+    "symptom": "I am experiencing headache since this morning",
+    "response": "This could be due to stress. Try use a cold compress."
+  },
+  {
+    "symptom": "I can't stop sneezing",
+    "response": "Try use a cold compress. If symptoms persist, seek medical attention."
+  },
+  {
+    "symptom": "My hand is dry",
+    "response": "It may be a sign of stress. It's best to get a checkup."
+  },
+  {
+    "symptom": "I am experiencing body ache since 2 days",
+    "response": "It may be a sign of infection. It's best to get a checkup."
+  },
+  {
+    "symptom": "I have depression",
+    "response": "This could be due to infection. Try take paracetamol."
+  },
+  {
+    "symptom": "I have diarrhea",
+    "response": "This could be due to viral fever. Try rest."
+  },
+  {
+    "symptom": "I am suffering from dizziness",
+    "response": "Please not ignore this symptom. If it continues, go for a lab test."
+  },
+  {
+    "symptom": "I'm dealing with shortness of breath and vomiting",
+    "response": "You should visit a nearby clinic. In case of severe symptoms, not ignore this symptom."
+  },
+  {
+    "symptom": "I'm dealing with diarrhea and fatigue",
+    "response": "Try take paracetamol. If symptoms persist, seek medical attention."
+  },
+  {
+    "symptom": "There is bruised on my skin",
+    "response": "Please not ignore this symptom. If it continues, seek medical attention."
+  },
+  {
+    "symptom": "My hand is painful",
+    "response": "Try use a cold compress. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "I can't stop vomiting",
+    "response": "It may be a sign of infection. It's best to consult a doctor."
+  },
+  {
+    "symptom": "My arm is numb",
+    "response": "You should consult a doctor. In case of severe symptoms, go to the emergency room."
+  },
+  {
+    "symptom": "I am suffering from chest pain",
+    "response": "It may be a sign of dehydration. It's best to talk to a healthcare provider."
+  },
+  {
+    "symptom": "I can't stop crying",
+    "response": "This could be due to infection. Try drink warm fluids."
+  },
+  {
+    "symptom": "I feel weak",
+    "response": "You should talk to a healthcare provider. In case of severe symptoms, not ignore this symptom."
+  },
+  {
+    "symptom": "There is bruised on my leg",
+    "response": "This could be due to food poisoning. Try rest."
+  },
+  {
+    "symptom": "I can't stop scratching",
+    "response": "Try avoid spicy food. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "I can't stop crying",
+    "response": "Try avoid spicy food. If symptoms persist, seek medical attention."
+  },
+  {
+    "symptom": "My eye is painful",
+    "response": "Try drink warm fluids. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "I am suffering from joint pain",
+    "response": "You should talk to a healthcare provider. In case of severe symptoms, not ignore this symptom."
+  },
+  {
+    "symptom": "I am suffering from shortness of breath",
+    "response": "This could be due to food poisoning. Try use a cold compress."
+  },
+  {
+    "symptom": "I can't stop vomiting",
+    "response": "You should consult a doctor. In case of severe symptoms, go to the emergency room."
+  },
+  {
+    "symptom": "I suddenly got constipation",
+    "response": "Please not ignore this symptom. If it continues, seek medical attention."
+  },
+  {
+    "symptom": "I can't stop sneezing",
+    "response": "This could be due to dehydration. Try take an antacid."
+  },
+  {
+    "symptom": "My leg is red",
+    "response": "Try take paracetamol. If symptoms persist, seek medical attention."
+  },
+  {
+    "symptom": "I feel sad",
+    "response": "Try rest. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "I can't stop scratching",
+    "response": "Please not ignore this symptom. If it continues, visit a physician."
+  },
+  {
+    "symptom": "I am suffering from headache",
+    "response": "This could be due to allergy. Try take paracetamol."
+  },
+  {
+    "symptom": "There is swollen on my leg",
+    "response": "Try drink warm fluids. If symptoms persist, seek medical attention."
+  },
+  {
+    "symptom": "I have headache",
+    "response": "This could be due to infection. Try drink warm fluids."
+  },
+  {
+    "symptom": "My arm is bruised",
+    "response": "This could be due to food poisoning. Try drink warm fluids."
+  },
+  {
+    "symptom": "There is painful on my stomach",
+    "response": "Please go to the emergency room. If it continues, seek medical attention."
+  },
+  {
+    "symptom": "I am suffering from diarrhea",
+    "response": "You should talk to a healthcare provider. In case of severe symptoms, call a doctor immediately."
+  },
+  {
+    "symptom": "I have vomiting",
+    "response": "Try use a cold compress. If symptoms persist, visit a physician."
+  },
+  {
+    "symptom": "I'm dealing with fever and headache",
+    "response": "Try use a cold compress. If symptoms persist, visit a physician."
+  },
+  {
+    "symptom": "I suddenly got rash",
+    "response": "You should consult a doctor. In case of severe symptoms, go to the emergency room."
+  },
+  {
+    "symptom": "My foot is inflamed",
+    "response": "Please not ignore this symptom. If it continues, seek medical attention."
+  },
+  {
+    "symptom": "I am suffering from anxiety",
+    "response": "Try drink warm fluids. If symptoms persist, seek medical attention."
+  },
+  {
+    "symptom": "I'm dealing with diarrhea and chest pain",
+    "response": "Please not ignore this symptom. If it continues, seek medical attention."
+  },
+  {
+    "symptom": "My leg is numb",
+    "response": "This could be due to allergy. Try rest."
+  },
+  {
+    "symptom": "I suddenly got swelling",
+    "response": "It may be a sign of dehydration. It's best to visit a nearby clinic."
+  },
+  {
+    "symptom": "I am suffering from diarrhea",
+    "response": "This could be due to infection. Try rest."
+  },
+  {
+    "symptom": "I am suffering from sore throat",
+    "response": "Try use a cold compress. If symptoms persist, seek medical attention."
+  },
+  {
+    "symptom": "There is inflamed on my skin",
+    "response": "Try take an antacid. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "My skin is swollen",
+    "response": "It may be a sign of viral fever. It's best to consult a doctor."
+  },
+  {
+    "symptom": "I can't stop coughing",
+    "response": "Try take paracetamol. If symptoms persist, seek medical attention."
+  },
+  {
+    "symptom": "My foot is red",
+    "response": "Please not ignore this symptom. If it continues, go for a lab test."
+  },
+  {
+    "symptom": "I'm dealing with chest pain and flu",
+    "response": "It may be a sign of viral fever. It's best to talk to a healthcare provider."
+  },
+  {
+    "symptom": "I am suffering from sore throat",
+    "response": "This could be due to infection. Try take an antacid."
+  },
+  {
+    "symptom": "I am experiencing chest pain since last night",
+    "response": "It may be a sign of dehydration. It's best to consult a doctor."
+  },
+  {
+    "symptom": "I suddenly got swelling",
+    "response": "It may be a sign of food poisoning. It's best to talk to a healthcare provider."
+  },
+  {
+    "symptom": "There is painful on my eye",
+    "response": "Try avoid spicy food. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "I feel dizzy",
+    "response": "This could be due to food poisoning. Try drink warm fluids."
+  },
+  {
+    "symptom": "I feel weak",
+    "response": "You should consult a doctor. In case of severe symptoms, call a doctor immediately."
+  },
+  {
+    "symptom": "I am suffering from diarrhea",
+    "response": "Please not ignore this symptom. If it continues, seek medical attention."
+  },
+  {
+    "symptom": "I am experiencing vomiting since 2 days",
+    "response": "Please call a doctor immediately. If it continues, visit a physician."
+  },
+  {
+    "symptom": "I suddenly got joint pain",
+    "response": "It may be a sign of stress. It's best to talk to a healthcare provider."
+  },
+  {
+    "symptom": "I have shortness of breath",
+    "response": "Please call a doctor immediately. If it continues, visit a physician."
+  },
+  {
+    "symptom": "I suddenly got fever",
+    "response": "It may be a sign of infection. It's best to talk to a healthcare provider."
+  },
+  {
+    "symptom": "There is inflamed on my eye",
+    "response": "Please go to the emergency room. If it continues, visit a physician."
+  },
+  {
+    "symptom": "I'm dealing with burning sensation and swelling",
+    "response": "Please not ignore this symptom. If it continues, go for a lab test."
+  },
+  {
+    "symptom": "I am suffering from chest pain",
+    "response": "Try avoid spicy food. If symptoms persist, seek medical attention."
+  },
+  {
+    "symptom": "I'm dealing with swelling and back pain",
+    "response": "You should visit a nearby clinic. In case of severe symptoms, go to the emergency room."
+  },
+  {
+    "symptom": "I am suffering from headache",
+    "response": "You should talk to a healthcare provider. In case of severe symptoms, call a doctor immediately."
+  },
+  {
+    "symptom": "I can't stop crying",
+    "response": "This could be due to infection. Try take an antacid."
+  },
+  {
+    "symptom": "I am suffering from flu",
+    "response": "You should talk to a healthcare provider. In case of severe symptoms, go to the emergency room."
+  },
+  {
+    "symptom": "I can't stop crying",
+    "response": "This could be due to stress. Try take paracetamol."
+  },
+  {
+    "symptom": "I'm dealing with constipation and fever",
+    "response": "Try rest. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "I suddenly got chest pain",
+    "response": "You should visit a nearby clinic. In case of severe symptoms, go to the emergency room."
+  },
+  {
+    "symptom": "I noticed inflamed on my arm",
+    "response": "Please go to the emergency room. If it continues, visit a physician."
+  },
+  {
+    "symptom": "I have vomiting",
+    "response": "Please go to the emergency room. If it continues, go for a lab test."
+  },
+  {
+    "symptom": "I can't stop sneezing",
+    "response": "Try take paracetamol. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "There is red on my skin",
+    "response": "This could be due to allergy. Try take paracetamol."
+  },
+  {
+    "symptom": "I'm dealing with itchiness and sore throat",
+    "response": "Please go to the emergency room. If it continues, go for a lab test."
+  },
+  {
+    "symptom": "I feel scared",
+    "response": "Please go to the emergency room. If it continues, visit a physician."
+  },
+  {
+    "symptom": "I suddenly got sore throat",
+    "response": "You should talk to a healthcare provider. In case of severe symptoms, go to the emergency room."
+  },
+  {
+    "symptom": "There is numb on my leg",
+    "response": "You should visit a nearby clinic. In case of severe symptoms, not ignore this symptom."
+  },
+  {
+    "symptom": "I have vomiting",
+    "response": "You should visit a nearby clinic. In case of severe symptoms, call a doctor immediately."
+  },
+  {
+    "symptom": "There is red on my foot",
+    "response": "Try drink warm fluids. If symptoms persist, seek medical attention."
+  },
+  {
+    "symptom": "I feel weak",
+    "response": "Please call a doctor immediately. If it continues, seek medical attention."
+  },
+  {
+    "symptom": "I noticed swollen on my foot",
+    "response": "Please go to the emergency room. If it continues, go for a lab test."
+  },
+  {
+    "symptom": "I am suffering from chest pain",
+    "response": "You should talk to a healthcare provider. In case of severe symptoms, call a doctor immediately."
+  },
+  {
+    "symptom": "I feel nauseous",
+    "response": "You should consult a doctor. In case of severe symptoms, not ignore this symptom."
+  },
+  {
+    "symptom": "My chest is red",
+    "response": "You should get a checkup. In case of severe symptoms, go to the emergency room."
+  },
+  {
+    "symptom": "I have dizziness",
+    "response": "You should get a checkup. In case of severe symptoms, go to the emergency room."
+  },
+  {
+    "symptom": "I suddenly got fever",
+    "response": "Try avoid spicy food. If symptoms persist, seek medical attention."
+  },
+  {
+    "symptom": "I am suffering from sore throat",
+    "response": "This could be due to food poisoning. Try take paracetamol."
+  },
+  {
+    "symptom": "I'm dealing with dizziness and sore throat",
+    "response": "You should talk to a healthcare provider. In case of severe symptoms, not ignore this symptom."
+  },
+  {
+    "symptom": "I am suffering from headache",
+    "response": "This could be due to dehydration. Try drink warm fluids."
+  },
+  {
+    "symptom": "I have swelling",
+    "response": "Try rest. If symptoms persist, visit a physician."
+  },
+  {
+    "symptom": "There is painful on my skin",
+    "response": "It may be a sign of viral fever. It's best to visit a nearby clinic."
+  },
+  {
+    "symptom": "I am experiencing dizziness since last night",
+    "response": "It may be a sign of allergy. It's best to get a checkup."
+  },
+  {
+    "symptom": "I feel tired",
+    "response": "Try drink warm fluids. If symptoms persist, seek medical attention."
+  },
+  {
+    "symptom": "I am experiencing fever since 2 days",
+    "response": "You should get a checkup. In case of severe symptoms, not ignore this symptom."
+  },
+  {
+    "symptom": "There is inflamed on my foot",
+    "response": "You should talk to a healthcare provider. In case of severe symptoms, go to the emergency room."
+  },
+  {
+    "symptom": "I feel anxious",
+    "response": "This could be due to stress. Try drink warm fluids."
+  },
+  {
+    "symptom": "I feel tired",
+    "response": "This could be due to dehydration. Try take paracetamol."
+  },
+  {
+    "symptom": "I suddenly got fever",
+    "response": "It may be a sign of allergy. It's best to get a checkup."
+  },
+  {
+    "symptom": "I have rash",
+    "response": "It may be a sign of viral fever. It's best to consult a doctor."
+  },
+  {
+    "symptom": "There is inflamed on my leg",
+    "response": "This could be due to allergy. Try take paracetamol."
+  },
+  {
+    "symptom": "I have body ache",
+    "response": "This could be due to food poisoning. Try use a cold compress."
+  },
+  {
+    "symptom": "I feel sad",
+    "response": "It may be a sign of viral fever. It's best to get a checkup."
+  },
+  {
+    "symptom": "There is numb on my throat",
+    "response": "Please call a doctor immediately. If it continues, go for a lab test."
+  },
+  {
+    "symptom": "I have joint pain",
+    "response": "Try drink warm fluids. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "There is red on my stomach",
+    "response": "Try avoid spicy food. If symptoms persist, visit a physician."
+  },
+  {
+    "symptom": "I have back pain",
+    "response": "Try take an antacid. If symptoms persist, seek medical attention."
+  },
+  {
+    "symptom": "I feel nauseous",
+    "response": "This could be due to stress. Try avoid spicy food."
+  },
+  {
+    "symptom": "I'm dealing with stomach pain and constipation",
+    "response": "Try use a cold compress. If symptoms persist, seek medical attention."
+  },
+  {
+    "symptom": "My skin is inflamed",
+    "response": "It may be a sign of dehydration. It's best to visit a nearby clinic."
+  },
+  {
+    "symptom": "I noticed painful on my head",
+    "response": "You should visit a nearby clinic. In case of severe symptoms, go to the emergency room."
+  },
+  {
+    "symptom": "There is painful on my skin",
+    "response": "Try take an antacid. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "I suddenly got burning sensation",
+    "response": "It may be a sign of allergy. It's best to visit a nearby clinic."
+  },
+  {
+    "symptom": "My arm is swollen",
+    "response": "You should consult a doctor. In case of severe symptoms, call a doctor immediately."
+  },
+  {
+    "symptom": "I am suffering from rash",
+    "response": "Please go to the emergency room. If it continues, visit a physician."
+  },
+  {
+    "symptom": "My chest is bruised",
+    "response": "This could be due to viral fever. Try drink warm fluids."
+  },
+  {
+    "symptom": "I'm dealing with cough and constipation",
+    "response": "You should get a checkup. In case of severe symptoms, go to the emergency room."
+  },
+  {
+    "symptom": "I feel nauseous",
+    "response": "Please go to the emergency room. If it continues, go for a lab test."
+  },
+  {
+    "symptom": "I noticed numb on my stomach",
+    "response": "It may be a sign of viral fever. It's best to visit a nearby clinic."
+  },
+  {
+    "symptom": "I am experiencing headache since a week",
+    "response": "This could be due to dehydration. Try use a cold compress."
+  },
+  {
+    "symptom": "I am experiencing fatigue since a week",
+    "response": "This could be due to dehydration. Try take an antacid."
+  },
+  {
+    "symptom": "My foot is inflamed",
+    "response": "Try take paracetamol. If symptoms persist, visit a physician."
+  },
+  {
+    "symptom": "I have body ache",
+    "response": "It may be a sign of viral fever. It's best to consult a doctor."
+  },
+  {
+    "symptom": "There is painful on my hand",
+    "response": "Please call a doctor immediately. If it continues, go for a lab test."
+  },
+  {
+    "symptom": "I can't stop shivering",
+    "response": "It may be a sign of infection. It's best to get a checkup."
+  },
+  {
+    "symptom": "I have dizziness",
+    "response": "This could be due to food poisoning. Try avoid spicy food."
+  },
+  {
+    "symptom": "I am experiencing sore throat since yesterday",
+    "response": "You should visit a nearby clinic. In case of severe symptoms, call a doctor immediately."
+  },
+  {
+    "symptom": "I suddenly got burning sensation",
+    "response": "Please not ignore this symptom. If it continues, visit a physician."
+  },
+  {
+    "symptom": "I noticed swollen on my hand",
+    "response": "Try use a cold compress. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "I have vomiting",
+    "response": "You should talk to a healthcare provider. In case of severe symptoms, go to the emergency room."
+  },
+  {
+    "symptom": "There is painful on my eye",
+    "response": "This could be due to food poisoning. Try drink warm fluids."
+  },
+  {
+    "symptom": "I feel anxious",
+    "response": "This could be due to viral fever. Try drink warm fluids."
+  },
+  {
+    "symptom": "I feel tired",
+    "response": "This could be due to dehydration. Try avoid spicy food."
+  },
+  {
+    "symptom": "I have fatigue",
+    "response": "You should get a checkup. In case of severe symptoms, not ignore this symptom."
+  },
+  {
+    "symptom": "I can't stop vomiting",
+    "response": "Try use a cold compress. If symptoms persist, seek medical attention."
+  },
+  {
+    "symptom": "I am suffering from body ache",
+    "response": "It may be a sign of infection. It's best to consult a doctor."
+  },
+  {
+    "symptom": "I suddenly got cough",
+    "response": "This could be due to food poisoning. Try use a cold compress."
+  },
+  {
+    "symptom": "I feel scared",
+    "response": "You should consult a doctor. In case of severe symptoms, call a doctor immediately."
+  },
+  {
+    "symptom": "I am suffering from cold",
+    "response": "It may be a sign of stress. It's best to get a checkup."
+  },
+  {
+    "symptom": "I feel anxious",
+    "response": "You should visit a nearby clinic. In case of severe symptoms, not ignore this symptom."
+  },
+  {
+    "symptom": "I am suffering from back pain",
+    "response": "This could be due to dehydration. Try take paracetamol."
+  },
+  {
+    "symptom": "I can't stop shivering",
+    "response": "Try avoid spicy food. If symptoms persist, visit a physician."
+  },
+  {
+    "symptom": "There is dry on my hand",
+    "response": "You should consult a doctor. In case of severe symptoms, go to the emergency room."
+  },
+  {
+    "symptom": "There is painful on my stomach",
+    "response": "Please go to the emergency room. If it continues, visit a physician."
+  },
+  {
+    "symptom": "There is inflamed on my chest",
+    "response": "You should visit a nearby clinic. In case of severe symptoms, call a doctor immediately."
+  },
+  {
+    "symptom": "There is bruised on my foot",
+    "response": "This could be due to food poisoning. Try take an antacid."
+  },
+  {
+    "symptom": "There is bruised on my arm",
+    "response": "Please not ignore this symptom. If it continues, seek medical attention."
+  },
+  {
+    "symptom": "I can't stop shivering",
+    "response": "Please not ignore this symptom. If it continues, go for a lab test."
+  },
+  {
+    "symptom": "I am suffering from stomach pain",
+    "response": "This could be due to dehydration. Try take paracetamol."
+  },
+  {
+    "symptom": "I suddenly got fever",
+    "response": "You should visit a nearby clinic. In case of severe symptoms, call a doctor immediately."
+  },
+  {
+    "symptom": "I have fatigue",
+    "response": "Please go to the emergency room. If it continues, seek medical attention."
+  },
+  {
+    "symptom": "I'm dealing with fatigue and anxiety",
+    "response": "It may be a sign of dehydration. It's best to visit a nearby clinic."
+  },
+  {
+    "symptom": "I feel weak",
+    "response": "Please call a doctor immediately. If it continues, go for a lab test."
+  },
+  {
+    "symptom": "There is bruised on my skin",
+    "response": "Please not ignore this symptom. If it continues, go for a lab test."
+  },
+  {
+    "symptom": "I can't stop shivering",
+    "response": "It may be a sign of infection. It's best to visit a nearby clinic."
+  },
+  {
+    "symptom": "I'm dealing with cough and fatigue",
+    "response": "You should get a checkup. In case of severe symptoms, go to the emergency room."
+  },
+  {
+    "symptom": "There is swollen on my head",
+    "response": "It may be a sign of infection. It's best to visit a nearby clinic."
+  },
+  {
+    "symptom": "I am experiencing depression since this morning",
+    "response": "It may be a sign of infection. It's best to get a checkup."
+  },
+  {
+    "symptom": "I'm dealing with headache and chest pain",
+    "response": "This could be due to viral fever. Try use a cold compress."
+  },
+  {
+    "symptom": "I'm dealing with shortness of breath and itchiness",
+    "response": "This could be due to allergy. Try avoid spicy food."
+  },
+  {
+    "symptom": "My skin is dry",
+    "response": "This could be due to stress. Try drink warm fluids."
+  },
+  {
+    "symptom": "I feel dizzy",
+    "response": "Please not ignore this symptom. If it continues, go for a lab test."
+  },
+  {
+    "symptom": "There is numb on my hand",
+    "response": "This could be due to dehydration. Try take paracetamol."
+  },
+  {
+    "symptom": "There is swollen on my head",
+    "response": "It may be a sign of dehydration. It's best to consult a doctor."
+  },
+  {
+    "symptom": "There is swollen on my hand",
+    "response": "You should consult a doctor. In case of severe symptoms, call a doctor immediately."
+  },
+  {
+    "symptom": "I have dizziness",
+    "response": "This could be due to dehydration. Try avoid spicy food."
+  },
+  {
+    "symptom": "I can't stop vomiting",
+    "response": "Try rest. If symptoms persist, visit a physician."
+  },
+  {
+    "symptom": "I am suffering from flu",
+    "response": "Please not ignore this symptom. If it continues, seek medical attention."
+  },
+  {
+    "symptom": "I suddenly got fatigue",
+    "response": "Try drink warm fluids. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "I suddenly got nausea",
+    "response": "It may be a sign of allergy. It's best to get a checkup."
+  },
+  {
+    "symptom": "I'm dealing with chest pain and joint pain",
+    "response": "It may be a sign of viral fever. It's best to talk to a healthcare provider."
+  },
+  {
+    "symptom": "I noticed red on my stomach",
+    "response": "You should consult a doctor. In case of severe symptoms, go to the emergency room."
+  },
+  {
+    "symptom": "I feel weak",
+    "response": "You should visit a nearby clinic. In case of severe symptoms, go to the emergency room."
+  },
+  {
+    "symptom": "There is red on my chest",
+    "response": "Try take an antacid. If symptoms persist, seek medical attention."
+  },
+  {
+    "symptom": "I noticed dry on my eye",
+    "response": "This could be due to dehydration. Try take paracetamol."
+  },
+  {
+    "symptom": "I am suffering from flu",
+    "response": "It may be a sign of viral fever. It's best to talk to a healthcare provider."
+  },
+  {
+    "symptom": "I noticed bruised on my arm",
+    "response": "Try take paracetamol. If symptoms persist, visit a physician."
+  },
+  {
+    "symptom": "There is red on my throat",
+    "response": "Try rest. If symptoms persist, visit a physician."
+  },
+  {
+    "symptom": "I can't stop shivering",
+    "response": "This could be due to infection. Try use a cold compress."
+  },
+  {
+    "symptom": "I feel tired",
+    "response": "This could be due to infection. Try avoid spicy food."
+  },
+  {
+    "symptom": "I suddenly got cough",
+    "response": "Please go to the emergency room. If it continues, go for a lab test."
+  },
+  {
+    "symptom": "I am experiencing shortness of breath since this morning",
+    "response": "It may be a sign of food poisoning. It's best to visit a nearby clinic."
+  },
+  {
+    "symptom": "I am experiencing sore throat since this morning",
+    "response": "Try drink warm fluids. If symptoms persist, visit a physician."
+  },
+  {
+    "symptom": "I have flu",
+    "response": "It may be a sign of dehydration. It's best to consult a doctor."
+  },
+  {
+    "symptom": "I am experiencing sore throat since this morning",
+    "response": "Please go to the emergency room. If it continues, visit a physician."
+  },
+  {
+    "symptom": "I have cough",
+    "response": "This could be due to stress. Try use a cold compress."
+  },
+  {
+    "symptom": "I noticed dry on my throat",
+    "response": "Try drink warm fluids. If symptoms persist, seek medical attention."
+  },
+  {
+    "symptom": "I am experiencing fever since last night",
+    "response": "It may be a sign of dehydration. It's best to consult a doctor."
+  },
+  {
+    "symptom": "I'm dealing with itchiness and cough",
+    "response": "Try use a cold compress. If symptoms persist, visit a physician."
+  },
+  {
+    "symptom": "I can't stop scratching",
+    "response": "It may be a sign of infection. It's best to talk to a healthcare provider."
+  },
+  {
+    "symptom": "I am suffering from swelling",
+    "response": "It may be a sign of stress. It's best to talk to a healthcare provider."
+  },
+  {
+    "symptom": "I noticed painful on my arm",
+    "response": "Please call a doctor immediately. If it continues, visit a physician."
+  },
+  {
+    "symptom": "My chest is inflamed",
+    "response": "This could be due to stress. Try rest."
+  },
+  {
+    "symptom": "There is red on my throat",
+    "response": "You should consult a doctor. In case of severe symptoms, go to the emergency room."
+  },
+  {
+    "symptom": "I'm dealing with body ache and sore throat",
+    "response": "This could be due to viral fever. Try take an antacid."
+  },
+  {
+    "symptom": "I am suffering from rash",
+    "response": "You should get a checkup. In case of severe symptoms, call a doctor immediately."
+  },
+  {
+    "symptom": "There is inflamed on my skin",
+    "response": "This could be due to viral fever. Try take paracetamol."
+  },
+  {
+    "symptom": "I am experiencing dizziness since last night",
+    "response": "This could be due to stress. Try take paracetamol."
+  },
+  {
+    "symptom": "I feel nauseous",
+    "response": "Try rest. If symptoms persist, visit a physician."
+  },
+  {
+    "symptom": "I suddenly got rash",
+    "response": "You should talk to a healthcare provider. In case of severe symptoms, go to the emergency room."
+  },
+  {
+    "symptom": "I have fever",
+    "response": "You should get a checkup. In case of severe symptoms, call a doctor immediately."
+  },
+  {
+    "symptom": "I am suffering from sore throat",
+    "response": "Try rest. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "I'm dealing with diarrhea and constipation",
+    "response": "It may be a sign of dehydration. It's best to talk to a healthcare provider."
+  },
+  {
+    "symptom": "I'm dealing with headache and body ache",
+    "response": "It may be a sign of allergy. It's best to get a checkup."
+  },
+  {
+    "symptom": "I suddenly got dizziness",
+    "response": "Try take an antacid. If symptoms persist, visit a physician."
+  },
+  {
+    "symptom": "I'm dealing with chest pain and depression",
+    "response": "Please call a doctor immediately. If it continues, visit a physician."
+  },
+  {
+    "symptom": "I suddenly got burning sensation",
+    "response": "This could be due to viral fever. Try use a cold compress."
+  },
+  {
+    "symptom": "I suddenly got diarrhea",
+    "response": "Please not ignore this symptom. If it continues, seek medical attention."
+  },
+  {
+    "symptom": "I can't stop sneezing",
+    "response": "Please call a doctor immediately. If it continues, visit a physician."
+  },
+  {
+    "symptom": "There is numb on my leg",
+    "response": "You should visit a nearby clinic. In case of severe symptoms, call a doctor immediately."
+  },
+  {
+    "symptom": "I feel tired",
+    "response": "Please call a doctor immediately. If it continues, visit a physician."
+  },
+  {
+    "symptom": "I am suffering from sore throat",
+    "response": "This could be due to food poisoning. Try rest."
+  },
+  {
+    "symptom": "There is inflamed on my throat",
+    "response": "Try drink warm fluids. If symptoms persist, seek medical attention."
+  },
+  {
+    "symptom": "I feel dizzy",
+    "response": "Try use a cold compress. If symptoms persist, visit a physician."
+  },
+  {
+    "symptom": "I am experiencing swelling since this morning",
+    "response": "This could be due to infection. Try use a cold compress."
+  },
+  {
+    "symptom": "My eye is painful",
+    "response": "Please not ignore this symptom. If it continues, go for a lab test."
+  },
+  {
+    "symptom": "My leg is itchy",
+    "response": "Try avoid spicy food. If symptoms persist, seek medical attention."
+  },
+  {
+    "symptom": "I can't stop vomiting",
+    "response": "It may be a sign of dehydration. It's best to get a checkup."
+  },
+  {
+    "symptom": "I feel weak",
+    "response": "Try take an antacid. If symptoms persist, visit a physician."
+  },
+  {
+    "symptom": "I am experiencing chest pain since last night",
+    "response": "Please call a doctor immediately. If it continues, go for a lab test."
+  },
+  {
+    "symptom": "I am experiencing chest pain since 2 days",
+    "response": "You should consult a doctor. In case of severe symptoms, call a doctor immediately."
+  },
+  {
+    "symptom": "I am suffering from joint pain",
+    "response": "It may be a sign of viral fever. It's best to talk to a healthcare provider."
+  },
+  {
+    "symptom": "I noticed inflamed on my foot",
+    "response": "Try drink warm fluids. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "I am suffering from chest pain",
+    "response": "Try use a cold compress. If symptoms persist, go for a lab test."
+  },
+  {
+    "symptom": "I have chest pain",
+    "response": "Please not ignore this symptom. If it continues, go for a lab test."
+  },
+  {
+    "symptom": "I'm dealing with diarrhea and fever",
+    "response": "It may be a sign of food poisoning. It's best to get a checkup."
+  },
+  {
+    "symptom": "My foot is inflamed",
+    "response": "It may be a sign of food poisoning. It's best to visit a nearby clinic."
+  },
+  {
+    "symptom": "I can't stop sneezing",
+    "response": "Please call a doctor immediately. If it continues, go for a lab test."
+  },
+  {
+    "symptom": "There is dry on my leg",
+    "response": "Try drink warm fluids. If symptoms persist, seek medical attention."
+  },
+  {
+    "symptom": "There is dry on my leg",
+    "response": "You should consult a doctor. In case of severe symptoms, not ignore this symptom."
+  },
+  {
+    "symptom": "I'm dealing with depression and itchiness",
+    "response": "Please go to the emergency room. If it continues, go for a lab test."
+  },
+  {
+    "symptom": "My arm is bruised",
+    "response": "Please call a doctor immediately. If it continues, go for a lab test."
+  },
+  {
+    "symptom": "I am suffering from swelling",
+    "response": "Try take paracetamol. If symptoms persist, visit a physician."
+  }
+]

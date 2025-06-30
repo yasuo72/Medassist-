@@ -160,12 +160,20 @@ class _FamilyMemberProfileScreenState extends State<FamilyMemberProfileScreen> {
                     // Otherwise attempt to fetch via emergency ID
                     if (member.emergencyId.isNotEmpty) {
                       try {
-                        final data = await FamilyService().getSummaryByEmergencyId(member.emergencyId);
+                        final url = await FamilyService().getSummaryByEmergencyId(member.emergencyId);
                         if (!mounted) return;
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (_) => MedicalSummaryScreen.fromMap(data)),
-                        );
+                        if (url.isNotEmpty) {
+                          final ok = await launchUrl(Uri.parse(url));
+                          if (!ok) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(content: Text('Could not open summary')),
+                            );
+                          }
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(content: Text('Summary not found')),
+                          );
+                        }
                       } catch (e) {
                         if (!mounted) return;
                         ScaffoldMessenger.of(context).showSnackBar(

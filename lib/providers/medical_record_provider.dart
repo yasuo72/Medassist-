@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import '../models/medical_record.dart';
+import '../constants/api_config.dart';
 
 class MedicalRecordProvider with ChangeNotifier {
   MedicalRecordProvider({String? authToken}) : _authToken = authToken;
@@ -24,7 +25,6 @@ class MedicalRecordProvider with ChangeNotifier {
     return headers;
   }
 
-  static const String _baseUrl = 'https://medassistbackend-production.up.railway.app/api/records';
 
   List<MedicalRecord> _records = [];
   List<MedicalRecord> get records => _records;
@@ -37,7 +37,7 @@ class MedicalRecordProvider with ChangeNotifier {
     notifyListeners();
     try {
       final response = await http.get(
-        Uri.parse(_baseUrl),
+        Uri.parse(ApiConfig.records),
         headers: _headers(),
       );
       if (response.statusCode == 200) {
@@ -54,7 +54,7 @@ class MedicalRecordProvider with ChangeNotifier {
   Future<bool> uploadRecord({required String title, required String recordType, required String filePath}) async {
     const allowedTypes = ['Lab Report', 'Prescription', 'Imaging', 'Clinical Note', 'Other'];
     final sanitizedType = allowedTypes.contains(recordType) ? recordType : 'Other';
-    final request = http.MultipartRequest('POST', Uri.parse('$_baseUrl/upload'));
+    final request = http.MultipartRequest('POST', Uri.parse('${ApiConfig.records}/upload'));
     request.headers.addAll(_headers());
     request.fields['title'] = title;
     request.fields['recordType'] = sanitizedType;
@@ -81,7 +81,7 @@ class MedicalRecordProvider with ChangeNotifier {
   Future<bool> deleteRecord(String id) async {
     try {
       final resp = await http.delete(
-        Uri.parse('$_baseUrl/$id'),
+        Uri.parse('${ApiConfig.records}/$id'),
         headers: _headers(),
       );
       if (resp.statusCode == 200) {
@@ -96,7 +96,7 @@ class MedicalRecordProvider with ChangeNotifier {
   Future<String?> fetchAiSummary(String id) async {
     try {
       final resp = await http.post(
-        Uri.parse('$_baseUrl/$id/ai-summary'),
+        Uri.parse('${ApiConfig.records}/$id/summarize'),
         headers: _headers(),
       );
       if (resp.statusCode == 200) {

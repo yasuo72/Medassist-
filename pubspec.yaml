@@ -57,6 +57,8 @@ dependencies:
   dio: ^5.4.0 # Added dio for API requests
   nfc_manager: ^3.3.0 # NFC operations
   http: ^1.2.0
+  csv: ^5.0.2
+  string_similarity: ^2.0.0
   wallpaper_manager_flutter: ^1.0.1
   android_intent_plus: ^5.3.0
 
@@ -105,8 +107,11 @@ flutter:
     - assets/images/ # General images folder (if you have other assets here)
     - assets/wallpapers/ # Lock-screen wallpapers
     # Offline chatbot knowledge base
+    - assets/chatbot/medical_chatbot_dataset_1000.json
+    - assets/chatbot/symptom_Description.csv
+    - assets/chatbot/symptom_precaution.csv
+    - assets/chatbot/Symptom-severity.csv
     - assets/chatbot/format_dataset.csv
-    - assets/chatbot/combined_dataset.json
     # - images/a_dot_burr.jpeg
     # - images/a_dot_ham.jpeg
 

@@ -7,10 +7,12 @@ import 'package:medassist_plus/services/api_service.dart';
 /// Service layer that talks to the backend /family endpoints.
 class FamilyService {
   // existing code...
-  Future<Map<String, dynamic>> getSummaryByEmergencyId(String emergencyId) async {
+  Future<String> getSummaryByEmergencyId(String emergencyId) async {
     try {
       final response = await _dio.get('$_basePath/summary/$emergencyId');
-      return response.data['data'] as Map<String, dynamic>;
+      final data = response.data;
+      // Backend returns { success: true, url: '...' }
+      return data is Map<String, dynamic> ? data['url'] ?? '' : data.toString();
     } on DioException catch (e) {
       throw _handleDioError(e);
     }
@@ -22,6 +24,11 @@ class FamilyService {
   Future<List<FamilyMember>> fetchMembers() async {
     try {
       final response = await _dio.get(_basePath);
+      // debug log
+      // ignore: avoid_print
+      print('[FamilyService] GET $_basePath status: ${response.statusCode}');
+      // ignore: avoid_print
+      print('[FamilyService] GET response: ${response.data}');
       // backend expected to return { success: true, data: [...] }
       final data = response.data;
       final List<dynamic> list = data is Map<String, dynamic> ? data['data'] ?? [] : data;
@@ -33,13 +40,30 @@ class FamilyService {
   }
 
   Future<FamilyMember> addMember(FamilyMember member) async {
+    final payload = member.toJson();
+    // Debug: log outgoing payload
+    // ignore: avoid_print
+    print('[FamilyService] POST $_basePath payload: $payload');
+
     try {
-      final response = await _dio.post(_basePath, data: member.toJson());
+      final response = await _dio.post(_basePath, data: payload);
+      // Debug: log status code and response body
+      // ignore: avoid_print
+      print('[FamilyService] status: ${response.statusCode}');
+      // ignore: avoid_print
+      print('[FamilyService] response: ${response.data}');
+
       final data = response.data;
       final json = data is Map<String, dynamic> ? data['data'] ?? data : data;
       return FamilyMember.fromJson(json);
     } on DioException catch (e) {
-      throw Exception((e.response?.data is Map<String, dynamic> ? e.response?.data['message'] : e.response?.data?.toString()) ?? 'Failed to add family member');
+      // Debug: Log error response
+      // ignore: avoid_print
+      print('[FamilyService] DioError: ${e.response?.statusCode} ${e.response?.data}');
+      throw Exception((e.response?.data is Map<String, dynamic>
+              ? e.response?.data['message']
+              : e.response?.data?.toString()) ??
+          'Failed to add family member');
     }
   }
 

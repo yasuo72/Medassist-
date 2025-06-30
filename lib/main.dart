@@ -28,6 +28,7 @@ import 'app_lock_gate.dart';
 import 'screens/security_privacy_screen.dart';
 import 'screens/medical_records_screen.dart';
 import 'providers/medical_record_provider.dart';
+import 'providers/chat_provider.dart';
 import 'package:medassist_plus/screens/settings_screen.dart'; // Import the new SettingsScreen
 import 'screens/emergency_access_screen.dart';
 import 'screens/emergency_contacts_screen.dart'; // New screen for emergency contacts
@@ -66,6 +67,7 @@ void main() async {
         ), // Add UserProfileProvider
         ChangeNotifierProvider(create: (_) => AppLockProvider()..init()),
         ChangeNotifierProvider(create: (_) => EmergencyIdProvider()..init()),
+        ChangeNotifierProvider(create: (_) => ChatProvider()),
         ChangeNotifierProvider(
           create: (_) => EmergencyAccessSettingsProvider(),
         ),

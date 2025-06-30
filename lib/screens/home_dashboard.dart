@@ -92,7 +92,8 @@ class HomeDashboard extends StatelessWidget {
 
   // A small curated list of daily health tips
   // Cached future to avoid multiple network calls on rebuilds
-  static final Future<int> _reportsCountFuture = MedicalRecordService().fetchReportsCount();
+  static final Future<int> _reportsCountFuture =
+      MedicalRecordService().fetchReportsCount();
 
   // Tips list moved to lib/data/daily_tips.dart
 
@@ -100,32 +101,34 @@ class HomeDashboard extends StatelessWidget {
   String _getTodayTip() => getTipForDate(DateTime.now());
 
   Widget _buildDailyTipCard(BuildContext context) {
-  final theme = Theme.of(context);
-  return GlassyPanel(
-    child: Padding(
-      padding: const EdgeInsets.all(16),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Icon(MdiIcons.lightbulbOnOutline,
-              color: theme.colorScheme.primary, size: 32),
-          const SizedBox(width: 12),
-          Expanded(
-            child: Text(
-              _getTodayTip(),
-              style: theme.textTheme.bodyMedium?.copyWith(
-                fontFamily: 'Poppins',
-                fontWeight: FontWeight.w600,
-                color: theme.colorScheme.onSurface,
+    final theme = Theme.of(context);
+    return GlassyPanel(
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Icon(
+              MdiIcons.lightbulbOnOutline,
+              color: theme.colorScheme.primary,
+              size: 32,
+            ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Text(
+                _getTodayTip(),
+                style: theme.textTheme.bodyMedium?.copyWith(
+                  fontFamily: 'Poppins',
+                  fontWeight: FontWeight.w600,
+                  color: theme.colorScheme.onSurface,
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
-    ),
-  ).animate().fadeIn(duration: 500.ms).slideY(begin: 0.2);
-}
-
+    ).animate().fadeIn(duration: 500.ms).slideY(begin: 0.2);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -134,7 +137,8 @@ class HomeDashboard extends StatelessWidget {
     final AppLocalizations loc = AppLocalizations.of(context)!;
     final userProfileProvider = Provider.of<UserProfileProvider>(context);
     final userProfile = userProfileProvider.userProfile;
-    final Color headerColor = isDark ? Colors.white : theme.colorScheme.onPrimary;
+    final Color headerColor =
+        isDark ? Colors.white : theme.colorScheme.onPrimary;
     final Color onSurfaceColor = theme.colorScheme.onSurface;
 
     final List<Map<String, dynamic>> actionItems = [
@@ -320,8 +324,13 @@ class HomeDashboard extends StatelessWidget {
                             const SizedBox(width: 8),
                             GestureDetector(
                               onTap: () async {
-                                final uri = Uri.parse('https://sos-view.vercel.app/');
-                                Future<bool> _launch(Uri u, LaunchMode m) async {
+                                final uri = Uri.parse(
+                                  'https://sos-view.vercel.app/',
+                                );
+                                Future<bool> _launch(
+                                  Uri u,
+                                  LaunchMode m,
+                                ) async {
                                   try {
                                     return await launchUrl(u, mode: m);
                                   } catch (_) {
@@ -329,10 +338,16 @@ class HomeDashboard extends StatelessWidget {
                                   }
                                 }
 
-                                bool launched = await _launch(uri, LaunchMode.externalApplication);
+                                bool launched = await _launch(
+                                  uri,
+                                  LaunchMode.externalApplication,
+                                );
                                 if (!launched) {
                                   // Try with an in-app browser as fallback
-                                  launched = await _launch(uri, LaunchMode.inAppBrowserView);
+                                  launched = await _launch(
+                                    uri,
+                                    LaunchMode.inAppBrowserView,
+                                  );
                                 }
                                 if (!launched && context.mounted) {
                                   ScaffoldMessenger.of(context).showSnackBar(
@@ -358,8 +373,8 @@ class HomeDashboard extends StatelessWidget {
                           ],
                         ),
                       ),
+
                       // spacing
-                      
                       const SizedBox(height: 20),
 
                       // Daily Tip
@@ -462,7 +477,12 @@ class HomeDashboard extends StatelessWidget {
                                   child: FutureBuilder<int>(
                                     future: _reportsCountFuture,
                                     builder: (context, snapshot) {
-                                      final count = snapshot.hasData ? snapshot.data! : userProfile.reportFilePaths.length;
+                                      final count =
+                                          snapshot.hasData
+                                              ? snapshot.data!
+                                              : userProfile
+                                                  .reportFilePaths
+                                                  .length;
                                       return _buildStatItem(
                                         context,
                                         MdiIcons.fileDocumentMultipleOutline,
@@ -553,32 +573,28 @@ class HomeDashboard extends StatelessWidget {
             Align(
               alignment: Alignment.bottomCenter,
               child: FloatingActionButton.extended(
-                onPressed: () => Navigator.pushNamed(context, '/qr'),
-                icon: Icon(
-                  MdiIcons.qrcodeScan,
-                  color: theme.colorScheme.onErrorContainer,
-                ),
-                label: Text(
-                  loc.homeFabLabelEmergencyId,
-                  style: TextStyle(
-                    fontFamily: 'Poppins',
-                    color: theme.colorScheme.onErrorContainer,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-                backgroundColor: theme.colorScheme.errorContainer,
-                elevation: 4.0,
-                tooltip: 'Emergency QR/NFC ID',
-              )
+                    onPressed: () => Navigator.pushNamed(context, '/qr'),
+                    icon: Icon(
+                      MdiIcons.qrcodeScan,
+                      color: theme.colorScheme.onErrorContainer,
+                    ),
+                    label: Text(
+                      loc.homeFabLabelEmergencyId,
+                      style: TextStyle(
+                        fontFamily: 'Poppins',
+                        color: theme.colorScheme.onErrorContainer,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    backgroundColor: theme.colorScheme.errorContainer,
+                    elevation: 4.0,
+                    tooltip: 'Emergency QR/NFC ID',
+                  )
                   .animate()
                   .scale(delay: 800.ms, duration: 500.ms)
                   .slideY(begin: 0.5, curve: Curves.easeInOutCubic),
             ),
-            Positioned(
-              bottom: 16,
-              right: 16,
-              child: _AiChatFab(),
-            ),
+            Positioned(bottom: 16, right: 16, child: _AiChatFab()),
           ],
         ),
       ),
@@ -603,13 +619,14 @@ class _AiChatFab extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return FloatingActionButton(
-      heroTag: 'aiChat',
-      onPressed: () => Navigator.pushNamed(context, ChatbotScreen.routeName),
-      tooltip: 'Ask AI Doctor',
-      backgroundColor: theme.colorScheme.primary,
-      elevation: 6,
-      child: Icon(MdiIcons.robot, color: theme.colorScheme.onPrimary),
-    )
+          heroTag: 'aiChat',
+          onPressed:
+              () => Navigator.pushNamed(context, ChatbotScreen.routeName),
+          tooltip: 'Ask AI Doctor',
+          backgroundColor: theme.colorScheme.primary,
+          elevation: 6,
+          child: Icon(MdiIcons.robot, color: theme.colorScheme.onPrimary),
+        )
         .animate()
         .scale(duration: 600.ms, curve: Curves.easeOutBack)
         .fadeIn(duration: 500.ms, curve: Curves.easeOut);
