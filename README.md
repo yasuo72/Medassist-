@@ -6,7 +6,7 @@
 ---
 
 
-| Screen | File | Purpose |
+| Repository | Links | Purpose |
 |--------|------|---------|
 | Mediassist+ - backend  | [Mediassist+ - backend ](https://github.com/yasuo72/medassist_backend.git) | Core Backend |
 | Report_scan -backend | [ Report_scan -backend](https://github.com/yasuo72/recipt_backend.git) | Reports store & scanning , summary genration(Hindi+English) |
