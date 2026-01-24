@@ -1,8 +1,7 @@
-import 'dart:convert';
+import 'dart:io';
 import 'package:flutter/foundation.dart';
-import 'package:http/http.dart' as http;
 import '../models/medical_record.dart';
-import '../constants/api_config.dart';
+import '../services/receipt_service.dart';
 
 class MedicalRecordProvider with ChangeNotifier {
   MedicalRecordProvider({String? authToken}) : _authToken = authToken;
@@ -17,32 +16,23 @@ class MedicalRecordProvider with ChangeNotifier {
     if (!silent) notifyListeners();
   }
 
-  Map<String, String> _headers({Map<String, String>? extra}) {
-    final headers = <String, String>{
-      if (_authToken != null) 'Authorization': 'Bearer $_authToken',
-    };
-    if (extra != null) headers.addAll(extra);
-    return headers;
-  }
-
-
   List<MedicalRecord> _records = [];
   List<MedicalRecord> get records => _records;
 
   bool _isLoading = false;
   bool get isLoading => _isLoading;
 
-  Future<void> fetchRecords() async {
+  Future<void> fetchRecords(String userId) async {
     _isLoading = true;
     notifyListeners();
     try {
-      final response = await http.get(
-        Uri.parse(ApiConfig.records),
-        headers: _headers(),
-      );
-      if (response.statusCode == 200) {
-        _records = MedicalRecord.listFromJson(response.body);
+      if (userId.isEmpty) {
+        _records = [];
+        return;
       }
+
+      final receipts = await ReceiptService.instance.listReceipts(userId);
+      _records = receipts.map(MedicalRecord.fromMap).toList();
     } catch (_) {
       // log error
     } finally {
@@ -51,23 +41,46 @@ class MedicalRecordProvider with ChangeNotifier {
     }
   }
 
-  Future<bool> uploadRecord({required String title, required String recordType, required String filePath}) async {
-    const allowedTypes = ['Lab Report', 'Prescription', 'Imaging', 'Clinical Note', 'Other'];
-    final sanitizedType = allowedTypes.contains(recordType) ? recordType : 'Other';
-    final request = http.MultipartRequest('POST', Uri.parse('${ApiConfig.records}/upload'));
-    request.headers.addAll(_headers());
-    request.fields['title'] = title;
-    request.fields['recordType'] = sanitizedType;
-
-    // Backend expects multipart key named 'recordFile'
-    request.files.add(await http.MultipartFile.fromPath('recordFile', filePath));
+  Future<bool> uploadRecord({
+    required String title,
+    required String recordType,
+    required String filePath,
+    required String userId,
+  }) async {
+    const allowedTypes = [
+      'Lab Report',
+      'Prescription',
+      'Imaging',
+      'Clinical Note',
+      'Other',
+    ];
+    final sanitizedType =
+        allowedTypes.contains(recordType) ? recordType : 'Other';
 
     try {
-      final streamed = await request.send();
-      final respStr = await streamed.stream.bytesToString();
-      debugPrint('UploadRecord -> status ${streamed.statusCode}; body: $respStr');
-      if (streamed.statusCode == 200) {
-        final record = MedicalRecord.fromMap(jsonDecode(respStr));
+      if (userId.isEmpty) return false;
+
+      final file = File(filePath);
+      final cloudinaryUrl = await ReceiptService.instance.uploadFile(file);
+      if (cloudinaryUrl.isEmpty) return false;
+
+      final items = <String>['$sanitizedType: $title'];
+
+      final result = await ReceiptService.instance.createReceipt(
+        userId: userId,
+        vendor: title,
+        date: DateTime.now().toIso8601String(),
+        items: items,
+        total: '0',
+        cloudinaryFileUrl: cloudinaryUrl,
+        documentType: sanitizedType,
+      );
+
+      if (result['success'] == true &&
+          result['receipt'] is Map<String, dynamic>) {
+        final record = MedicalRecord.fromMap(
+          result['receipt'] as Map<String, dynamic>,
+        );
         _records.insert(0, record);
         notifyListeners();
         return true;
@@ -78,30 +91,24 @@ class MedicalRecordProvider with ChangeNotifier {
     return false;
   }
 
-  Future<bool> deleteRecord(String id) async {
+  Future<bool> deleteRecord(String id, {required String userId}) async {
     try {
-      final resp = await http.delete(
-        Uri.parse('${ApiConfig.records}/$id'),
-        headers: _headers(),
+      await ReceiptService.instance.deleteReceipt(
+        id,
+        userId: userId.isNotEmpty ? userId : null,
       );
-      if (resp.statusCode == 200) {
-        _records.removeWhere((r) => r.id == id);
-        notifyListeners();
-        return true;
-      }
+      _records.removeWhere((r) => r.id == id);
+      notifyListeners();
+      return true;
     } catch (_) {}
     return false;
   }
 
   Future<String?> fetchAiSummary(String id) async {
     try {
-      final resp = await http.post(
-        Uri.parse('${ApiConfig.records}/$id/summarize'),
-        headers: _headers(),
-      );
-      if (resp.statusCode == 200) {
-        final data = jsonDecode(resp.body) as Map<String, dynamic>;
-        return data['summary'] as String?;
+      final data = await ReceiptService.instance.getReceipt(id);
+      if (data != null && data['summary'] is String) {
+        return data['summary'] as String;
       }
     } catch (_) {}
     return null;

@@ -32,10 +32,14 @@ class UserProfileProvider with ChangeNotifier {
       _userProfile = UserProfile(); // Initialize with default if no data found
     }
 
+    // Notify listeners immediately with locally cached profile so the UI can display data without waiting for server round-trip
+    notifyListeners();
+
     // Attempt to fetch latest profile from backend (if authenticated)
     try {
       final backendProfile = await _profileService.fetchProfile();
-      _userProfile = backendProfile;
+      // Merge with existing local data to avoid losing fields missing from backend response
+      _userProfile = _mergeProfiles(_userProfile, backendProfile);
       // save locally for offline use
       await _saveProfile();
     } catch (e) {
@@ -53,13 +57,59 @@ class UserProfileProvider with ChangeNotifier {
     await prefs.setString(_profileKey, profileJson);
   }
 
+  /// Pushes the current local profile state to the backend API, ensuring data is synced.
+  Future<void> _pushLocalToBackend() async {
+    try {
+      await _profileService.updateProfile(_userProfile);
+    } catch (e) {
+      if (kDebugMode) {
+        print('[UserProfileProvider] Failed to push local profile to backend: $e');
+      }
+    }
+  }
+
+  // Helper that merges non-empty / non-null fields from [incoming] into [base].
+  UserProfile _mergeProfiles(UserProfile base, UserProfile incoming) {
+    bool _isNotEmpty(String? s) => s != null && s.isNotEmpty;
+    List<T>? _nonEmptyList<T>(List<T>? l) => (l != null && l.isNotEmpty) ? l : null;
+
+    return base.copyWith(
+      name: _isNotEmpty(incoming.name) ? incoming.name : null,
+      emergencyId: _isNotEmpty(incoming.emergencyId) ? incoming.emergencyId : null,
+      bloodGroup: _isNotEmpty(incoming.bloodGroup) ? incoming.bloodGroup : null,
+      medicalConditions: _nonEmptyList(incoming.medicalConditions),
+      allergies: _nonEmptyList(incoming.allergies),
+      pastSurgeries: _nonEmptyList(incoming.pastSurgeries),
+      currentMedications: _nonEmptyList(incoming.currentMedications),
+      reportFilePaths: _nonEmptyList(incoming.reportFilePaths),
+      faceScanPath: _isNotEmpty(incoming.faceScanPath) ? incoming.faceScanPath : null,
+      fingerprintData: _isNotEmpty(incoming.fingerprintData) ? incoming.fingerprintData : null,
+      emergencyContacts: _nonEmptyList(incoming.emergencyContacts),
+    );
+  }
+
+  Future<void> fetchLatestProfile() async {
+    try {
+      final backendProfile = await _profileService.fetchProfile();
+      _userProfile = _mergeProfiles(_userProfile, backendProfile);
+      await _saveProfile();
+      notifyListeners();
+    } catch (e) {
+      if (kDebugMode) {
+        print('[UserProfileProvider] Failed to fetch latest profile: $e');
+      }
+    }
+  }
+
   Future<void> updateProfile(UserProfile newProfile) async {
-    _userProfile = newProfile;
+    // Merge new changes locally to preserve any existing data not included in [newProfile]
+    _userProfile = _mergeProfiles(_userProfile, newProfile);
 
     // Persist to backend first; fall back to local only on failure
     try {
       final savedProfile = await _profileService.updateProfile(newProfile);
-      _userProfile = savedProfile;
+      // Backend may return partial profile – merge again to avoid data loss
+      _userProfile = _mergeProfiles(_userProfile, savedProfile);
     } catch (e) {
       if (kDebugMode) {
         print('[UserProfileProvider] Failed to update profile on backend: $e');
@@ -68,36 +118,42 @@ class UserProfileProvider with ChangeNotifier {
     }
 
     await _saveProfile();
+    await _pushLocalToBackend();
     notifyListeners();
   }
 
   Future<void> updateName(String name) async {
     _userProfile = _userProfile.copyWith(name: name);
     await _saveProfile();
+    await _pushLocalToBackend();
     notifyListeners();
   }
 
   Future<void> updateBloodGroup(String bloodGroup) async {
     _userProfile = _userProfile.copyWith(bloodGroup: bloodGroup);
     await _saveProfile();
+    await _pushLocalToBackend();
     notifyListeners();
   }
 
   Future<void> updateMedicalConditions(List<String> conditions) async {
     _userProfile = _userProfile.copyWith(medicalConditions: conditions);
     await _saveProfile();
+    await _pushLocalToBackend();
     notifyListeners();
   }
 
   Future<void> updateAllergies(List<String> allergies) async {
     _userProfile = _userProfile.copyWith(allergies: allergies);
     await _saveProfile();
+    await _pushLocalToBackend();
     notifyListeners();
   }
 
   Future<void> updatePastSurgeries(List<String> surgeries) async {
     _userProfile = _userProfile.copyWith(pastSurgeries: surgeries);
     await _saveProfile();
+    await _pushLocalToBackend();
     notifyListeners();
   }
 
@@ -112,6 +168,7 @@ class UserProfileProvider with ChangeNotifier {
   Future<void> updateCurrentMedications(List<String> medications) async {
     _userProfile = _userProfile.copyWith(currentMedications: medications);
     await _saveProfile();
+    await _pushLocalToBackend();
     notifyListeners();
   }
 
@@ -119,6 +176,7 @@ class UserProfileProvider with ChangeNotifier {
     final updatedPaths = List<String>.from(_userProfile.reportFilePaths)..add(path);
     _userProfile = _userProfile.copyWith(reportFilePaths: updatedPaths);
     await _saveProfile();
+    await _pushLocalToBackend();
     notifyListeners();
   }
 
@@ -126,6 +184,7 @@ class UserProfileProvider with ChangeNotifier {
     final updatedPaths = List<String>.from(_userProfile.reportFilePaths)..remove(path);
     _userProfile = _userProfile.copyWith(reportFilePaths: updatedPaths);
     await _saveProfile();
+    await _pushLocalToBackend();
     notifyListeners();
   }
 
@@ -133,6 +192,7 @@ class UserProfileProvider with ChangeNotifier {
   Future<void> updateFaceScanPath(String path) async {
     _userProfile = _userProfile.copyWith(faceScanPath: path);
     await _saveProfile();
+    await _pushLocalToBackend();
     notifyListeners();
   }
 
@@ -140,6 +200,7 @@ class UserProfileProvider with ChangeNotifier {
   Future<void> setFaceScanEnrolled(bool isEnrolled) async {
     _userProfile = _userProfile.copyWith(faceScanPath: isEnrolled ? "enrolled" : ""); // Store "enrolled" or empty
     await _saveProfile();
+    await _pushLocalToBackend();
     notifyListeners();
   }
 
@@ -147,6 +208,7 @@ class UserProfileProvider with ChangeNotifier {
   Future<void> setFingerprintEnrolled(bool isEnrolled) async {
     _userProfile = _userProfile.copyWith(fingerprintData: isEnrolled ? "enrolled" : ""); // Store "enrolled" or empty
     await _saveProfile();
+    await _pushLocalToBackend();
     notifyListeners();
   }
 
@@ -154,6 +216,7 @@ class UserProfileProvider with ChangeNotifier {
   Future<void> clearProfile() async {
     _userProfile = UserProfile();
     await _saveProfile();
+    await _pushLocalToBackend();
     notifyListeners();
   }
 }

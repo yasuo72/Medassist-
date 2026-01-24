@@ -7,7 +7,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:medassist_plus/data/daily_tips.dart';
 import '../widgets/glassy_panel.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:medassist_plus/l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:medassist_plus/services/medical_record_service.dart';
 import 'package:medassist_plus/providers/user_profile_provider.dart';
@@ -91,10 +91,6 @@ class HomeDashboard extends StatelessWidget {
   }
 
   // A small curated list of daily health tips
-  // Cached future to avoid multiple network calls on rebuilds
-  static final Future<int> _reportsCountFuture =
-      MedicalRecordService().fetchReportsCount();
-
   // Tips list moved to lib/data/daily_tips.dart
 
   // Deterministically pick a tip from shared data file
@@ -146,6 +142,11 @@ class HomeDashboard extends StatelessWidget {
         'icon': MdiIcons.fileDocumentOutline,
         'label': 'Medical Records',
         'route': '/records',
+      },
+      {
+        'icon': MdiIcons.fileDocumentOutline,
+        'label': 'Receipt Store',
+        'route': '/receipts',
       },
       {
         'icon': MdiIcons.accountMultiplePlusOutline,
@@ -475,7 +476,10 @@ class HomeDashboard extends StatelessWidget {
                                       (MediaQuery.of(context).size.width / 2) -
                                       22,
                                   child: FutureBuilder<int>(
-                                    future: _reportsCountFuture,
+                                    future: MedicalRecordService()
+                                        .fetchReportsCount(
+                                          userProfileProvider.userId,
+                                        ),
                                     builder: (context, snapshot) {
                                       final count =
                                           snapshot.hasData

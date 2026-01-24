@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:medassist_plus/providers/emergency_id_provider.dart';
 import 'package:medassist_plus/theme_provider.dart';
 import 'package:medassist_plus/language_provider.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:medassist_plus/l10n/app_localizations.dart';
 
 // Placeholder for theme service/provider
 // class ThemeProvider extends ChangeNotifier { ... }
@@ -21,7 +21,6 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
-
   void _toggleTheme(bool value) {
     final themeMode = value ? ThemeMode.dark : ThemeMode.light;
     Provider.of<ThemeProvider>(context, listen: false).setTheme(themeMode);
@@ -33,7 +32,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
   void _changeLanguage(String? languageCode) {
     if (languageCode != null) {
-      Provider.of<LanguageProvider>(context, listen: false).changeLanguage(Locale(languageCode));
+      Provider.of<LanguageProvider>(
+        context,
+        listen: false,
+      ).changeLanguage(Locale(languageCode));
       // SnackBar for feedback (optional)
       // ScaffoldMessenger.of(context).showSnackBar(
       //   SnackBar(content: Text('Language changed to $languageCode')),
@@ -49,7 +51,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(loc.settingsTitle, style: const TextStyle(fontFamily: 'Poppins')),
+        title: Text(
+          loc.settingsTitle,
+          style: const TextStyle(fontFamily: 'Poppins'),
+        ),
         backgroundColor: theme.colorScheme.primary,
         foregroundColor: theme.colorScheme.onPrimary,
       ),
@@ -59,48 +64,86 @@ class _SettingsScreenState extends State<SettingsScreen> {
           _buildSectionTitle(theme, loc.appearanceSectionTitle),
           Card(
             elevation: 2,
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+            ),
             child: SwitchListTile(
-              title: Text(loc.darkMode, style: theme.textTheme.titleMedium?.copyWith(fontFamily: 'Poppins')),
-              subtitle: Text(loc.darkModeSubtitle, style: theme.textTheme.bodySmall?.copyWith(fontFamily: 'Poppins')),
+              title: Text(
+                loc.darkMode,
+                style: theme.textTheme.titleMedium?.copyWith(
+                  fontFamily: 'Poppins',
+                ),
+              ),
+              subtitle: Text(
+                loc.darkModeSubtitle,
+                style: theme.textTheme.bodySmall?.copyWith(
+                  fontFamily: 'Poppins',
+                ),
+              ),
               value: Provider.of<ThemeProvider>(context).isDarkMode,
               onChanged: _toggleTheme,
-              secondary: Icon(MdiIcons.themeLightDark, color: theme.colorScheme.primary),
-              contentPadding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+              secondary: Icon(
+                MdiIcons.themeLightDark,
+                color: theme.colorScheme.primary,
+              ),
+              contentPadding: const EdgeInsets.symmetric(
+                vertical: 8,
+                horizontal: 16,
+              ),
             ),
           ),
           const SizedBox(height: 24),
           _buildSectionTitle(theme, loc.languageRegionSectionTitle),
           Card(
             elevation: 2,
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+            ),
             child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+              padding: const EdgeInsets.symmetric(
+                vertical: 8.0,
+                horizontal: 16.0,
+              ),
               child: DropdownButtonFormField<String>(
                 decoration: InputDecoration(
                   labelText: loc.appLanguageDropdownTitle,
-                  labelStyle: TextStyle(fontFamily: 'Poppins', color: theme.colorScheme.primary),
+                  labelStyle: TextStyle(
+                    fontFamily: 'Poppins',
+                    color: theme.colorScheme.primary,
+                  ),
                   border: InputBorder.none, // Remove border to blend with card
-                  prefixIcon: Icon(MdiIcons.translate, color: theme.colorScheme.primary),
+                  prefixIcon: Icon(
+                    MdiIcons.translate,
+                    color: theme.colorScheme.primary,
+                  ),
                 ),
                 value: languageProvider.appLocale.languageCode,
-                icon: Icon(MdiIcons.chevronDown, color: theme.colorScheme.secondary),
-                style: theme.textTheme.titleMedium?.copyWith(fontFamily: 'Poppins'),
+                icon: Icon(
+                  MdiIcons.chevronDown,
+                  color: theme.colorScheme.secondary,
+                ),
+                style: theme.textTheme.titleMedium?.copyWith(
+                  fontFamily: 'Poppins',
+                ),
                 dropdownColor: theme.cardColor,
-                items: languageProvider.supportedLocales.map((locale) {
-                  // For user-friendly names, you'd typically have a map or a method
-                  // to get the display name for a locale. For now, using language code.
-                  String displayName = locale.languageCode;
-                  if (locale.languageCode == 'en') displayName = 'English';
-                  if (locale.languageCode == 'es') displayName = 'Español';
-                  if (locale.languageCode == 'fr') displayName = 'Français';
-                  if (locale.languageCode == 'de') displayName = 'Deutsch';
-                  if (locale.languageCode == 'hi') displayName = 'हिन्दी';
-                  return DropdownMenuItem<String>(
-                    value: locale.languageCode,
-                    child: Text(displayName, style: const TextStyle(fontFamily: 'Poppins')),
-                  );
-                }).toList(),
+                items:
+                    languageProvider.supportedLocales.map((locale) {
+                      // For user-friendly names, you'd typically have a map or a method
+                      // to get the display name for a locale. For now, using language code.
+                      String displayName = locale.languageCode;
+                      if (locale.languageCode == 'en') displayName = 'English';
+                      if (locale.languageCode == 'es') displayName = 'Español';
+                      if (locale.languageCode == 'fr') displayName = 'Français';
+                      if (locale.languageCode == 'de') displayName = 'Deutsch';
+                      if (locale.languageCode == 'hi') displayName = 'हिन्दी';
+                      return DropdownMenuItem<String>(
+                        value: locale.languageCode,
+                        child: Text(
+                          displayName,
+                          style: const TextStyle(fontFamily: 'Poppins'),
+                        ),
+                      );
+                    }).toList(),
                 onChanged: _changeLanguage,
               ),
             ),
@@ -144,7 +187,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
             icon: MdiIcons.informationOutline,
             title: 'About MedAssist+',
             subtitle: 'Version 1.0.0 (Build 1)', // Placeholder version
-            onTap: () { /* TODO: Show About Dialog or Screen */ },
+            onTap: () {
+              /* TODO: Show About Dialog or Screen */
+            },
           ),
           _buildSettingsTile(
             theme,
@@ -160,9 +205,15 @@ class _SettingsScreenState extends State<SettingsScreen> {
             iconColor: theme.colorScheme.error,
             onTap: () {
               // TODO: Implement logout logic
-              Navigator.pushNamedAndRemoveUntil(context, '/login', (route) => false);
+              Navigator.pushNamedAndRemoveUntil(
+                context,
+                '/login',
+                (route) => false,
+              );
               ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Logged out successfully (Simulated)')),
+                const SnackBar(
+                  content: Text('Logged out successfully (Simulated)'),
+                ),
               );
             },
           ),
@@ -192,58 +243,77 @@ class _SettingsScreenState extends State<SettingsScreen> {
     final formKey = GlobalKey<FormState>();
     await showDialog(
       context: context,
-      builder: (ctx) => AlertDialog(
-        title: const Text('Configure Emergency ID', style: TextStyle(fontFamily: 'Poppins')),
-        content: Form(
-          key: formKey,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              TextFormField(
-                controller: idController,
-                decoration: const InputDecoration(labelText: 'Emergency ID'),
-                validator: (v) => (v == null || v.trim().isEmpty) ? 'Required' : null,
+      builder:
+          (ctx) => AlertDialog(
+            title: const Text(
+              'Configure Emergency ID',
+              style: TextStyle(fontFamily: 'Poppins'),
+            ),
+            content: Form(
+              key: formKey,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  TextFormField(
+                    controller: idController,
+                    decoration: const InputDecoration(
+                      labelText: 'Emergency ID',
+                    ),
+                    validator:
+                        (v) =>
+                            (v == null || v.trim().isEmpty) ? 'Required' : null,
+                  ),
+                  const SizedBox(height: 12),
+                  TextFormField(
+                    controller: pwdController,
+                    decoration: const InputDecoration(
+                      labelText: 'Current Password',
+                    ),
+                    obscureText: true,
+                    validator:
+                        (v) =>
+                            (v == null || v.length < 4) ? 'Min 4 chars' : null,
+                  ),
+                ],
               ),
-              const SizedBox(height: 12),
-              TextFormField(
-                controller: pwdController,
-                decoration: const InputDecoration(labelText: 'Current Password'),
-                obscureText: true,
-                validator: (v) => (v == null || v.length < 4) ? 'Min 4 chars' : null,
+            ),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(ctx),
+                child: const Text('Cancel'),
+              ),
+              ElevatedButton(
+                onPressed: () async {
+                  if (!formKey.currentState!.validate()) return;
+                  final prov = context.read<EmergencyIdProvider>();
+                  final verified = await prov.unlock(pwdController.text.trim());
+                  if (!verified) {
+                    if (context.mounted) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Incorrect password')),
+                      );
+                    }
+                    return;
+                  }
+                  await prov.setEmergencyId(idController.text.trim());
+
+                  // Push to backend
+                  try {
+                    final userSvc = UserService(ApiService.instance.dio);
+                    await userSvc.setEmergencyId(idController.text.trim());
+                  } catch (e) {
+                    debugPrint('Failed to sync Emergency ID: $e');
+                  }
+                  if (context.mounted) Navigator.pop(ctx);
+                  prov.lock();
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Emergency ID updated')),
+                  );
+                },
+                child: const Text('Save'),
               ),
             ],
           ),
-        ),
-        actions: [
-          TextButton(onPressed: () => Navigator.pop(ctx), child: const Text('Cancel')),
-          ElevatedButton(
-            onPressed: () async {
-              if (!formKey.currentState!.validate()) return;
-              final prov = context.read<EmergencyIdProvider>();
-              final verified = await prov.unlock(pwdController.text.trim());
-              if (!verified) {
-                if (context.mounted) {
-                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Incorrect password')));
-                }
-                return;
-              }
-              await prov.setEmergencyId(idController.text.trim());
-
-              // Push to backend
-              try {
-                final userSvc = UserService(ApiService.instance.dio);
-                await userSvc.setEmergencyId(idController.text.trim());
-              } catch (e) {
-                debugPrint('Failed to sync Emergency ID: $e');
-              }
-              if (context.mounted) Navigator.pop(ctx);
-              prov.lock();
-              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Emergency ID updated')));
-            },
-            child: const Text('Save'),
-          )
-        ],
-      ),
     );
   }
 
@@ -252,72 +322,125 @@ class _SettingsScreenState extends State<SettingsScreen> {
     final prov = context.read<EmergencyIdProvider>();
     await showDialog(
       context: context,
-      builder: (ctx) => AlertDialog(
-        title: const Text('Enter Password', style: TextStyle(fontFamily: 'Poppins')),
-        content: TextField(
-          controller: pwdCtrl,
-          obscureText: true,
-          decoration: const InputDecoration(labelText: 'Password'),
-        ),
-        actions: [
-          TextButton(onPressed: () => Navigator.pop(ctx), child: const Text('Cancel')),
-          ElevatedButton(
-            onPressed: () async {
-              final ok = await prov.unlock(pwdCtrl.text.trim());
-              if (!context.mounted) return;
-              if (!ok) {
-                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Incorrect password')));
-                return;
-              }
-              Navigator.pop(ctx);
-              _showEmergencyIdSheet(context, prov);
-            },
-            child: const Text('Unlock'),
-          )
-        ],
-      ),
+      builder:
+          (ctx) => AlertDialog(
+            title: const Text(
+              'Enter Password',
+              style: TextStyle(fontFamily: 'Poppins'),
+            ),
+            content: TextField(
+              controller: pwdCtrl,
+              obscureText: true,
+              decoration: const InputDecoration(labelText: 'Password'),
+            ),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(ctx),
+                child: const Text('Cancel'),
+              ),
+              ElevatedButton(
+                onPressed: () async {
+                  final ok = await prov.unlock(pwdCtrl.text.trim());
+                  if (!context.mounted) return;
+                  if (!ok) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('Incorrect password')),
+                    );
+                    return;
+                  }
+                  Navigator.pop(ctx);
+                  _showEmergencyIdSheet(context, prov);
+                },
+                child: const Text('Unlock'),
+              ),
+            ],
+          ),
     );
   }
 
   void _showEmergencyIdSheet(BuildContext context, EmergencyIdProvider prov) {
     showModalBottomSheet(
       context: context,
-      builder: (_) => Container(
-        padding: const EdgeInsets.all(24),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const Text('Your Emergency ID', style: TextStyle(fontFamily: 'Poppins', fontSize: 18, fontWeight: FontWeight.w600)),
-            const SizedBox(height: 12),
-            SelectableText(
-              prov.emergencyId ?? '-',
-              style: const TextStyle(fontSize: 24, fontFamily: 'Poppins'),
+      builder:
+          (_) => Container(
+            padding: const EdgeInsets.all(24),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Text(
+                  'Your Emergency ID',
+                  style: TextStyle(
+                    fontFamily: 'Poppins',
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                const SizedBox(height: 12),
+                SelectableText(
+                  prov.emergencyId ?? '-',
+                  style: const TextStyle(fontSize: 24, fontFamily: 'Poppins'),
+                ),
+                const SizedBox(height: 8),
+                ElevatedButton.icon(
+                  icon: const Icon(Icons.copy),
+                  label: const Text('Copy'),
+                  onPressed: () {
+                    Clipboard.setData(
+                      ClipboardData(text: prov.emergencyId ?? ''),
+                    );
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('Copied to clipboard')),
+                    );
+                  },
+                ),
+              ],
             ),
-            const SizedBox(height: 8),
-            ElevatedButton.icon(
-              icon: const Icon(Icons.copy),
-              label: const Text('Copy'),
-              onPressed: () {
-                Clipboard.setData(ClipboardData(text: prov.emergencyId ?? ''));
-                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Copied to clipboard')));
-              },
-            )
-          ],
-        ),
-      ),
+          ),
     ).whenComplete(() => prov.lock());
   }
 
-  Widget _buildSettingsTile(ThemeData theme, {required IconData icon, required String title, String? subtitle, VoidCallback? onTap, Color? titleColor, Color? iconColor}) {
+  Widget _buildSettingsTile(
+    ThemeData theme, {
+    required IconData icon,
+    required String title,
+    String? subtitle,
+    VoidCallback? onTap,
+    Color? titleColor,
+    Color? iconColor,
+  }) {
     return Card(
       elevation: 1,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       margin: const EdgeInsets.symmetric(vertical: 6),
       child: ListTile(
-        leading: Icon(icon, color: iconColor ?? theme.colorScheme.secondary, size: 28),
-        title: Text(title, style: theme.textTheme.titleMedium?.copyWith(fontFamily: 'Poppins', color: titleColor)),
-        subtitle: subtitle != null ? Text(subtitle, style: theme.textTheme.bodySmall?.copyWith(fontFamily: 'Poppins')) : null,
-        trailing: onTap != null ? Icon(MdiIcons.chevronRight, color: theme.colorScheme.onSurfaceVariant) : null,
+        leading: Icon(
+          icon,
+          color: iconColor ?? theme.colorScheme.secondary,
+          size: 28,
+        ),
+        title: Text(
+          title,
+          style: theme.textTheme.titleMedium?.copyWith(
+            fontFamily: 'Poppins',
+            color: titleColor,
+          ),
+        ),
+        subtitle:
+            subtitle != null
+                ? Text(
+                  subtitle,
+                  style: theme.textTheme.bodySmall?.copyWith(
+                    fontFamily: 'Poppins',
+                  ),
+                )
+                : null,
+        trailing:
+            onTap != null
+                ? Icon(
+                  MdiIcons.chevronRight,
+                  color: theme.colorScheme.onSurfaceVariant,
+                )
+                : null,
         onTap: onTap,
         contentPadding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
       ),

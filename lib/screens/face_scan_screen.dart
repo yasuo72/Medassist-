@@ -318,8 +318,11 @@ class _FaceScanScreenState extends State<FaceScanScreen> {
             _statusText = 'Face matched successfully!';
           });
           if (mounted) {
+            // Refresh profile so latest server-side data is available immediately
+            await context.read<UserProfileProvider>().fetchLatestProfile();
             Future.microtask(() => Navigator.of(context).pushReplacementNamed('/face-success'));
           }
+        
         } else {
           _updateState(() {
             _feedbackText = 'No match found';

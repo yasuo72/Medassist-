@@ -5,7 +5,7 @@ import 'package:file_picker/file_picker.dart';
 import 'dart:io';
 import '../providers/user_profile_provider.dart';
 
-import 'package:flutter_gen/gen_l10n/app_localizations.dart'; // For localization if needed for titles/buttons
+import 'package:medassist_plus/l10n/app_localizations.dart'; // For localization if needed for titles/buttons
 
 class ProfileCreationScreen extends StatefulWidget {
   const ProfileCreationScreen({super.key});
@@ -98,13 +98,11 @@ class _ProfileCreationScreenState extends State<ProfileCreationScreen> {
       // Send profile to backend via provider (ProfileService inside)
       try {
         await profileProvider.updateProfile(updatedProfile);
-
-
       } catch (e) {
         if (mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('Server error: $e')),
-          );
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text('Server error: $e')));
         }
       }
 
@@ -423,7 +421,9 @@ class _ProfileCreationScreenState extends State<ProfileCreationScreen> {
     if (result != null) {
       setState(() {
         _reportFilePaths.addAll(result.paths.whereType<String>());
-        _reportFiles.addAll(result.paths.whereType<String>().map((p) => File(p)));
+        _reportFiles.addAll(
+          result.paths.whereType<String>().map((p) => File(p)),
+        );
       });
     }
   }

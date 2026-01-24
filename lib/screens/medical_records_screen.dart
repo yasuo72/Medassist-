@@ -4,6 +4,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
 import '../providers/medical_record_provider.dart';
+import '../providers/user_profile_provider.dart';
 import '../models/medical_record.dart';
 import 'record_detail_screen.dart';
 
@@ -21,10 +22,16 @@ class _MedicalRecordsScreenState extends State<MedicalRecordsScreen> {
   void initState() {
     super.initState();
     // Access provider without listening to avoid unwanted rebuilds here
-    _recordProvider =
-        Provider.of<MedicalRecordProvider>(context, listen: false);
-    // Fetch once after first frame
-    Future.microtask(() => _recordProvider.fetchRecords());
+    _recordProvider = Provider.of<MedicalRecordProvider>(
+      context,
+      listen: false,
+    );
+    // Fetch once after first frame using the Emergency ID as userId
+    Future.microtask(() {
+      final userId =
+          Provider.of<UserProfileProvider>(context, listen: false).userId;
+      return _recordProvider.fetchRecords(userId);
+    });
   }
 
   @override
@@ -49,7 +56,9 @@ class _MedicalRecordsScreenState extends State<MedicalRecordsScreen> {
       builder: (ctx) {
         final theme = Theme.of(ctx);
         return Padding(
-          padding: EdgeInsets.only(bottom: MediaQuery.of(ctx).viewInsets.bottom),
+          padding: EdgeInsets.only(
+            bottom: MediaQuery.of(ctx).viewInsets.bottom,
+          ),
           child: ClipRRect(
             borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
             child: Container(
@@ -66,10 +75,22 @@ class _MedicalRecordsScreenState extends State<MedicalRecordsScreen> {
                   DropdownButtonFormField<String>(
                     value: recordType,
                     items: const [
-                      DropdownMenuItem(value: 'Lab Report', child: Text('Lab Report')),
-                      DropdownMenuItem(value: 'Prescription', child: Text('Prescription')),
-                      DropdownMenuItem(value: 'Imaging', child: Text('Imaging')),
-                      DropdownMenuItem(value: 'Clinical Note', child: Text('Clinical Note')),
+                      DropdownMenuItem(
+                        value: 'Lab Report',
+                        child: Text('Lab Report'),
+                      ),
+                      DropdownMenuItem(
+                        value: 'Prescription',
+                        child: Text('Prescription'),
+                      ),
+                      DropdownMenuItem(
+                        value: 'Imaging',
+                        child: Text('Imaging'),
+                      ),
+                      DropdownMenuItem(
+                        value: 'Clinical Note',
+                        child: Text('Clinical Note'),
+                      ),
                       DropdownMenuItem(value: 'Other', child: Text('Other')),
                     ],
                     onChanged: (val) => recordType = val!,
@@ -92,10 +113,13 @@ class _MedicalRecordsScreenState extends State<MedicalRecordsScreen> {
       },
     ).then((confirmed) async {
       if (confirmed == true) {
+        final userId =
+            Provider.of<UserProfileProvider>(context, listen: false).userId;
         final success = await _recordProvider.uploadRecord(
           title: titleController.text.trim(),
           recordType: recordType,
           filePath: filePath,
+          userId: userId,
         );
         if (!mounted) return;
         ScaffoldMessenger.of(context).showSnackBar(
@@ -111,7 +135,11 @@ class _MedicalRecordsScreenState extends State<MedicalRecordsScreen> {
     return Scaffold(
       appBar: AppBar(title: const Text('Medical Records')),
       body: RefreshIndicator(
-        onRefresh: _recordProvider.fetchRecords,
+        onRefresh: () async {
+          final userId =
+              Provider.of<UserProfileProvider>(context, listen: false).userId;
+          await _recordProvider.fetchRecords(userId);
+        },
         child: Consumer<MedicalRecordProvider>(
           builder: (ctx, prov, _) {
             if (prov.isLoading && prov.records.isEmpty) {
@@ -125,7 +153,10 @@ class _MedicalRecordsScreenState extends State<MedicalRecordsScreen> {
               itemCount: prov.records.length,
               itemBuilder: (ctx, i) {
                 final record = prov.records[i];
-                return _buildRecordCard(record, theme).animate().fadeIn().slideY(begin: 0.1);
+                return _buildRecordCard(
+                  record,
+                  theme,
+                ).animate().fadeIn().slideY(begin: 0.1);
               },
             );
           },
@@ -144,25 +175,48 @@ class _MedicalRecordsScreenState extends State<MedicalRecordsScreen> {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       elevation: 4,
       child: ListTile(
-        leading: Icon(MdiIcons.fileDocumentOutline, color: theme.colorScheme.primary),
-        title: Text(record.title, style: const TextStyle(fontFamily: 'Poppins')),
+        leading: Icon(
+          MdiIcons.fileDocumentOutline,
+          color: theme.colorScheme.primary,
+        ),
+        title: Text(
+          record.title,
+          style: const TextStyle(fontFamily: 'Poppins'),
+        ),
         subtitle: Text(record.recordType),
         trailing: PopupMenuButton<String>(
           onSelected: (value) async {
             if (value == 'delete') {
               final confirm = await showDialog<bool>(
                 context: context,
-                builder: (ctx) => AlertDialog(
-                  title: const Text('Delete Record'),
-                  content: const Text('Are you sure you want to delete this record?'),
-                  actions: [
-                    TextButton(onPressed: () => Navigator.pop(ctx, false), child: const Text('Cancel')),
-                    TextButton(onPressed: () => Navigator.pop(ctx, true), child: const Text('Delete')),
-                  ],
-                ),
+                builder:
+                    (ctx) => AlertDialog(
+                      title: const Text('Delete Record'),
+                      content: const Text(
+                        'Are you sure you want to delete this record?',
+                      ),
+                      actions: [
+                        TextButton(
+                          onPressed: () => Navigator.pop(ctx, false),
+                          child: const Text('Cancel'),
+                        ),
+                        TextButton(
+                          onPressed: () => Navigator.pop(ctx, true),
+                          child: const Text('Delete'),
+                        ),
+                      ],
+                    ),
               );
               if (confirm == true) {
-                final ok = await _recordProvider.deleteRecord(record.id);
+                final userId =
+                    Provider.of<UserProfileProvider>(
+                      context,
+                      listen: false,
+                    ).userId;
+                final ok = await _recordProvider.deleteRecord(
+                  record.id,
+                  userId: userId,
+                );
                 if (!context.mounted) return;
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(content: Text(ok ? 'Deleted' : 'Failed to delete')),
@@ -170,14 +224,17 @@ class _MedicalRecordsScreenState extends State<MedicalRecordsScreen> {
               }
             }
           },
-          itemBuilder: (ctx) => [
-            const PopupMenuItem(value: 'delete', child: Text('Delete')),
-          ],
+          itemBuilder:
+              (ctx) => [
+                const PopupMenuItem(value: 'delete', child: Text('Delete')),
+              ],
         ),
         onTap: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (_) => RecordDetailScreen(record: record)),
+            MaterialPageRoute(
+              builder: (_) => RecordDetailScreen(record: record),
+            ),
           );
         },
       ),

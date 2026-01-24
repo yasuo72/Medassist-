@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import '../providers/auth_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../providers/medical_record_provider.dart';
+import '../providers/user_profile_provider.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -51,6 +52,9 @@ class _LoginScreenState extends State<LoginScreen> {
         context.read<MedicalRecordProvider>().setAuthToken(token, silent: true);
       }
 
+      if (mounted) {
+        await context.read<UserProfileProvider>().fetchLatestProfile();
+      }
       if (!mounted) return;
       Navigator.pushReplacementNamed(context, '/home');
     } catch (e) {

@@ -1,19 +1,20 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-/// Simple client for the MedAssist+ Hugging Face Space RAG chatbot.
+/// Simple client for the MedAssist+ online chatbot backend.
 class RagChatService {
-  // Replace with your Space URL if you fork/rename.
-  static const String _base = 'https://yasuo7-chatbot2.hf.space';
+  // Base URL for the deployed online chatbot backend (Railway).
+  static const String _base = 'https://onlinrchatbot-production.up.railway.app';
   static const String _chatPath = '/chat';
   static const String _passagesPath = '/passages';
 
   Uri _u(String path) => Uri.parse(_base + path);
 
   Future<String> ask(String question) async {
-    final req = http.Request('POST', _u(_chatPath))
-      ..headers['Content-Type'] = 'application/json'
-      ..body = jsonEncode({'question': question});
+    final req =
+        http.Request('POST', _u(_chatPath))
+          ..headers['Content-Type'] = 'application/json'
+          ..body = jsonEncode({'question': question});
 
     final resp = await req.send();
     if (resp.statusCode != 200) {

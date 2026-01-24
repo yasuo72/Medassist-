@@ -13,6 +13,7 @@
 | Face_api | [face_api](https://github.com/yasuo72/Face_api.git) | Stores user face in vector form in multi_dimen. for more accurecy |
 | Mediassist -frontend | [frontend](https://github.com/yasuo72/Medassist-.git) | Flutter frontend use attractive ui widgets |
 | Sos-View -for doctors | [For Doctors/hospitals web app](https://github.com/yasuo72/sos_view.git) | website for doctors for scaaning and retriving the data  |
+| Mediassist+ - Online_bot | [Mediassist+ - online_bot ](https://huggingface.co/spaces/yasuo7/chatbot2) | Well trained Doctor like symptom analysis and recommending right advices |
 
 ## 📑 Table of Contents
 

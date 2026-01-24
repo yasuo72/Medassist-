@@ -6,7 +6,9 @@ class AppTheme {
   AppTheme._();
 
   // Core brand colours
-  static const Color _brandBlue = Color(0xFF1E6CFF); // slightly softer than #007AFF
+  static const Color _brandBlue = Color(
+    0xFF1E6CFF,
+  ); // slightly softer than #007AFF
   static const Color _backgroundDark = Color(0xFF0D1117);
   static const Color _cardDark = Color(0xFF161B22);
 
@@ -17,12 +19,16 @@ class AppTheme {
     scaffoldBackgroundColor: Colors.white,
     fontFamily: 'Poppins',
     colorScheme: ColorScheme.fromSeed(seedColor: _brandBlue),
-    cardTheme: CardTheme(
+    cardTheme: CardThemeData(
       color: Colors.white,
       elevation: 4,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
     ),
-    appBarTheme: const AppBarTheme(elevation: 0, backgroundColor: Colors.white, foregroundColor: Colors.black),
+    appBarTheme: const AppBarTheme(
+      elevation: 0,
+      backgroundColor: Colors.white,
+      foregroundColor: Colors.black,
+    ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         backgroundColor: _brandBlue,
@@ -46,14 +52,21 @@ class AppTheme {
     primaryColor: _brandBlue,
     scaffoldBackgroundColor: _backgroundDark,
     fontFamily: 'Poppins',
-    colorScheme: ColorScheme.fromSeed(seedColor: _brandBlue, brightness: Brightness.dark),
-    cardTheme: CardTheme(
+    colorScheme: ColorScheme.fromSeed(
+      seedColor: _brandBlue,
+      brightness: Brightness.dark,
+    ),
+    cardTheme: CardThemeData(
       color: _cardDark.withOpacity(0.8),
       elevation: 6,
       shadowColor: Colors.black87,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
     ),
-    appBarTheme: const AppBarTheme(elevation: 0, backgroundColor: Colors.transparent, foregroundColor: Colors.white),
+    appBarTheme: const AppBarTheme(
+      elevation: 0,
+      backgroundColor: Colors.transparent,
+      foregroundColor: Colors.white,
+    ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         backgroundColor: _brandBlue,

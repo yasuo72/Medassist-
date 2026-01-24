@@ -8,7 +8,7 @@ import 'package:medassist_plus/screens/family_member_profile_screen.dart'; // Ne
 import 'package:medassist_plus/models/family_member.dart';
 import 'package:medassist_plus/language_provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:medassist_plus/l10n/app_localizations.dart';
 import 'package:medassist_plus/providers/user_profile_provider.dart'; // Import UserProfileProvider
 import 'package:medassist_plus/providers/emergency_id_provider.dart';
 import 'package:medassist_plus/providers/auth_provider.dart'; // new auth provider
@@ -24,7 +24,6 @@ import 'screens/online_chatbot_screen.dart';
 import 'screens/face_register_success.dart';
 import 'screens/help_support_screen.dart';
 import 'providers/app_lock_provider.dart';
-import 'app_lock_gate.dart';
 import 'screens/security_privacy_screen.dart';
 import 'screens/medical_records_screen.dart';
 import 'providers/medical_record_provider.dart';
@@ -36,6 +35,8 @@ import 'screens/family_management_screen.dart';
 import 'screens/crash_detection_screen.dart';
 import 'screens/face_scan_screen.dart'; // Import FaceScanScreen
 import 'screens/fingerprint_scan_screen.dart'; // Import FingerprintScanScreen
+import 'screens/receipt_store_screen.dart';
+import 'screens/receipt_detail_screen.dart';
 import 'providers/emergency_access_settings_provider.dart';
 import 'screens/emergency_access_settings_screen.dart';
 // import 'background_service.dart'; // Disabled background service per user request
@@ -135,6 +136,8 @@ class MedAssistPlusApp extends StatelessWidget {
             (context) =>
                 const QrGeneratorScreen(), // Uses QrGeneratorScreen from qr_nfc_screen.dart
         '/records': (context) => const MedicalRecordsScreen(),
+        '/receipts': (context) => const ReceiptStoreScreen(),
+        '/receipt-detail': (context) => const ReceiptDetailScreen(),
         '/settings': (context) => const SettingsScreen(),
         '/family-member-profile': (context) {
           final member =

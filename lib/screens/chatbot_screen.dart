@@ -3,6 +3,8 @@ import '../../chatbot/chatbot_engine.dart';
 import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'dart:math' as math;
+import 'dart:convert';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ChatbotScreen extends StatefulWidget {
   static const String routeName = '/chatbot';
@@ -14,20 +16,77 @@ class ChatbotScreen extends StatefulWidget {
 }
 
 class _ChatbotScreenState extends State<ChatbotScreen> {
+  static final List<_ChatMsg> _persistentMessages = [];
+  static final List<String> _queryHistory = [];
+
+  static const String _prefsMessagesKey = 'offline_chat_messages_v1';
+  static const String _prefsHistoryKey = 'offline_chat_history_v1';
+
   final ChatbotEngine _engine = ChatbotEngine();
-  final List<_ChatMsg> _messages = [];
+  final List<_ChatMsg> _messages = _persistentMessages;
   final TextEditingController _controller = TextEditingController();
+  final ScrollController _scrollController = ScrollController();
   bool _loadingKB = true;
+  List<String> _suggestedPrompts = [];
+  String _promptFilter = '';
 
   @override
   void initState() {
     super.initState();
+    _loadPersistedState();
     _initEngine();
+    if (_messages.isNotEmpty) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        _scrollToBottom();
+      });
+    }
   }
 
   Future<void> _initEngine() async {
     await _engine.loadData();
-    setState(() => _loadingKB = false);
+    final prompts = _engine.getSuggestedPrompts(250);
+    setState(() {
+      _loadingKB = false;
+      _suggestedPrompts = prompts;
+    });
+  }
+
+  Future<void> _loadPersistedState() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final msgStr = prefs.getString(_prefsMessagesKey);
+      final histStr = prefs.getString(_prefsHistoryKey);
+
+      if (msgStr != null) {
+        final List<dynamic> arr = jsonDecode(msgStr) as List<dynamic>;
+        _persistentMessages.clear();
+        for (final e in arr) {
+          if (e is Map<String, dynamic>) {
+            final text = e['t'] as String? ?? e['text'] as String?;
+            final isUser = e['u'] as bool? ?? e['isUser'] as bool? ?? true;
+            if (text != null && text.isNotEmpty) {
+              _persistentMessages.add(_ChatMsg(text, isUser: isUser));
+            }
+          }
+        }
+      }
+
+      if (histStr != null) {
+        final List<dynamic> arr = jsonDecode(histStr) as List<dynamic>;
+        _queryHistory
+          ..clear()
+          ..addAll(arr.whereType<String>());
+      }
+
+      if (mounted) {
+        setState(() {});
+        if (_messages.isNotEmpty) {
+          _scrollToBottom();
+        }
+      }
+    } catch (_) {
+      // Ignore corrupt prefs
+    }
   }
 
   void _send() {
@@ -36,11 +95,135 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
     _controller.clear();
     setState(() {
       _messages.add(_ChatMsg(text, isUser: true));
+      _promptFilter = '';
     });
+    _queryHistory.add(text);
     final reply = _engine.generateReply(text);
     setState(() {
       _messages.add(_ChatMsg(reply, isUser: false));
     });
+    _persistState();
+    _scrollToBottom();
+  }
+
+  void _sendPrompt(String text) {
+    final trimmed = text.trim();
+    if (trimmed.isEmpty || _loadingKB) return;
+    _controller.clear();
+    setState(() {
+      _messages.add(_ChatMsg(trimmed, isUser: true));
+      _promptFilter = '';
+    });
+    _queryHistory.add(trimmed);
+    final reply = _engine.generateReply(trimmed);
+    setState(() {
+      _messages.add(_ChatMsg(reply, isUser: false));
+    });
+    _persistState();
+    _scrollToBottom();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  void _scrollToBottom() {
+    if (!_scrollController.hasClients) return;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!_scrollController.hasClients) return;
+      _scrollController.animateTo(
+        _scrollController.position.maxScrollExtent,
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeOut,
+      );
+    });
+  }
+
+  Future<void> _persistState() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final msgPayload =
+          _persistentMessages
+              .map((m) => <String, dynamic>{'t': m.text, 'u': m.isUser})
+              .toList();
+      final histPayload = _queryHistory.toList();
+      await prefs.setString(_prefsMessagesKey, jsonEncode(msgPayload));
+      await prefs.setString(_prefsHistoryKey, jsonEncode(histPayload));
+    } catch (_) {
+      // Ignore persistence errors in UI
+    }
+  }
+
+  void _showHistory() {
+    if (_queryHistory.isEmpty) {
+      showDialog<void>(
+        context: context,
+        builder: (ctx) {
+          return AlertDialog(
+            title: const Text('History'),
+            content: const Text('No previous queries yet.'),
+          );
+        },
+      );
+      return;
+    }
+
+    showModalBottomSheet<void>(
+      context: context,
+      backgroundColor: Colors.black87,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+      ),
+      builder: (ctx) {
+        return SafeArea(
+          child: SizedBox(
+            height: 320,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Padding(
+                  padding: EdgeInsets.fromLTRB(16, 12, 16, 8),
+                  child: Text(
+                    'Search history',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 16,
+                    ),
+                  ),
+                ),
+                const Divider(height: 1, color: Colors.white24),
+                Expanded(
+                  child: ListView.separated(
+                    itemCount: _queryHistory.length,
+                    separatorBuilder:
+                        (_, __) =>
+                            const Divider(height: 1, color: Colors.white12),
+                    itemBuilder: (ctx, index) {
+                      final query =
+                          _queryHistory[_queryHistory.length - 1 - index];
+                      return ListTile(
+                        title: Text(
+                          query,
+                          style: const TextStyle(color: Colors.white),
+                        ),
+                        onTap: () {
+                          Navigator.pop(ctx);
+                          _sendPrompt(query);
+                        },
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
   }
 
   @override
@@ -50,9 +233,32 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
       extendBodyBehindAppBar: true,
       backgroundColor: Colors.transparent,
       appBar: AppBar(
-        title: const Text('MedAssist AI'),
+        title: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              'MedAssist AI',
+              style: theme.textTheme.titleMedium?.copyWith(
+                color: Colors.white,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            Text(
+              'Offline symptom assistant',
+              style: theme.textTheme.bodySmall?.copyWith(color: Colors.white70),
+            ),
+          ],
+        ),
         backgroundColor: Colors.transparent,
         elevation: 0,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.history_rounded),
+            tooltip: 'Search history',
+            onPressed: _showHistory,
+          ),
+        ],
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(48),
           child: Padding(
@@ -83,24 +289,33 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
           SafeArea(
             child: Column(
               children: [
+                if (!_loadingKB && _suggestedPrompts.isNotEmpty)
+                  _buildPromptList(theme),
                 Expanded(
                   child:
                       _loadingKB
                           ? const Center(child: CircularProgressIndicator())
                           : ListView.builder(
+                            controller: _scrollController,
                             padding: const EdgeInsets.all(16),
                             itemCount: _messages.length,
                             itemBuilder: (context, i) {
                               final msg = _messages[i];
+                              final isDark =
+                                  theme.brightness == Brightness.dark;
                               final align =
                                   msg.isUser
                                       ? Alignment.centerRight
                                       : Alignment.centerLeft;
-                              final bubbleColor = msg.isUser
-                                      ? theme.colorScheme.primary.withOpacity(0.7)
-                                      : (theme.brightness == Brightness.dark
-                                          ? Colors.white.withOpacity(0.12)
-                                          : Colors.black.withOpacity(0.05));
+                              // User messages: bright blue bubble; Bot: light (white) in light mode, near-black in dark mode
+                              final bubbleColor =
+                                  msg.isUser
+                                      ? (isDark
+                                          ? const Color(0xFF2563EB)
+                                          : const Color(0xFF1D4ED8))
+                                      : (isDark
+                                          ? const Color(0xFF020617)
+                                          : Colors.white);
                               final borderRadius = BorderRadius.only(
                                 topLeft: const Radius.circular(16),
                                 topRight: const Radius.circular(16),
@@ -128,22 +343,31 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
                                     color: bubbleColor,
                                     borderRadius: borderRadius,
                                     border: Border.all(
-                                      color: Colors.white24,
-                                      width: 0.5,
+                                      color: theme.colorScheme.outline
+                                          .withOpacity(0.3),
+                                      width: 0.6,
                                     ),
                                     boxShadow: [
                                       BoxShadow(
-                                        color: Colors.black.withOpacity(0.2),
-                                        blurRadius: 10,
-                                        offset: const Offset(0, 4),
+                                        color: Colors.black.withOpacity(
+                                          isDark ? 0.5 : 0.15,
+                                        ),
+                                        blurRadius: 14,
+                                        offset: const Offset(0, 6),
                                       ),
                                     ],
                                   ),
                                   child: SelectableText(
                                     msg.text,
-                                    style: const TextStyle(
-                                      color: Colors.white,
+                                    style: TextStyle(
+                                      color:
+                                          msg.isUser
+                                              ? Colors.white
+                                              : (isDark
+                                                  ? Colors.white
+                                                  : Colors.black87),
                                       fontSize: 16,
+                                      height: 1.4,
                                     ),
                                   ),
                                 ),
@@ -160,14 +384,147 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
     );
   }
 
+  Widget _buildPromptList(ThemeData theme) {
+    final filter = _promptFilter.trim().toLowerCase();
+    final List<String> prompts =
+        filter.isEmpty
+            ? _suggestedPrompts
+            : _suggestedPrompts
+                .where((p) => p.toLowerCase().contains(filter))
+                .toList();
+    if (prompts.isEmpty) {
+      return const SizedBox.shrink();
+    }
+    final isDark = theme.brightness == Brightness.dark;
+    return Container(
+      margin: const EdgeInsets.fromLTRB(16, 8, 16, 4),
+      padding: const EdgeInsets.symmetric(vertical: 8),
+      decoration: BoxDecoration(
+        color:
+            isDark
+                ? theme.colorScheme.surfaceVariant.withOpacity(0.95)
+                : theme.colorScheme.surface.withOpacity(0.98),
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(
+          color: theme.colorScheme.outline.withOpacity(0.4),
+          width: 0.7,
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(isDark ? 0.5 : 0.12),
+            blurRadius: 14,
+            offset: const Offset(0, 6),
+          ),
+        ],
+      ),
+      height: 150,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12.0),
+            child: Text(
+              'Quick symptom prompts',
+              style: TextStyle(
+                color: isDark ? Colors.white70 : Colors.black87,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ),
+          const SizedBox(height: 6),
+          Expanded(
+            child: Scrollbar(
+              thumbVisibility: true,
+              child: ListView.separated(
+                padding: const EdgeInsets.symmetric(horizontal: 12),
+                itemCount: prompts.length,
+                itemBuilder: (context, index) {
+                  final text = prompts[index];
+                  final baseStyle = TextStyle(
+                    color: isDark ? Colors.white : Colors.black87,
+                    fontSize: 14,
+                  );
+                  final f = filter;
+                  Widget label;
+                  if (f.isEmpty) {
+                    label = Text(text, style: baseStyle);
+                  } else {
+                    final lower = text.toLowerCase();
+                    final idx = lower.indexOf(f);
+                    if (idx < 0) {
+                      label = Text(text, style: baseStyle);
+                    } else {
+                      final end = idx + f.length;
+                      label = RichText(
+                        text: TextSpan(
+                          style: baseStyle,
+                          children: [
+                            if (idx > 0) TextSpan(text: text.substring(0, idx)),
+                            TextSpan(
+                              text: text.substring(idx, end),
+                              style: baseStyle.copyWith(
+                                fontWeight: FontWeight.w700,
+                                color: theme.colorScheme.secondary,
+                              ),
+                            ),
+                            if (end < text.length)
+                              TextSpan(text: text.substring(end)),
+                          ],
+                        ),
+                      );
+                    }
+                  }
+                  return InkWell(
+                    onTap: () => _sendPrompt(text),
+                    borderRadius: BorderRadius.circular(12),
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 10,
+                        vertical: 8,
+                      ),
+                      decoration: BoxDecoration(
+                        color: Colors.white.withOpacity(0.06),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Icon(
+                            Icons.chat_bubble_outline,
+                            size: 16,
+                            color: Colors.white70,
+                          ),
+                          const SizedBox(width: 8),
+                          Expanded(child: label),
+                        ],
+                      ),
+                    ),
+                  );
+                },
+                separatorBuilder: (_, __) => const SizedBox(height: 4),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   Widget _buildInputBar(ThemeData theme) {
+    final isDark = theme.brightness == Brightness.dark;
     return Container(
       margin: const EdgeInsets.fromLTRB(8, 0, 8, 8),
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.1),
+        color:
+            isDark
+                ? theme.colorScheme.surfaceVariant.withOpacity(0.95)
+                : theme.colorScheme.surface.withOpacity(0.98),
         borderRadius: BorderRadius.circular(24),
-        border: Border.all(color: Colors.white30, width: 0.8),
+        border: Border.all(
+          color: theme.colorScheme.outline.withOpacity(0.25),
+          width: 0.8,
+        ),
       ),
       child: Row(
         children: [
@@ -176,17 +533,36 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
               controller: _controller,
               minLines: 1,
               maxLines: 4,
-              style: const TextStyle(color: Colors.white),
-              decoration: const InputDecoration(
-                hintText: 'Describe your symptoms…',
-                hintStyle: TextStyle(color: Colors.white70),
+              style: TextStyle(color: isDark ? Colors.white : Colors.black87),
+              decoration: InputDecoration(
+                hintText: 'Describe your symptoms or tap a suggestion…',
+                hintStyle: TextStyle(
+                  color: isDark ? Colors.white70 : Colors.black45,
+                ),
                 border: InputBorder.none,
               ),
+              onChanged: (value) {
+                setState(() {
+                  _promptFilter = value;
+                });
+              },
             ),
           ),
-          IconButton(
-            icon: const Icon(Icons.send, color: Colors.white),
-            onPressed: _send,
+          Container(
+            margin: const EdgeInsets.only(left: 8),
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              gradient: LinearGradient(
+                colors: [
+                  theme.colorScheme.primary,
+                  theme.colorScheme.secondary,
+                ],
+              ),
+            ),
+            child: IconButton(
+              icon: const Icon(Icons.send_rounded, color: Colors.white),
+              onPressed: _send,
+            ),
           ),
         ],
       ),
@@ -225,13 +601,11 @@ class _AnimatedBackdropState extends State<_AnimatedBackdrop>
             gradient: LinearGradient(
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
-              colors: isDark ? [
-                const Color(0xFF4b134f),
-                const Color(0xFF1b2735)
-              ] : [
-                const Color(0xFFFF9A8B),
-                const Color(0xFFFF6A88),
-              ],
+              // Light: soft white -> blue, Dark: black -> bright blue
+              colors:
+                  isDark
+                      ? [const Color(0xFF000000), const Color(0xFF2563EB)]
+                      : [const Color(0xFFEFF6FF), const Color(0xFF1D4ED8)],
               transform: GradientRotation(_controller.value * 2 * math.pi),
             ),
           ),

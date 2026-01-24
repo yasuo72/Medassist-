@@ -45,7 +45,7 @@ dependencies:
   flutter_secure_storage: ^9.0.0 # Secure key-value storage
   crypto: ^3.0.3 # For hashing passwords
   shared_preferences: ^2.0.15 # For saving user preferences
-  intl: ^0.19.0 # For internationalization
+  intl: ^0.20.2 # For internationalization (aligned with flutter_localizations)
   url_launcher: ^6.0.0 # Already added, ensure it's the latest or compatible version
   image_gallery_saver_plus: ^4.0.1 # For saving images to gallery (updated)
   permission_handler: ^11.0.0 # For requesting permissions
@@ -61,6 +61,8 @@ dependencies:
   string_similarity: ^2.0.0
   wallpaper_manager_flutter: ^1.0.1
   android_intent_plus: ^5.3.0
+
+  flutter_markdown: ^0.7.3+1
 
   flutter_pdfview: ^1.2.7
   path_provider: ^2.1.1
@@ -107,6 +109,7 @@ flutter:
     - assets/images/ # General images folder (if you have other assets here)
     - assets/wallpapers/ # Lock-screen wallpapers
     # Offline chatbot knowledge base
+    - assets/chatbot/combined_dataset.json
     - assets/chatbot/medical_chatbot_dataset_1000.json
     - assets/chatbot/symptom_Description.csv
     - assets/chatbot/symptom_precaution.csv
